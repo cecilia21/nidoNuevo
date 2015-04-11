@@ -12,6 +12,27 @@ package nidonuevo.modelo;
 public class Player {
     protected int id;
     protected String name;
+    protected String gender;
+    protected int numberOfFriends;
+    protected int positionX;
+    protected int positionY;
+    protected int level;
+    protected int numerOfTrophies;
+    //protected
     
+    public Player(){
+        
+    }
     
+    public void increaseHappiness(){
+        
+    }
+    
+    public void increaseNumberOfFriends(){
+        
+    }
+    
+    public void move(){
+        
+    }
 }
