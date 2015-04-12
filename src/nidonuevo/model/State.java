@@ -6,6 +6,19 @@
 package nidonuevo.model;
 
 
-public class State {
+public abstract class State {
+
+    public void render(){
+        
+    }
+    public void update(){
+        
+    }
+    public void onEnter(){
+        
+    }
+    public void onExit(){
+        
+    }        
     
 }
