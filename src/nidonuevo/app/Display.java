@@ -32,4 +32,7 @@ public class Display {
         frame.setIconImage(icon);
         frame.setVisible(true);
     }
+    public JFrame getFrame(){
+        return frame;
+    }
 }
