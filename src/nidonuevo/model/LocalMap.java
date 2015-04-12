@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * @author pucp
  */
 public class LocalMap {
-    protected ArrayList<Object> maps;// es arreglo d maps
-    protected ArrayList<Friend> friends;
+    protected ArrayList<Map> maps;
+    protected ArrayList<Friend> friends= new ArrayList<Friend>();
     protected int mapAct;
     
     public void render(){
