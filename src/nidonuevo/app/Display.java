@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package nidonuevo.app;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 /**
  *
@@ -26,6 +28,8 @@ public class Display {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/ico_NN.jpg"));
+        frame.setIconImage(icon);
         frame.setVisible(true);
     }
 }
