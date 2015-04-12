@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
-
-
-public abstract class State {
+import java.util.ArrayList;
+/**
+ *
+ * @author pucp
+ */
+public class MainMenu {
+    protected ArrayList<String> options;
+    protected int posY;
 
     public void render(){
         

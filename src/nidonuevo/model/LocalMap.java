@@ -4,10 +4,16 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
-
-
-public abstract class State {
-
+import java.util.ArrayList;
+/**
+ *
+ * @author pucp
+ */
+public class LocalMap {
+    protected ArrayList<Object> maps;// es arreglo d maps
+    protected ArrayList<Friend> friends;
+    protected int mapAct;
+    
     public void render(){
         
     }
@@ -19,6 +25,5 @@ public abstract class State {
     }
     public void onExit(){
         
-    }        
-    
+    }       
 }
