@@ -5,8 +5,14 @@
  */
 package nidonuevo.modelo;
 
-
-public abstract class  State {
+/**
+ *
+ * @author pucp
+ */
+public class MiniGame {
+    protected int id;
+    protected Object game;
+    
     public void render(){
         
     }
@@ -18,5 +24,6 @@ public abstract class  State {
     }
     public void onExit(){
         
-    }    
+    }        
+    
 }

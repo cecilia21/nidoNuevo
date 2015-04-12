@@ -4,9 +4,16 @@
  * and open the template in the editor.
  */
 package nidonuevo.modelo;
-
-
-public abstract class  State {
+import java.util.Stack;
+import java.util.ArrayList;
+/**
+ *
+ * @author pucp
+ */
+public class InGameMenu {
+    protected Stack<SubMenu> subMenus;
+    protected int posY;
+    protected ArrayList<String> options;
     public void render(){
         
     }
@@ -18,5 +25,6 @@ public abstract class  State {
     }
     public void onExit(){
         
-    }    
+    }        
+        
 }

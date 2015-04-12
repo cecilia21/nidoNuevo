@@ -4,9 +4,15 @@
  * and open the template in the editor.
  */
 package nidonuevo.modelo;
-
-
-public abstract class  State {
+import java.awt.Image;
+/**
+ *
+ * @author pucp
+ */
+public class WorldMap {
+    protected Image background;
+    protected int mapAct;
+    
     public void render(){
         
     }
