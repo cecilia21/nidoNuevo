@@ -16,6 +16,7 @@ public class NidoNuevo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new Display("Title!", 300, 300);
     }
     
     
