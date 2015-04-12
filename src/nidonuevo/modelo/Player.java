@@ -12,13 +12,15 @@ package nidonuevo.modelo;
 public class Player {
     private int id;
     private String name;
-    private String gender;
+    private int gender;
+    private double happiness;
     private int numberOfFriends;
     private int positionX;
     private int positionY;
     private int level;
     private int numerOfTrophies;
-    //protected
+    private Sprite sprite;
+    private int pointingDirection;
     
     public Player(){
         
@@ -33,6 +35,14 @@ public class Player {
     }
     
     public void move(){
+        
+    }
+    
+    public void increaseLevel(){ 
+        
+    }
+    
+    public void increaseNumberOfTrophies(){
         
     }
 
@@ -67,14 +77,14 @@ public class Player {
     /**
      * @return the gender
      */
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
     /**
      * @param gender the gender to set
      */
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
