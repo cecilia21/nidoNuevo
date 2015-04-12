@@ -9,6 +9,7 @@ package nidonuevo.app;
  *
  * @author alulab14
  */
+import nidonuevo.model.StateMachine;
 public class NidoNuevo {
 
     /**
@@ -17,6 +18,8 @@ public class NidoNuevo {
     public static void main(String[] args) {
         // TODO code application logic here
         new Display("Nido Nuevo, Amigos Nuevos!", 800, 700);
+        //cinematic de introduccion
+        
     }
     
     
