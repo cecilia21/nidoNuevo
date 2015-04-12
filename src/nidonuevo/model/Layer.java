@@ -3,12 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nidonuevo.modelo;
+package nidonuevo.model;
+
+import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Usuario
+ * @author TOSHIBA
  */
-public class Inventory {
-    
+public class Layer {
+    private int id;
+    private BufferedImage[] images;
 }

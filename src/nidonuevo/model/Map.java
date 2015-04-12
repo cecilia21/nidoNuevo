@@ -3,21 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nidonuevo.modelo;
+package nidonuevo.model;
 
-public class Engine {
-    
-    public void getInput(){
+/**
+ *
+ * @author TOSHIBA
+ */
+public class Map {
+    private Layer layer;
+    public void render(){
         
     }
-    
-    public void setOutput(){
-        
-    }
-    
-    public void validate(){
-        
-    }
-    
-    
 }

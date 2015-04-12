@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nidonuevo.modelo;
+package nidonuevo.model;
 
 /**
  *
@@ -19,7 +19,8 @@ public class Friend {
     private int homePositionX;
     private int homePositionY;
     private int unlockLevel;
-
+    private Sprite sprite;
+    private int dir;
     /**
      * @return the id
      */

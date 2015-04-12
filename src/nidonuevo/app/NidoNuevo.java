@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nidonuevo;
+package nidonuevo.app;
 
 /**
  *
@@ -16,6 +16,7 @@ public class NidoNuevo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        new Display("Title!", 300, 300);
     }
     
     

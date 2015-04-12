@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nidonuevo.modelo;
+package nidonuevo.model;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -12,27 +14,40 @@ package nidonuevo.modelo;
 public class Player {
     private int id;
     private String name;
-    private String gender;
+    private int gender;
+    private double happiness;
     private int numberOfFriends;
     private int positionX;
     private int positionY;
     private int level;
     private int numerOfTrophies;
-    //protected
+    private Sprite sprite;
+    private int pointingDirection;
+    private Inventory inventory;
+    private ArrayList <Friend> friends;
     
     public Player(){
         
     }
     
+    
     public void increaseHappiness(){
         
     }
     
-    public void increaseNumberOfFriends(){
+    public void increaseNumberOfFriends(Friend friend){
         
     }
     
-    public void move(){
+    public void move(int newX, int newY){
+        
+    }
+    
+    public void increaseLevel(){ 
+        
+    }
+    
+    public void increaseNumberOfTrophies(){
         
     }
 
@@ -67,14 +82,14 @@ public class Player {
     /**
      * @return the gender
      */
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
     /**
      * @param gender the gender to set
      */
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -147,4 +162,38 @@ public class Player {
     public void setNumerOfTrophies(int numerOfTrophies) {
         this.numerOfTrophies = numerOfTrophies;
     }
+
+    public double getHappiness() {
+        return happiness;
+    }
+
+    public void setHappiness(double happiness) {
+        this.happiness = happiness;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public int getPointingDirection() {
+        return pointingDirection;
+    }
+
+    public void setPointingDirection(int pointingDirection) {
+        this.pointingDirection = pointingDirection;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+    
+    
 }

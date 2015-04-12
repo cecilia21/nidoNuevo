@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package nidonuevo.modelo;
+package nidonuevo.model;
 
-
-public abstract class  State {
-    public void render(){
+public class Engine {
+    
+    public void getInput(){
         
     }
-    public void update(){
+    
+    public void setOutput(){
         
     }
-    public void onEnter(){
+    
+    public void validate(){
         
     }
-    public void onExit(){
-        
-    }    
+    
+    
 }
