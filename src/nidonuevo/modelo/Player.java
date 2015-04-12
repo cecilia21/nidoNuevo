@@ -5,6 +5,8 @@
  */
 package nidonuevo.modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alulab14
@@ -22,6 +24,7 @@ public class Player {
     private Sprite sprite;
     private int pointingDirection;
     private Inventory inventory;
+    private ArrayList <Friend> friends;
     
     public Player(){
         
@@ -32,11 +35,11 @@ public class Player {
         
     }
     
-    public void increaseNumberOfFriends(){
+    public void increaseNumberOfFriends(Friend friend){
         
     }
     
-    public void move(){
+    public void move(int newX, int newY){
         
     }
     
