@@ -5,6 +5,8 @@
  */
 package nidonuevo.modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Usuario
@@ -12,6 +14,7 @@ package nidonuevo.modelo;
 public class Inventory {
     private int quantity;
     private int capacity;
+    private ArrayList <Item> items;
     
     public void addItem(int itemId){
         
@@ -43,6 +46,14 @@ public class Inventory {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
     
     

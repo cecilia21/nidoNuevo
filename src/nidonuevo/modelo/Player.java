@@ -21,10 +21,12 @@ public class Player {
     private int numerOfTrophies;
     private Sprite sprite;
     private int pointingDirection;
+    private Inventory inventory;
     
     public Player(){
         
     }
+    
     
     public void increaseHappiness(){
         
@@ -157,4 +159,38 @@ public class Player {
     public void setNumerOfTrophies(int numerOfTrophies) {
         this.numerOfTrophies = numerOfTrophies;
     }
+
+    public double getHappiness() {
+        return happiness;
+    }
+
+    public void setHappiness(double happiness) {
+        this.happiness = happiness;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public int getPointingDirection() {
+        return pointingDirection;
+    }
+
+    public void setPointingDirection(int pointingDirection) {
+        this.pointingDirection = pointingDirection;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+    
+    
 }
