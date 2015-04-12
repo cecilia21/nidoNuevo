@@ -19,7 +19,8 @@ public class Friend {
     private int homePositionX;
     private int homePositionY;
     private int unlockLevel;
-
+    private Sprite sprite;
+    private int dir;
     /**
      * @return the id
      */
