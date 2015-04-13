@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package nidonuevo.app;
+import java.awt.Canvas;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ public class Display {
     private JFrame frame;
     private String title;
     private int width, height;
+    private Canvas canvas;
     
     public Display(String title, int width, int height){
         this.title = title;
@@ -35,4 +37,9 @@ public class Display {
     public JFrame getFrame(){
         return frame;
     }
+    public Canvas getCanvas(){
+		return canvas;
+	}
+	
+
 }

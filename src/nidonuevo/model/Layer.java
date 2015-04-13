@@ -18,7 +18,19 @@ public class Layer {
     private int[][] tiles;
     private BufferedImage[] images;
     
-    
+    public void render(Graphics g){
+        for(int y = 0;y < height;y++){
+			for(int x = 0;x < width;x++){
+				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH),
+						(int) (y * Tile.TILEHEIGHT));
+			}
+		}
+    }public Tile getTile(int x, int y){
+		Tile t = Tile.tiles[tiles[x][y]];
+		if(t == null);
+			//return Tile.dirtTile;
+		return t;
+	}
     private void loadWorld(String path){
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");

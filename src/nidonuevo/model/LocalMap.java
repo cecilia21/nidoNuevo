@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
+import java.awt.Graphics;
 import java.util.ArrayList;
 /**
  *
@@ -21,8 +22,9 @@ public class LocalMap {
         player = new Player(eng, 100, 100);
 	mapAct=eng.getCurrentMap();
     }
-    public void render(){
-        
+    public void render(Graphics g){
+        maps.get(mapAct).render(g);
+        player.render(g);
     }
     public void update(){
         

@@ -25,8 +25,10 @@ public class Map {
     public void tick(){
         
     }
-    public void render(){
-        
+    public void render(Graphics g){
+        for (int i=0;i<layers.size();i++){
+            layers.get(i).render(g);
+        }
     }
     
 }

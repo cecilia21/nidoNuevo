@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 import nidonuevo.app.Display;
 public class Engine implements Runnable{
     private String title;
@@ -11,7 +13,8 @@ public class Engine implements Runnable{
     private Display display;
     private Boolean running=false;
     private Thread thread;
-    
+    private BufferStrategy bs;
+    private Graphics g;
     //Actual map
     private int currentMap=1;
     
@@ -52,7 +55,22 @@ public class Engine implements Runnable{
         }
     }
     private void render(){
-        
+        bs = display.getCanvas().getBufferStrategy();
+		if(bs == null){
+			display.getCanvas().createBufferStrategy(3);
+			return;
+		}
+		g = bs.getDrawGraphics();
+		//Clear Screen
+		g.clearRect(0, 0, width, height);
+		//Draw Here!
+		
+		if(!SM.getState().empty())
+			((LocalMap)SM.getState().firstElement()).render(g);
+		
+		//End Drawing!
+		bs.show();
+		g.dispose();
     }
     public void getInput(){
         

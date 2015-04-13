@@ -5,6 +5,7 @@
  */
 package nidonuevo.model;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 /**
@@ -67,7 +68,9 @@ public class Player {
     public void increaseNumberOfFriends(Friend friend){
         
     }
-    
+    public void render(Graphics g){
+        
+    }
     public void move(){
         int newX=positionX+xMove;
         int newY=positionY+yMove;
