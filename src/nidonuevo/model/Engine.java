@@ -16,7 +16,7 @@ public class Engine implements Runnable{
     private BufferStrategy bs;
     private Graphics g;
     //Actual map
-    private int currentMap=1;
+    private int currentMap=0;
     
     //Input
     private KeyManager keyManager;
@@ -45,7 +45,7 @@ public class Engine implements Runnable{
         SM=new StateMachine();
         LMS=new LocalMap(this);
         String[] paths=new String[1];
-        paths[0]="/img/l1.txt";
+        paths[0]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/l1.txt";
         String dirImg="/img/l1.png";
         Map map=new Map(this,1,paths,dirImg);
         LMS.getMaps().add(map);

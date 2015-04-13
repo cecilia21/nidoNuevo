@@ -24,7 +24,7 @@ public class LocalMap {
 
         //aqui se crea el player, se inicializa
         
-        player = new Player(eng, 100, 100);
+        player = new Player(eng, 0, 0);
 	mapAct=eng.getCurrentMap();
     }
     public void render(Graphics g){

@@ -20,8 +20,8 @@ public class Player {
     private int gender;
     private double happiness;
     private int numberOfFriends;
-    private int positionX;
-    private int positionY;
+    private int positionX=0;
+    private int positionY=0;
     private int level;
     private int xMove;
     private int yMove;
@@ -29,12 +29,14 @@ public class Player {
     private int speed=1;
     private  int width = 32, height = 32;
     private BufferedImage sprite;
+
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
     // 2 hacia arriba y -2 hacia abajo
     private Inventory inventory;
     private ArrayList <Friend> friends;
     
     public Player(){
+        
         String path="/img/player.png";
         Sprite sheet = new Sprite(ImageLoader.loadImage(path));
 		
@@ -61,6 +63,7 @@ public class Player {
 			xMove = speed;
 	}
     public Player(Engine eng,int x,int y){
+        this.eng=eng;
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
         positionY=y;
