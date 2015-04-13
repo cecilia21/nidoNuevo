@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author alulab14
  */
 public class Player {
+    private Engine eng;
     private int id;
     private String name;
     private int gender;
@@ -20,7 +21,10 @@ public class Player {
     private int positionX;
     private int positionY;
     private int level;
+    private int xMove;
+    private int yMove;
     private int numerOfTrophies;
+    private int speed=1;
     private Sprite sprite;
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
     // 2 hacia arriba y -2 hacia abajo
@@ -30,6 +34,24 @@ public class Player {
     public Player(){
         
     }
+    public void tick(){
+        
+        getInput();
+        move();
+    }
+    private void getInput(){
+		xMove = 0;
+		yMove = 0;
+		
+		if(eng.getKeyManager().up)
+			yMove = -speed;
+		if(eng.getKeyManager().down)
+			yMove = speed;
+		if(eng.getKeyManager().left)
+			xMove = -speed;
+		if(eng.getKeyManager().right)
+			xMove = speed;
+	}
     public Player(Engine eng,int x,int y){
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
@@ -46,8 +68,9 @@ public class Player {
         
     }
     
-    public void move(int newX, int newY){
-        
+    public void move(){
+        int newX=positionX+xMove;
+        int newY=positionY+yMove;
         if(this.getPositionY()==newY)
             this.setPointingDirection(newX-this.getPositionX());
         else
@@ -56,6 +79,7 @@ public class Player {
         this.setPositionY(newY);
         //aca como cambio el muñequito que se debe mostrar? le mando al 
         //render de sprite? o como? :c
+        //no nada, aca se actualiza el render es despues
         
     }
     

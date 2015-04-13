@@ -114,4 +114,7 @@ public class Engine implements Runnable{
         return currentMap;
         
     }
+    public KeyManager getKeyManager(){
+        return this.keyManager;
+    }
 }
