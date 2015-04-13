@@ -44,6 +44,14 @@ public class Engine implements Runnable{
         display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
         SM=new StateMachine();
         LMS=new LocalMap(this);
+        String[] paths=new String[1];
+        paths[0]="/img/l1.txt";
+        String dirImg="/img/l1.png";
+        Map map=new Map(this,1,paths,dirImg);
+        LMS.getMaps().add(map);
+        
+        //creando
+        
         SM.getState().push(LMS);
               
         
