@@ -11,7 +11,7 @@ import java.awt.Image;
  */
 public class WorldMap {
     protected Image background;
-    protected int mapAct;
+    private int mapAct;
     
     public void render(){
         
@@ -25,4 +25,18 @@ public class WorldMap {
     public void onExit(){
         
     }    
+
+    /**
+     * @return the mapAct
+     */
+    public int getMapAct() {
+        return mapAct;
+    }
+
+    /**
+     * @param mapAct the mapAct to set
+     */
+    public void setMapAct(int mapAct) {
+        this.mapAct = mapAct;
+    }
 }

@@ -10,8 +10,8 @@ package nidonuevo.model;
  * @author pucp
  */
 public class MiniGame {
-    protected int id;
-    protected Object game;
+    private int id;
+    private Object game;
     
     public void render(){
         
@@ -25,5 +25,33 @@ public class MiniGame {
     public void onExit(){
         
     }        
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the game
+     */
+    public Object getGame() {
+        return game;
+    }
+
+    /**
+     * @param game the game to set
+     */
+    public void setGame(Object game) {
+        this.game = game;
+    }
     
 }

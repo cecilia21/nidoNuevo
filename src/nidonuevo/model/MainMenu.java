@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class MainMenu {
     protected ArrayList<String> options;
-    protected int posY;
+    private int posY;
 
     public void render(){
         
@@ -25,5 +25,19 @@ public class MainMenu {
     public void onExit(){
         
     }        
+
+    /**
+     * @return the posY
+     */
+    public int getPosY() {
+        return posY;
+    }
+
+    /**
+     * @param posY the posY to set
+     */
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
     
 }

@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class InGameMenu {
     protected Stack<SubMenu> subMenus;
-    protected int posY;
+    private int posY;
     protected ArrayList<String> options;
     public void render(){
         
@@ -26,5 +26,19 @@ public class InGameMenu {
     public void onExit(){
         
     }        
+
+    /**
+     * @return the posY
+     */
+    public int getPosY() {
+        return posY;
+    }
+
+    /**
+     * @param posY the posY to set
+     */
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
         
 }

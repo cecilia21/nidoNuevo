@@ -28,8 +28,8 @@ public class LocalMap {
 	mapAct=eng.getCurrentMap();
     }
     public void render(Graphics g){
-        maps.get(mapAct).render(g);
-        player.render(g);
+        maps.get(getMapAct()).render(g);
+        getPlayer().render(g);
     }
     public void update(){
         
@@ -41,12 +41,54 @@ public class LocalMap {
         
     }       
     public void tick(){
-        maps.get(mapAct).tick();
-        player.tick();
+        maps.get(getMapAct()).tick();
+        getPlayer().tick();
         //faltaria tick de amigos
     }
     public ArrayList<Map> getMaps(){
         return maps;
+    }
+
+    /**
+     * @return the map
+     */
+    public Map getMap() {
+        return map;
+    }
+
+    /**
+     * @param map the map to set
+     */
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    /**
+     * @return the player
+     */
+    public Player getPlayer() {
+        return player;
+    }
+
+    /**
+     * @param player the player to set
+     */
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    /**
+     * @return the mapAct
+     */
+    public int getMapAct() {
+        return mapAct;
+    }
+
+    /**
+     * @param mapAct the mapAct to set
+     */
+    public void setMapAct(int mapAct) {
+        this.mapAct = mapAct;
     }
    
 }
