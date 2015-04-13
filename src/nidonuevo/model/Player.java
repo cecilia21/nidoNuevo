@@ -29,6 +29,12 @@ public class Player {
     public Player(){
         
     }
+    public Player(Engine eng,int x,int y){
+        name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
+        positionX=x;
+        positionY=y;
+        
+    }
     
     
     public void increaseHappiness(){
