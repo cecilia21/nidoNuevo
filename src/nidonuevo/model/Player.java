@@ -22,7 +22,8 @@ public class Player {
     private int level;
     private int numerOfTrophies;
     private Sprite sprite;
-    private int pointingDirection;
+    private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
+    // 2 hacia arriba y -2 hacia abajo
     private Inventory inventory;
     private ArrayList <Friend> friends;
     
@@ -40,6 +41,15 @@ public class Player {
     }
     
     public void move(int newX, int newY){
+        
+        if(this.getPositionY()==newY)
+            this.setPointingDirection(newX-this.getPositionX());
+        else
+            this.setPointingDirection(newY-(this.getPositionY()+1));
+        this.setPositionX(newX);
+        this.setPositionY(newY);
+        //aca como cambio el muñequito que se debe mostrar? le mando al 
+        //render de sprite? o como? :c
         
     }
     
