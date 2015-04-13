@@ -18,8 +18,10 @@ public class Map {
     private int width, height;
     private int spawnX, spawnY;
     
-    public Map(Engine eng){
-        
+    public Map(Engine eng,int cantLayer,String[] paths,String dirImg){
+        for (int i=0;i<cantLayer;i++){           
+            layers.add(new Layer(paths[i],dirImg));
+        }
         
     }
     public void tick(){

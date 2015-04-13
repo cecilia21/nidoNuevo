@@ -14,11 +14,16 @@ public class LocalMap {
     private Map map;
     private ArrayList<Map> maps=new ArrayList<Map>();
     private Player player;
-    protected ArrayList<Friend> friends;
-    protected int mapAct;
+    private ArrayList<Friend> friends;
+    private int mapAct;
     
     public LocalMap(Engine eng){
         //faltaria el super
+        //se inicializa los mapas
+        //comenzando con mapa 1
+
+        //aqui se crea el player, se inicializa
+        
         player = new Player(eng, 100, 100);
 	mapAct=eng.getCurrentMap();
     }
@@ -40,4 +45,8 @@ public class LocalMap {
         player.tick();
         //faltaria tick de amigos
     }
+    public ArrayList<Map> getMaps(){
+        return maps;
+    }
+   
 }

@@ -6,6 +6,7 @@
 package nidonuevo.model;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 /**
@@ -26,15 +27,21 @@ public class Player {
     private int yMove;
     private int numerOfTrophies;
     private int speed=1;
-    private Sprite sprite;
+    private  int width = 32, height = 32;
+    private BufferedImage sprite;
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
     // 2 hacia arriba y -2 hacia abajo
     private Inventory inventory;
     private ArrayList <Friend> friends;
     
     public Player(){
-        
+        String path="/img/player.png";
+        Sprite sheet = new Sprite(ImageLoader.loadImage(path));
+		
+		
+        sprite=sheet.crop(0, 0, width, height);
     }
+    
     public void tick(){
         
         getInput();
@@ -57,7 +64,11 @@ public class Player {
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
         positionY=y;
-        
+        String path="/img/player.png";
+        Sprite sheet = new Sprite(ImageLoader.loadImage(path));
+		
+		
+        sprite=sheet.crop(0, 0, width, height);
     }
     
     
@@ -70,6 +81,8 @@ public class Player {
     }
     public void render(Graphics g){
         
+	g.drawImage(sprite, (int)(positionX), (int)(positionY), width, height, null);
+	
     }
     public void move(){
         int newX=positionX+xMove;
@@ -214,11 +227,11 @@ public class Player {
         this.happiness = happiness;
     }
 
-    public Sprite getSprite() {
+    public BufferedImage getSprite() {
         return sprite;
     }
 
-    public void setSprite(Sprite sprite) {
+    public void setSprite(BufferedImage sprite) {
         this.sprite = sprite;
     }
 

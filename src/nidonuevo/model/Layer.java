@@ -12,25 +12,30 @@ import java.awt.image.BufferedImage;
  * @author TOSHIBA
  */
 public class Layer {
+    // se toma 8 como alto y ancho del tile
     private int id;
     private int width, height;
     private int spawnX, spawnY;
     private int[][] tiles;
-    private BufferedImage[] images;
-    
-    public void render(Graphics g){
+    private BufferedImage[][] images;
+    //podria ser un vector para hacerlo dinamico
+    private BufferedImage[] gTilePalette;
+    public Layer(String path,String dirImg){
+        loadWorld(path);
+        gTilePalette = SliceImg(dirImg, width,height);
+    }
+    private BufferedImage[] SliceImg(String dirImg,int width,int height){
+        BufferedImage[] a=new BufferedImage[width*height];
+        Sprite sheet = new Sprite(ImageLoader.loadImage(dirImg));		
+        
         for(int y = 0;y < height;y++){
 			for(int x = 0;x < width;x++){
-				getTile(x, y).render(g, (int) (x * Tile.TILEWIDTH),
-						(int) (y * Tile.TILEHEIGHT));
+				a[x+x*y]=sheet.crop(x*8, y*8, width, height);
 			}
 		}
-    }public Tile getTile(int x, int y){
-		Tile t = Tile.tiles[tiles[x][y]];
-		if(t == null);
-			//return Tile.dirtTile;
-		return t;
-	}
+        return a;
+    }
+    
     private void loadWorld(String path){
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
@@ -46,4 +51,14 @@ public class Layer {
 			}
 		}
 	}
+    public void render(Graphics g){
+        for(int y = 0;y < height;y++){
+			for(int x = 0;x < width;x++){
+				g.drawImage(gTilePalette[tiles[x][y]],(int) (x * 8),
+						(int) (y * 8), 8 , 8, null);
+			}
+		}
+        
+    }
+  
 }

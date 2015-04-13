@@ -4,24 +4,18 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
-
-import java.awt.Image;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
 
 public class Sprite {
-    
-    private ArrayList<Image> images=new ArrayList<Image>();
-    
-    public void render(){
-        
-    }
 
-    public ArrayList<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(ArrayList<Image> images) {
-        this.images = images;
-    }
-    
+	private BufferedImage sheet;
+	
+	public Sprite(BufferedImage sheet){
+		this.sheet = sheet;
+	}
+	
+	public BufferedImage crop(int x, int y, int width, int height){
+		return sheet.getSubimage(x, y, width, height);
+	}
+	
 }
