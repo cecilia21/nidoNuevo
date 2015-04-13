@@ -8,7 +8,7 @@ import java.util.Stack;
 
 public class StateMachine {
     
-    private Stack<State> stackSM=new Stack<State>();
+    private Stack<Object> stackSM=new Stack<Object>();
     
     public void udpate(){ //falta el argumento elapsedTime, cual es el tipo? -> GF:double
 
@@ -26,11 +26,11 @@ public class StateMachine {
         
     }
 
-    public Stack<State> getState() {
+    public Stack<Object> getState() {
         return stackSM;
     }
 
-    public void setState(Stack<State> stackSM) {
+    public void setState(Stack<Object> stackSM) {
         this.stackSM = stackSM;
     }
     
