@@ -14,6 +14,7 @@ import java.util.ArrayList;
  * @author alulab14
  */
 public class Player {
+    private int contDelay=5;
     private Engine eng;
     private int id;
     private String name;
@@ -27,6 +28,7 @@ public class Player {
     private int yMove;
     private int dir=2;//der=2 izq=1 arr=3 aba=0
     private int s=0; //0->3
+    private int delay=contDelay;
     private int numerOfTrophies;
     private int speed=5;
     private int tW=200,tH=200;
@@ -60,8 +62,9 @@ public class Player {
 		xMove = 0;
 		yMove = 0;
 		//der=2 izq=1 arr=3 aba=0
+                
 		if(eng.getKeyManager().up){
-                    if (dir==3) s++; else s=0;
+                    if (dir==3) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=3;
                     yMove = -speed;
                 }
@@ -69,25 +72,27 @@ public class Player {
                         
                         
 		if(eng.getKeyManager().down){
-                    if (dir==0) s++; else s=0;
+                    if (dir==0) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=0;
 		    yMove = speed;
                 }
                         
                         
 		if(eng.getKeyManager().left){
-                    if (dir==1) s++; else s=0;
+                    if (dir==1) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=1;
                         xMove = -speed;
+                    
                 }
 			
                         
 		if(eng.getKeyManager().right){
-                    if (dir==2) s++; else s=0;
+                    if (dir==2) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=2;
                     xMove = speed;
                 }
                 if (s==4) s=0;
+                
                         
                         
 	}
@@ -118,6 +123,7 @@ public class Player {
     }
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
+        
 	g.drawImage(sprite[this.dir*4+s], (int)(positionX), (int)(positionY), width, height, null);
 	
     }
