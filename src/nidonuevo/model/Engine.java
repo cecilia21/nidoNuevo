@@ -15,6 +15,8 @@ public class Engine implements Runnable{
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
+    //layer de collision
+    private Layer lc;
     //Actual map
     private int currentMap=0;
     
@@ -37,17 +39,21 @@ public class Engine implements Runnable{
 			return;
 		running = true;
 		thread = new Thread(this);
-		thread.start();
+		thread.start(); //run();
     }
     private void init(){
         display=new Display(title,width,height);
         display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
         SM=new StateMachine();
         LMS=new LocalMap(this);
-        String[] paths=new String[1];
+        String[] paths=new String[2];
         paths[0]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/l1.txt";
-        String dirImg="/img/l1.png";
-        Map map=new Map(this,1,paths,dirImg);
+        paths[1]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/lc1.txt";
+        String[] dirImg=new String[2];
+        dirImg[0]="/img/l1.png";
+        dirImg[1]="/img/lc1.png";
+        Map map=new Map(this,2,paths,dirImg);//eng, cant layer, paths2, iamgeleyer
+        lc=map.getLC();
         LMS.getMaps().add(map);
         
         //creando
@@ -142,5 +148,12 @@ public class Engine implements Runnable{
     }
     public KeyManager getKeyManager(){
         return this.keyManager;
+    }
+
+    /**
+     * @return the lc
+     */
+    public Layer getLc() {
+        return lc;
     }
 }

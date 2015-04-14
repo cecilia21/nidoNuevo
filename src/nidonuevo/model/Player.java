@@ -34,6 +34,7 @@ public class Player {
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
     private BufferedImage[] sprite;
+    private Layer LC;
 
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
     // 2 hacia arriba y -2 hacia abajo
@@ -64,8 +65,13 @@ public class Player {
 		//der=2 izq=1 arr=3 aba=0
                 
 		if(eng.getKeyManager().up){
+                    //delay para actualizar sprite
+                    //s es un sprite movimiento de una direccion
+                    
                     if (dir==3) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=3;
+                    //collision
+//                    if (LC.getTiles()[yMove-speed][1]==1)
                     yMove = -speed;
                 }
                     
@@ -97,6 +103,7 @@ public class Player {
                         
 	}
     public Player(Engine eng,int x,int y){
+        LC=eng.getLc();
         this.eng=eng;
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;

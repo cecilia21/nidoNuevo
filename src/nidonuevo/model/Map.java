@@ -18,14 +18,18 @@ public class Map {
     private int width, height;
     private int spawnX, spawnY;
     
-    public Map(Engine eng,int cantLayer,String[] paths,String dirImg){
+    public Map(Engine eng,int cantLayer,String[] paths,String[] dirImg){
         for (int i=0;i<cantLayer;i++){           
-            layers.add(new Layer(paths[i],dirImg));
+            layers.add(new Layer(paths[i],dirImg[i]));
         }
         
     }
     public void tick(){
         
+        
+    }
+    public Layer getLC(){
+        return layers.get(layers.size()-1);
     }
     public void render(Graphics g){
         for (int i=0;i<layers.size();i++){

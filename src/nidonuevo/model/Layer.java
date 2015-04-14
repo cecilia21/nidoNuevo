@@ -12,12 +12,12 @@ import java.awt.image.BufferedImage;
  * @author TOSHIBA
  */
 public class Layer {
-    // se toma 8 como alto y ancho del tile
+
     private int id;
     private int width, height;
     private int totalX, totalY;
     private int[][] tiles;
-    private BufferedImage[][] images;
+  
     //podria ser un vector para hacerlo dinamico
     private BufferedImage[] gTilePalette;
     public Layer(String path,String dirImg){
@@ -49,7 +49,7 @@ public class Layer {
 		tiles = new int[width][height];
 		for(int y = 0;y < height;y++){
 			for(int x = 0;x < width;x++){
-				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);
+				tiles[x][y] = Utils.parseInt(tokens[(x + y * width) + 4]);//pensar
 			}
 		}
 	}
@@ -58,11 +58,18 @@ public class Layer {
         int cH=(int)(totalY*1.0/height);
         for(int y = 0;y < height;y++){
 			for(int x = 0;x < width;x++){
-				g.drawImage(gTilePalette[tiles[x][y]],(int) (x * cW),
+				g.drawImage(gTilePalette[getTiles()[x][y]],(int) (x * cW),
 						(int) (y * cH), cW , cH, null);
 			}
 		}
         
+    }
+
+    /**
+     * @return the tiles
+     */
+    public int[][] getTiles() {
+        return tiles;
     }
   
 }
