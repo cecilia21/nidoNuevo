@@ -26,8 +26,8 @@ public class Player {
     private int xMove;
     private int yMove;
     private int numerOfTrophies;
-    private int speed=1;
-    private  int width = 32, height = 32;
+    private int speed=5;
+    private  int width = 32, height = 43;
     private BufferedImage sprite;
 
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha

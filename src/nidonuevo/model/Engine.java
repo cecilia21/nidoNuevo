@@ -45,7 +45,7 @@ public class Engine implements Runnable{
         SM=new StateMachine();
         LMS=new LocalMap(this);
         String[] paths=new String[1];
-        paths[0]="C:/Users/alulab14.INF.000/Documents/NetBeansProjects/nidoNuevo/src/img/l1.txt";
+        paths[0]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/l1.txt";
         String dirImg="/img/l1.png";
         Map map=new Map(this,1,paths,dirImg);
         LMS.getMaps().add(map);
