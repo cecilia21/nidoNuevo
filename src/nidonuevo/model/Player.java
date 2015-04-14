@@ -25,10 +25,13 @@ public class Player {
     private int level;
     private int xMove;
     private int yMove;
+    private int dir=2;//der=2 izq=1 arr=3 aba=0
+    private int s=0; //0->3
     private int numerOfTrophies;
     private int speed=5;
-    private  int width = 32, height = 43;
-    private BufferedImage sprite;
+    private int tW=200,tH=200;
+    private  int width = 50, height = 50;
+    private BufferedImage[] sprite;
 
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
     // 2 hacia arriba y -2 hacia abajo
@@ -37,11 +40,15 @@ public class Player {
     
     public Player(){
         
-        String path="/img/player.png";
+        String path="/img/playerS.png";
         Sprite sheet = new Sprite(ImageLoader.loadImage(path));
 		
-		
-        sprite=sheet.crop(0, 0, width, height);
+	sprite=new BufferedImage[16];	
+        for(int py = 0;py < 4;py++){
+			for(int px = 0;px < 4;px++){
+				sprite[px+4*py]=sheet.crop(px*width, py*height,width, height);
+			}
+		}
     }
     
     public void tick(){
@@ -52,26 +59,53 @@ public class Player {
     private void getInput(){
 		xMove = 0;
 		yMove = 0;
-		
-		if(eng.getKeyManager().up)
-			yMove = -speed;
-		if(eng.getKeyManager().down)
-			yMove = speed;
-		if(eng.getKeyManager().left)
-			xMove = -speed;
-		if(eng.getKeyManager().right)
-			xMove = speed;
+		//der=2 izq=1 arr=3 aba=0
+		if(eng.getKeyManager().up){
+                    if (dir==3) s++; else s=0;
+                    this.dir=3;
+                    yMove = -speed;
+                }
+                    
+                        
+                        
+		if(eng.getKeyManager().down){
+                    if (dir==0) s++; else s=0;
+                    this.dir=0;
+		    yMove = speed;
+                }
+                        
+                        
+		if(eng.getKeyManager().left){
+                    if (dir==1) s++; else s=0;
+                    this.dir=1;
+                        xMove = -speed;
+                }
+			
+                        
+		if(eng.getKeyManager().right){
+                    if (dir==2) s++; else s=0;
+                    this.dir=2;
+                    xMove = speed;
+                }
+                if (s==4) s=0;
+                        
+                        
 	}
     public Player(Engine eng,int x,int y){
         this.eng=eng;
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
         positionY=y;
-        String path="/img/player.png";
+        String path="/img/playerS.png";
         Sprite sheet = new Sprite(ImageLoader.loadImage(path));
 		
-		
-        sprite=sheet.crop(0, 0, width, height);
+	sprite=new BufferedImage[16];	
+        for(int py = 0;py < 4;py++){
+			for(int px = 0;px < 4;px++){
+				sprite[px+4*py]=sheet.crop(px*width, py*height,width, height);
+			}
+		}
+        
     }
     
     
@@ -83,8 +117,8 @@ public class Player {
         
     }
     public void render(Graphics g){
-        
-	g.drawImage(sprite, (int)(positionX), (int)(positionY), width, height, null);
+        //der=2 izq=1 arr=3 aba=0
+	g.drawImage(sprite[this.dir*4+s], (int)(positionX), (int)(positionY), width, height, null);
 	
     }
     public void move(){
@@ -230,13 +264,13 @@ public class Player {
         this.happiness = happiness;
     }
 
-    public BufferedImage getSprite() {
-        return sprite;
-    }
-
-    public void setSprite(BufferedImage sprite) {
-        this.sprite = sprite;
-    }
+//    public BufferedImage getSprite() {
+//        return sprite;
+//    }
+//
+//    public void setSprite(BufferedImage sprite) {
+//        this.sprite = sprite;
+//    }
 
     public int getPointingDirection() {
         return pointingDirection;
