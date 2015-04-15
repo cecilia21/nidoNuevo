@@ -59,6 +59,13 @@ public class Player {
         getInput();
         move();
     }
+    private int getT(int x){
+        int cW=(int)(LC.getTotalX()*1.0/LC.getWidth());
+        return (x/cW)+1;
+    }
+    private boolean valid(int x, int y){
+        return (x>=0 && y>=0 && x<750 && y<650);
+    }
     private void getInput(){
 		xMove = 0;
 		yMove = 0;
@@ -71,8 +78,11 @@ public class Player {
                     if (dir==3) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=3;
                     //collision
-//                    if (LC.getTiles()[yMove-speed][1]==1)
+                    if (valid(positionX,positionY-speed))//valida si esta en marco
+                    if (LC.getTiles()[getT(positionX)][getT(positionY-speed)]==1)//colision
                     yMove = -speed;
+                    
+                    
                 }
                     
                         
@@ -80,6 +90,8 @@ public class Player {
 		if(eng.getKeyManager().down){
                     if (dir==0) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=0;
+                    if (valid(positionX,positionY+speed))
+                    if (LC.getTiles()[getT(positionX)][getT(positionY+speed)]==1)
 		    yMove = speed;
                 }
                         
@@ -87,6 +99,8 @@ public class Player {
 		if(eng.getKeyManager().left){
                     if (dir==1) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=1;
+                    if (valid(positionX-speed,positionY))
+                    if (LC.getTiles()[getT(positionX-speed)][getT(positionY)]==1)
                         xMove = -speed;
                     
                 }
@@ -95,6 +109,8 @@ public class Player {
 		if(eng.getKeyManager().right){
                     if (dir==2) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
                     this.dir=2;
+                    if (valid(positionX+speed,positionY))
+                    if (LC.getTiles()[getT(positionX+speed)][getT(positionY)]==1)
                     xMove = speed;
                 }
                 if (s==4) s=0;

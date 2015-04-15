@@ -45,7 +45,7 @@ public class Engine implements Runnable{
         display=new Display(title,width,height);
         display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
         SM=new StateMachine();
-        LMS=new LocalMap(this);
+        
         String[] paths=new String[2];
         paths[0]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/l1.txt";
         paths[1]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/lc1.txt";
@@ -54,6 +54,7 @@ public class Engine implements Runnable{
         dirImg[1]="/img/lc1.png";
         Map map=new Map(this,2,paths,dirImg);//eng, cant layer, paths2, iamgeleyer
         lc=map.getLC();
+        LMS=new LocalMap(this);
         LMS.getMaps().add(map);
         
         //creando
