@@ -30,7 +30,7 @@ public class Player {
     private int s=0; //0->3
     private int delay=contDelay;
     private int numerOfTrophies;
-    private int speed=5;
+    private int speed=6;
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
     private BufferedImage[] sprite;
