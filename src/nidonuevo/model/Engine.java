@@ -6,6 +6,7 @@
 package nidonuevo.model;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.File;
 import nidonuevo.app.Display;
 public class Engine implements Runnable{
     private String title;
@@ -47,8 +48,10 @@ public class Engine implements Runnable{
         SM=new StateMachine();
         
         String[] paths=new String[2];
-        paths[0]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/l1.txt";
-        paths[1]="C:/Users/TOSHIBA/Documents/NetBeansProjects/nidoNuevo/src/img/lc1.txt";
+//        String s=new File("a.txt").getAbsolutePath();
+        paths[0]="src/img/l1.txt";
+        
+        paths[1]="src/img/lc1.txt";
         String[] dirImg=new String[2];
         dirImg[0]="/img/l1.png";
         dirImg[1]="/img/lc1.png";

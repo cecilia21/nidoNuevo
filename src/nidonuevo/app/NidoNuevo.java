@@ -9,6 +9,7 @@ package nidonuevo.app;
  *
  * @author alulab14
  */
+import java.io.File;
 import nidonuevo.model.Engine;
 
 public class NidoNuevo {
@@ -18,6 +19,7 @@ public class NidoNuevo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
         Engine engine=new Engine("Nido Nuevo, Amigos Nuevos!", 800, 700);
         engine.start();
 
