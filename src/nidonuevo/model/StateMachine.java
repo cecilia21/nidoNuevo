@@ -24,8 +24,8 @@ public class StateMachine {
        this.stackSM.push(state);
     }
     
-    public void pull(){
-        
+    public void pop(){
+        this.stackSM.pop();
     }
 
     public Stack<State> getState() {

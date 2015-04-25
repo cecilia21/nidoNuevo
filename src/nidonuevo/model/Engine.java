@@ -66,6 +66,8 @@ public class Engine implements Runnable{
         //prueba del menu
         MainMenu menu=new MainMenu();
         SM.add(menu);
+        keyManager.tick();
+        if (keyManager.eme) SM.pop();
         
     }
     private void tick(){
