@@ -13,6 +13,7 @@ public abstract class State {
     public void render(Graphics g){
         
     }
+    public abstract boolean ordenPop();
     public void tick(){
         
     }

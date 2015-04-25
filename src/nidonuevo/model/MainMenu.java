@@ -16,13 +16,14 @@ public class MainMenu extends State{
     protected ArrayList<String> options;
     private int posY;
     private final int space=70;
+    private Engine eng;
     
-    public MainMenu(){
+    public MainMenu(Engine eng){
         //aca se debe cargar el menu inicial
         options=new ArrayList<String>(0);
         options.add("START");
         options.add("SALIR");
-        
+       this.eng=eng;
         
         
     }
@@ -34,6 +35,13 @@ public class MainMenu extends State{
           g.drawString(options.get(i),100,space*(i+1));  
         }
         
+    }
+    public boolean ordenPop(){
+        if (eng.getKeyManager().eme){
+            eng.getKeyManager().eme=false;
+            return true;
+        }
+        return false;
     }
     public void tick(){
         

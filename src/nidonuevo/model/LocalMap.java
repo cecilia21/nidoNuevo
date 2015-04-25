@@ -37,6 +37,9 @@ public class LocalMap extends State{
     public void onEnter(){
         
     }
+    public boolean ordenPop(){
+        return true;
+    }
     public void onExit(){
         
     }       

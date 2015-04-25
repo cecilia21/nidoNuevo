@@ -15,7 +15,9 @@ public class StateMachine {
         this.stackSM.peek().tick();
 
     }
-    
+    public boolean getOrdenPop(){
+        return this.stackSM.peek().ordenPop();
+    }
     public void render(Graphics g){
         this.stackSM.peek().render(g);
     }

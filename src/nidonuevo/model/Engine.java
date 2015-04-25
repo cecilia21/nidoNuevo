@@ -35,6 +35,7 @@ public class Engine implements Runnable{
         keyManager = new KeyManager();
         
     }   
+    
     public void start(){
         if(running)
 			return;
@@ -64,14 +65,15 @@ public class Engine implements Runnable{
         
         SM.add(LMS);
         //prueba del menu
-        MainMenu menu=new MainMenu();
+        MainMenu menu=new MainMenu(this);
         SM.add(menu);
-        keyManager.tick();
-        if (keyManager.eme) SM.pop();
+   
+        
         
     }
     private void tick(){
         keyManager.tick();
+        if (SM.getOrdenPop()) SM.pop();
         if (!SM.getState().empty()){
             SM.tick();
         }
