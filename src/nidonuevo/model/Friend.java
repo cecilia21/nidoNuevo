@@ -9,59 +9,12 @@ package nidonuevo.model;
  *
  * @author TOSHIBA
  */
-public class Friend {
-    private int id;
-    private String name;
-    private int gender;
+public class Friend extends Person{
     private String province;
-    private int positionX;
-    private int positiony;
     private int homePositionX;
     private int homePositionY;
     private int unlockLevel;
-    private Sprite sprite;
-    private int dir;
-    /**
-     * @return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the gender
-     */
-    public int getGender() {
-        return gender;
-    }
-
-    /**
-     * @param gender the gender to set
-     */
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
+    
 
     /**
      * @return the province
@@ -75,34 +28,6 @@ public class Friend {
      */
     public void setProvince(String province) {
         this.province = province;
-    }
-
-    /**
-     * @return the positionX
-     */
-    public int getPositionX() {
-        return positionX;
-    }
-
-    /**
-     * @param positionX the positionX to set
-     */
-    public void setPositionX(int positionX) {
-        this.positionX = positionX;
-    }
-
-    /**
-     * @return the positiony
-     */
-    public int getPositiony() {
-        return positiony;
-    }
-
-    /**
-     * @param positiony the positiony to set
-     */
-    public void setPositiony(int positiony) {
-        this.positiony = positiony;
     }
 
     /**
