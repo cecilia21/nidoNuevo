@@ -63,7 +63,9 @@ public class Engine implements Runnable{
         //creando
         
         SM.add(LMS);
-              
+        //prueba del menu
+        MainMenu menu=new MainMenu();
+        SM.add(menu);
         
     }
     private void tick(){
