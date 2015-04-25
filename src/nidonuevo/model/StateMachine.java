@@ -4,33 +4,35 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
+import java.awt.Graphics;
 import java.util.Stack;
 
 public class StateMachine {
     
-    private Stack<Object> stackSM=new Stack<Object>();
+    private Stack<State> stackSM=new Stack<State>();
     
-    public void udpate(){ //falta el argumento elapsedTime, cual es el tipo? -> GF:double
+    public void tick(){ 
+        this.stackSM.peek().tick();
 
     }
     
-    public void render(){
-        
+    public void render(Graphics g){
+        this.stackSM.peek().render(g);
     }
     
     public void add(State state){
-        
+       this.stackSM.push(state);
     }
     
     public void pull(){
         
     }
 
-    public Stack<Object> getState() {
+    public Stack<State> getState() {
         return stackSM;
     }
 
-    public void setState(Stack<Object> stackSM) {
+    public void setState(Stack<State> stackSM) {
         this.stackSM = stackSM;
     }
     

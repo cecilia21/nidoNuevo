@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author pucp
  */
-public class LocalMap {
+public class LocalMap extends State{
     private Map map;
     private ArrayList<Map> maps=new ArrayList<Map>();
     private Player player;

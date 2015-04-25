@@ -5,13 +5,15 @@
  */
 package nidonuevo.model;
 
+import java.awt.Graphics;
+
 
 public abstract class State {
 
-    public void render(){
+    public void render(Graphics g){
         
     }
-    public void update(){
+    public void tick(){
         
     }
     public void onEnter(){

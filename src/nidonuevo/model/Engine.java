@@ -62,14 +62,14 @@ public class Engine implements Runnable{
         
         //creando
         
-        SM.getState().push(LMS);
+        SM.add(LMS);
               
         
     }
     private void tick(){
         keyManager.tick();
         if (!SM.getState().empty()){
-            ((LocalMap)SM.getState().firstElement()).tick();
+            SM.tick();
         }
     }
     private void render(){
@@ -84,7 +84,8 @@ public class Engine implements Runnable{
 		//Draw Here!
 		
 		if(!SM.getState().empty())
-			((LocalMap)SM.getState().firstElement()).render(g);
+                        SM.render(g);
+			
 		
 		//End Drawing!
 		bs.show();
