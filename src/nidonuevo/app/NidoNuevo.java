@@ -22,9 +22,9 @@ public class NidoNuevo {
         
         Engine engine=new Engine("Nido Nuevo, Amigos Nuevos!", 800, 700);
         engine.start();
-
         //cinematic de introduccion
-        
+        engine.saveToXML();
+        engine.loadToXML();
     }
     
     

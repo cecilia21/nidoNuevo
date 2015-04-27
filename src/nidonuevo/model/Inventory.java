@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Inventory {
     private int quantity;
     private int capacity;
-    private ArrayList <Item> items;
+    private ArrayList <Item> items=new ArrayList <Item>();
     
     public void addItem(int itemId){
         
