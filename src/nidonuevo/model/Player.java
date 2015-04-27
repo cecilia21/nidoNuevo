@@ -7,13 +7,14 @@ package nidonuevo.model;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author alulab14
  */
-public class Player extends Person{
+public class Player extends Person implements Serializable{
     private int contDelay=5;
     private Engine eng;
     private double happiness;
@@ -31,8 +32,8 @@ public class Player extends Person{
 
     private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
     // 2 hacia arriba y -2 hacia abajo
-    private Inventory inventory;
-    private ArrayList <Friend> friends;
+    private Inventory inventory=new Inventory();
+    private ArrayList <Friend> friends=new ArrayList <Friend>();
     
     public Player(){
         positionX=0;    
@@ -230,6 +231,15 @@ public class Player extends Person{
     public void setInventory(Inventory inventory) {
         this.inventory = inventory;
     }
+
+    public ArrayList <Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(ArrayList <Friend> friends) {
+        this.friends = friends;
+    }
+    
     
     
 }

@@ -8,12 +8,23 @@
 //la función init, donde se inicializan los resusos, items disponibles, mapas, etc.  que  tendrá 
 //el juego
 
-//El grabado de este XML se hizo mediante la función saveToXML
+//El grabado de este XML se hizo mediante la función saveGameToXML
+//La lectura sera loadGameFromXML
 package nidonuevo.model;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nidonuevo.app.Display;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 public class Engine implements Runnable{
     private String title;
     private int width, height;
@@ -51,7 +62,7 @@ public class Engine implements Runnable{
 		thread.start(); //run();
     }
     private void init(){
-        loadFromXML();
+        loadGameFromXML();
         display=new Display(title,width,height);
         display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
         setSM(new StateMachine());
@@ -74,8 +85,9 @@ public class Engine implements Runnable{
         getSM().add(LMS);
         //prueba del menu
         MainMenu menu=new MainMenu(this);
-        getSM().add(menu);
-   
+
+        SM.add(menu);
+
         
         
     }
@@ -146,7 +158,7 @@ public class Engine implements Runnable{
 				timer = 0;
 			}
 		}
-		saveToXML();
+		saveGameToXML();
 		stop();
 		
 	}
@@ -176,6 +188,7 @@ public class Engine implements Runnable{
         return lc;
     }
 
+
     /**
      * @return the SM
      */
@@ -193,10 +206,71 @@ public class Engine implements Runnable{
         ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
     }
 
-    public void loadFromXML() {
 
-    }
-    public void saveToXML(){
+
+    
+    public void saveToXML() {
+        try {
+            Thread.sleep(3000);//Para esperar a q se cargue todo, despues lo borraremos
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Document document=DocumentHelper.createDocument();
+        Element root=document.addElement("GameData");
+        //Todo lo de player
+        Element player=root.addElement("Player");
+        player.addElement("name").addText(LMS.getPlayer().getName());
+        player.addElement("happiness").addText(""+LMS.getPlayer().getHappiness());
+        player.addElement("numberOfFriends").addText(""+LMS.getPlayer().getNumberOfFriends());
+        player.addElement("level").addText(""+LMS.getPlayer().getLevel());
+        player.addElement("numerOfTrophies").addText(""+LMS.getPlayer().getNumerOfTrophies());
+        for(int i=0;i<LMS.getPlayer().getFriends().size();i++){
+            Element friend=player.addElement("Friend")
+                    .addAttribute("id",""+LMS.getPlayer().getFriends().get(i).getId());
+        }
+        Element inventory=player.addElement("Inventory");
+        inventory.addElement("Capacity").addText(""+LMS.getPlayer().getInventory().getCapacity());
+        inventory.addElement("Qunatity").addText(""+LMS.getPlayer().getInventory().getQuantity());        
+        for(int i=0;i<LMS.getPlayer().getInventory().getItems().size();i++){
+            Element item=inventory.addElement("Item")
+                    .addAttribute("id",""+LMS.getPlayer().getInventory().getItems().get(i).getId());
+            //Como vamos a manejar la cantidad de items?
+        }
+        //Mapa Actual
+        Element cMap=root.addElement("CurrentMap");
+        cMap.addElement("Map").addText(""+currentMap);
         
+        try { 
+            XMLWriter writer=new XMLWriter(new FileWriter("GameData.xml"));
+            writer.write(document);
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+  
+        
+    } 
+    
+    public void loadToXML() {
+        SAXReader reader= new SAXReader();
+        try {    
+            Document document=reader.read("GameData.xml");
+            Element root=document.getRootElement();
+            Element player=root.element("Player");
+            String name=player.element("name").getText();
+            double happiness=Double.parseDouble(player.element("happiness").getText());
+            //Falta sacar mas elementos......
+        } catch (DocumentException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
+    private void loadGameFromXML() {
+       }
+
+    private void saveGameToXML() {
+       
+    }
+    
+
 }
