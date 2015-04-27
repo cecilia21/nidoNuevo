@@ -16,6 +16,7 @@ public class getName extends java.awt.Dialog {
      */
     public getName(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        setLocation(430,300);
         initComponents();
     }
 
@@ -62,6 +63,11 @@ public class getName extends java.awt.Dialog {
                 button1MouseClicked(evt);
             }
         });
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
         panel1.add(button1);
 
         add(panel1, java.awt.BorderLayout.EAST);
@@ -88,6 +94,10 @@ public class getName extends java.awt.Dialog {
         setVisible(false);
         dispose();
     }//GEN-LAST:event_button1MouseClicked
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
