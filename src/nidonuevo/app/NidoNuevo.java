@@ -19,8 +19,10 @@ public class NidoNuevo {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        Engine engine=new Engine("Nido Nuevo, Amigos Nuevos!", 800, 700);
+        //archivo de inicialización XML, el path en la variable pathXML
+        String pathXML="/files/xml/initNidoNuevo.xml";
+        //Engine engine();
+        Engine engine=new Engine("Nido Nuevo, Amigos Nuevos!", 800, 700);        
         engine.start();
 
         //cinematic de introduccion

@@ -3,6 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+//IMPORTANTE!!
+//La inicializacion del juego se hará mediante un archivo XML, esta función esta implementada en
+//la función init, donde se inicializan los resusos, items disponibles, mapas, etc.  que  tendrá 
+//el juego
+
+//El grabado de este XML se hizo mediante la función saveToXML
 package nidonuevo.model;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -45,6 +51,7 @@ public class Engine implements Runnable{
 		thread.start(); //run();
     }
     private void init(){
+        loadFromXML();
         display=new Display(title,width,height);
         display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
         setSM(new StateMachine());
@@ -139,7 +146,7 @@ public class Engine implements Runnable{
 				timer = 0;
 			}
 		}
-		
+		saveToXML();
 		stop();
 		
 	}
@@ -184,5 +191,12 @@ public class Engine implements Runnable{
     }
     public void setPlayerName(String name){
         ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
+    }
+
+    public void loadFromXML() {
+
+    }
+    public void saveToXML(){
+        
     }
 }
