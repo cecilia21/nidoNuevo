@@ -25,8 +25,10 @@ public class NidoNuevo {
         Engine engine=new Engine("Nido Nuevo, Amigos Nuevos!", 800, 700);        
         engine.start();
         //cinematic de introduccion
-        engine.saveToXML();
-        engine.loadToXML();
+        //HE PUESTO EL SAVE DENTRODE NOMBRE PARA PROBARLO, DEBERIA IR DENTRO DE
+        //UNA OPCION DE GUARDAR PARTIDA
+        // public void setPlayerName(String name){ AHI LO PUSE, DIEGO
+//        engine.loadToXML();
     }
     
     

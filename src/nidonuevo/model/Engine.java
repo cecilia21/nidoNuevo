@@ -158,6 +158,7 @@ public class Engine implements Runnable{
 				timer = 0;
 			}
 		}
+                
 		saveGameToXML();
 		stop();
 		
@@ -204,6 +205,7 @@ public class Engine implements Runnable{
     }
     public void setPlayerName(String name){
         ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
+        saveToXML();
     }
 
 
