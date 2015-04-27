@@ -143,7 +143,7 @@ public class Player extends Person{
         //der=2 izq=1 arr=3 aba=0
         
 	g.drawImage(getSprite()[this.getDir()*4+s], (int)(getPositionX()), (int)(getPositionY()), width, height, null);
-	
+	System.out.println(name);
     }
     public void move(){
         int newX=getPositionX()+xMove;

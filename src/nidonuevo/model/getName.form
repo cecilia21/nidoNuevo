@@ -55,6 +55,7 @@
             </Property>
             <Property name="name" type="java.lang.String" value="" noResource="true"/>
             <Property name="text" type="java.lang.String" value="Escribe tu nombre!"/>
+            <Property name="selectionEnd" type="int" value="20"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField1ActionPerformed"/>
@@ -69,7 +70,6 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="button1MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

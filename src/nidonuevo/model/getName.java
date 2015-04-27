@@ -48,6 +48,7 @@ public class getName extends java.awt.Dialog {
         textField1.setMaximumSize(new java.awt.Dimension(100, 20));
         textField1.setName(""); // NOI18N
         textField1.setText("Escribe tu nombre!");
+        textField1.setSelectionEnd(20);
         textField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField1ActionPerformed(evt);
@@ -59,11 +60,6 @@ public class getName extends java.awt.Dialog {
         button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 button1MouseClicked(evt);
-            }
-        });
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
             }
         });
         panel1.add(button1);
@@ -85,15 +81,10 @@ public class getName extends java.awt.Dialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textField1ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_button1ActionPerformed
-
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
+        click_ok=true;
         name=textField1.getText();
-        setClick_ok(true);
         setVisible(false);
         dispose();
     }//GEN-LAST:event_button1MouseClicked
