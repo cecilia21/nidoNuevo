@@ -5,6 +5,7 @@
  */
 package nidonuevo.app;
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -39,7 +40,7 @@ public class Display {
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
-		
+		canvas.setBackground(Color.black);
 		frame.add(canvas);
 		frame.pack();
     }

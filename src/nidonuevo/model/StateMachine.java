@@ -13,7 +13,7 @@ public class StateMachine {
     
     public void tick(){ 
         this.stackSM.peek().tick();
-
+     
     }
     public boolean getOrdenPop(){
         return this.stackSM.peek().ordenPop();

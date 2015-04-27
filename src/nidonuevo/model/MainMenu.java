@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 /**
  *
@@ -16,38 +17,53 @@ import java.util.ArrayList;
  */
 public class MainMenu extends State{
     protected ArrayList<String> options;
-    private int posY;
+    protected ArrayList<Button> buttons;
     private final int space=100;
+    private String title="Nido Nuevo, Amigos Nuevos!";
+    private Font fntT;
+    private final int fontSizeT=40;
+    private BufferedImage background;
     private Engine eng;
-    private final int x=350;    
+    private final int x=275;    
     private final int y=250;
-    private final int  widthB=150; //buttton width
-    private final int  heightB=50; //button height
-    private Rectangle playB=new Rectangle(x,y,widthB,heightB);
-    private Rectangle helpB=new Rectangle(x,y+space,widthB,heightB);
-    private Rectangle quitB=new Rectangle(x,y+2*space,widthB,heightB);
+    private final int  widthB=250; //buttton width
+    private final int  heightB=70; //button height
+
+    private int selectY=y; //selector del menu
     public MainMenu(Engine eng){
         //aca se debe cargar el menu inicial
-        options=new ArrayList<String>(0);
-        options.add("START");
+        //carga de botones
+        buttons=new ArrayList<Button>();        
+        options=new ArrayList<String>();
+        fntT =new Font("Comic Sans MS",Font.BOLD,fontSizeT);
+        options.add("START");        
         options.add("HELP");
         options.add("SALIR");
+        buttons.add(new Button(options.get(0),x,y,widthB,heightB));
+        buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
+        buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));
        this.eng=eng;
+       background=ImageLoader.loadImage("/img/bg.png");
         
         
     }
     public void render(Graphics g){
-        Graphics2D g2d=(Graphics2D) g; 
-        Font fnt0 =new Font("arial",Font.BOLD,50);
-        g.setFont(fnt0);
+        //background
+        
+        g.drawImage(background,0,0,800,700,null);
+        //titulo
+        g.setFont(fntT);
         g.setColor(Color.black);
-        for (int i=0;i<options.size();i++){
-          g.drawString(options.get(i),x,y+space/2+space*(i));  
+        int cen=(int)(800-title.length()*((int)(fontSizeT)))/(2);
+        g.drawString(title,x+cen,y-100);
+        //buttons
+        for (int i=0;i<buttons.size();i++){
+            buttons.get(i).render(g);
           
         }
-        g2d.draw(playB);
-        g2d.draw(helpB);
-        g2d.draw(quitB);
+        
+   
+        
     }
     public boolean ordenPop(){
         //arreglar
@@ -73,16 +89,7 @@ public class MainMenu extends State{
     /**
      * @return the posY
      */
-    public int getPosY() {
-        return posY;
-    }
 
-    /**
-     * @param posY the posY to set
-     */
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
     
 }
 
