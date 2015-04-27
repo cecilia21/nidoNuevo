@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author pucp
  */
-public class MainMenu extends State{
+public class MainMenu extends State {
     
     protected ArrayList<String> options;
     protected ArrayList<Button> buttons;
@@ -68,7 +68,7 @@ public class MainMenu extends State{
     }
     public boolean ordenPop(){
         //arreglar
-        if (eng.getKeyManager().eme){
+        if (eng.getKeyManager().enter){
             
             getName dialog = new getName(new java.awt.Frame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
