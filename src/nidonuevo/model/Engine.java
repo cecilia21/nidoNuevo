@@ -292,7 +292,7 @@ public class Engine implements Runnable{
             for(int j =0; j<LMS.getMaps().get(i).getLayers().size();j++){
                 source.addElement("Path").addAttribute("id", ""+j).addText(LMS.getMaps().get(i).getPaths()[j]);
                 source.addElement("Img").addAttribute("id", ""+j).addText(LMS.getMaps().get(i).getDirImg()[j]);
-                //falta width,gehith, layer. mapa, etc, terminar mapas
+                //falta width,gehith, layer. mapa, etc, terminar mapash
             }
         }
         
