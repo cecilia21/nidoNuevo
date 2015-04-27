@@ -16,6 +16,7 @@ public class Engine implements Runnable{
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
+    
     //layer de collision
     private Layer lc;
     //Actual map
@@ -46,7 +47,7 @@ public class Engine implements Runnable{
     private void init(){
         display=new Display(title,width,height);
         display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
-        SM=new StateMachine();
+        setSM(new StateMachine());
         
         String[] paths=new String[2];
 //        String s=new File("a.txt").getAbsolutePath();
@@ -63,19 +64,19 @@ public class Engine implements Runnable{
         
         //creando
         
-        SM.add(LMS);
+        getSM().add(LMS);
         //prueba del menu
         MainMenu menu=new MainMenu(this);
-        SM.add(menu);
+        getSM().add(menu);
    
         
         
     }
     private void tick(){
         keyManager.tick();
-        if (SM.getOrdenPop()) SM.pop();
+        if (getSM().getOrdenPop()) getSM().pop();
         if (!SM.getState().empty()){
-            SM.tick();
+            getSM().tick();
         }
     }
     private void render(){
@@ -90,7 +91,7 @@ public class Engine implements Runnable{
 		//Draw Here!
 		
 		if(!SM.getState().empty())
-                        SM.render(g);
+                        getSM().render(g);
 			
 		
 		//End Drawing!
@@ -166,5 +167,22 @@ public class Engine implements Runnable{
      */
     public Layer getLc() {
         return lc;
+    }
+
+    /**
+     * @return the SM
+     */
+    public StateMachine getSM() {
+        return SM;
+    }
+
+    /**
+     * @param SM the SM to set
+     */
+    public void setSM(StateMachine SM) {
+        this.SM = SM;
+    }
+    public void setPlayerName(String name){
+        ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
     }
 }

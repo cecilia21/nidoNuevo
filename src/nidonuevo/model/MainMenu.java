@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author pucp
  */
 public class MainMenu extends State{
+    
     protected ArrayList<String> options;
     protected ArrayList<Button> buttons;
     private final int space=100;
@@ -68,8 +69,23 @@ public class MainMenu extends State{
     public boolean ordenPop(){
         //arreglar
         if (eng.getKeyManager().eme){
-            eng.getKeyManager().eme=false;
-            return true;
+            
+            getName dialog = new getName(new java.awt.Frame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0); //quitar elboton de cerrar
+                    }
+                });
+               
+                dialog.setVisible(true);
+            if (dialog.isClick_ok()){
+                eng.setPlayerName(dialog.name);
+                eng.getKeyManager().eme=false;
+                return true;
+            }
+            
+            
+            
         }
         if (eng.getKeyManager().q){
             System.exit(1);
