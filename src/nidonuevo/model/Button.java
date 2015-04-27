@@ -24,6 +24,11 @@ public class Button {
     private final int fontSize=50; //leer xml
      //cantidad de sprites
     public Button(String title,int x,int y,int w,int h){
+        //new font
+        
+        
+        
+        
         this.title=title;
         this.x=x;
         this.y=y;
@@ -31,7 +36,7 @@ public class Button {
         this.h=h;
         sprite=new BufferedImage[quanSp];
         paths=new String[quanSp];
-        paths[0]="/img/buttons/button1.png"; //leer desde xml
+        paths[0]="/img/buttons/buttonF.png"; //leer desde xml
         paths[1]="/img/buttons/button2.png";
         paths[2]="/img/buttons/button1.png";
         for(int i=0;i<quanSp;i++){
@@ -39,7 +44,7 @@ public class Button {
             
         }
         
-        fnt0 =new Font("arial",Font.BOLD,fontSize);
+        fnt0 =new Font("Monotype Corsiva",Font.BOLD,fontSize);
         
         
         
@@ -47,7 +52,7 @@ public class Button {
     public void render(Graphics g){
         
         g.setFont(fnt0);
-        g.setColor(Color.blue);
+        g.setColor(Color.black);
         g.drawImage(sprite[0],x,y,w,h, null);
         int cen=(int)(sprite[0].getWidth()-title.length()*((int)(fontSize*0.65)))/(2);
         g.drawString(title,x+cen,y+fontSize); 

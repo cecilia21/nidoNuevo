@@ -43,7 +43,7 @@ public class MainMenu extends State{
         buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
         buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));
        this.eng=eng;
-       background=ImageLoader.loadImage("/img/bg.png");
+       background=ImageLoader.loadImage("/img/bgF.jpg");
         
         
     }
@@ -52,10 +52,10 @@ public class MainMenu extends State{
         
         g.drawImage(background,0,0,800,700,null);
         //titulo
-        g.setFont(fntT);
-        g.setColor(Color.black);
-        int cen=(int)(800-title.length()*((int)(fontSizeT)))/(2);
-        g.drawString(title,x+cen,y-100);
+//        g.setFont(fntT);
+//        g.setColor(Color.black);
+//        int cen=(int)(800-title.length()*((int)(fontSizeT)))/(2);
+//        g.drawString(title,x+cen,y-100);
         //buttons
         for (int i=0;i<buttons.size();i++){
             buttons.get(i).render(g);
