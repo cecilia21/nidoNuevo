@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Game>
+  <General>
+    <title>Nido Nuevo, Amigos Nuevos!</title>
+    <width>800</width>
+    <height>700</height>
+  </General>
+  <Maps>
+    <Map id="0">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/l1.png</Img>
+        <Path id="1">src/img/lc1.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+    </Map>
+  </Maps>
+</Game>

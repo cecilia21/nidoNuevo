@@ -23,6 +23,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 public class Engine implements Runnable{
@@ -68,7 +69,7 @@ public class Engine implements Runnable{
         setSM(new StateMachine());
         
         String[] paths=new String[2];
-//        String s=new File("a.txt").getAbsolutePath();
+
         paths[0]="src/img/l1.txt";
         
         paths[1]="src/img/lc1.txt";
@@ -79,7 +80,7 @@ public class Engine implements Runnable{
         lc=map.getLC();
         LMS=new LocalMap(this);
         LMS.getMaps().add(map);
-        
+        LocalMap LMS1=LMS;
         //creando
         
         getSM().add(LMS);
@@ -87,8 +88,8 @@ public class Engine implements Runnable{
         MainMenu menu=new MainMenu(this);
 
         SM.add(menu);
-
-        
+        //VAMOS A GUARDAR LA CONFIGURACION INICIAL DEL JUEGO
+        saveGameToXML();
         
     }
     private void tick(){
@@ -159,7 +160,7 @@ public class Engine implements Runnable{
 			}
 		}
                 
-		saveGameToXML();
+		
 		stop();
 		
 	}
@@ -243,8 +244,11 @@ public class Engine implements Runnable{
         cMap.addElement("Map").addText(""+currentMap);
         
         try { 
-            XMLWriter writer=new XMLWriter(new FileWriter("GameData.xml"));
+            OutputFormat format = OutputFormat.createPrettyPrint();
+             format.setIndent(true);
+            XMLWriter writer=new XMLWriter(new FileWriter("GameData.xml"),format);
             writer.write(document);
+            writer.setIndentLevel(2);
             writer.close();
         } catch (IOException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
@@ -271,7 +275,40 @@ public class Engine implements Runnable{
        }
 
     private void saveGameToXML() {
-       
+       Document document=DocumentHelper.createDocument();
+       Element root=document.addElement("Game");
+       //General
+        Element general=root.addElement("General");
+        general.addElement("title").addText(title);
+        general.addElement("width").addText(""+width);
+        general.addElement("height").addText(""+height);
+       //Mapas
+        Element maps=root.addElement("Maps");
+        for(int i=0;i<LMS.getMaps().size();i++){
+            
+            Element map=maps.addElement("Map").addAttribute("id", ""+i);
+            map.addElement("NumberLayers").addText(""+LMS.getMaps().get(i).getLayers().size());
+            Element source=map.addElement("Source");
+            for(int j =0; j<LMS.getMaps().get(i).getLayers().size();j++){
+                source.addElement("Path").addAttribute("id", ""+j).addText(LMS.getMaps().get(i).getPaths()[j]);
+                source.addElement("Img").addAttribute("id", ""+j).addText(LMS.getMaps().get(i).getDirImg()[j]);
+                //falta width,gehith, layer. mapa, etc, terminar mapas
+            }
+        }
+        
+        
+        
+      //WRITER
+        try { 
+            OutputFormat format = OutputFormat.createPrettyPrint();
+             format.setIndent(true);
+            XMLWriter writer=new XMLWriter(new FileWriter("GameInit.xml"),format);
+            writer.write(document);
+            writer.setIndentLevel(2);
+            writer.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 

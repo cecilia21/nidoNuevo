@@ -1,2 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GameData><Player><name>Diego</name><happiness>0.0</happiness><numberOfFriends>0</numberOfFriends><level>0</level><numerOfTrophies>0</numerOfTrophies><Inventory><Capacity>0</Capacity><Qunatity>0</Qunatity></Inventory></Player><CurrentMap><Map>0</Map></CurrentMap></GameData>
+
+<GameData>
+  <Player>
+    <name>D9ego</name>
+    <happiness>0.0</happiness>
+    <numberOfFriends>0</numberOfFriends>
+    <level>0</level>
+    <numerOfTrophies>0</numerOfTrophies>
+    <Inventory>
+      <Capacity>0</Capacity>
+      <Qunatity>0</Qunatity>
+    </Inventory>
+  </Player>
+  <CurrentMap>
+    <Map>0</Map>
+  </CurrentMap>
+</GameData>
