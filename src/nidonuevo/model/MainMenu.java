@@ -19,6 +19,7 @@ public class MainMenu extends State {
     
     protected ArrayList<String> options;
     protected ArrayList<Button> buttons;
+    private Selector sel;
     private final int space=100;
     private String title="Nido Nuevo, Amigos Nuevos!";
     private Font fntT;
@@ -38,11 +39,14 @@ public class MainMenu extends State {
         options=new ArrayList<String>();
         fntT =new Font("Comic Sans MS",Font.BOLD,fontSizeT);
         options.add("START");        
+        options.add("LOAD");
         options.add("HELP");
         options.add("SALIR");
+        sel=new Selector(x-widthB,y,widthB,heightB,space,4);
         buttons.add(new Button(options.get(0),x,y,widthB,heightB));
         buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
         buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));
+        buttons.add(new Button(options.get(2),x,y+3*space,widthB,heightB));
        this.eng=eng;
        background=ImageLoader.loadImage("/img/bgF.jpg");
         
@@ -62,6 +66,7 @@ public class MainMenu extends State {
             buttons.get(i).render(g);
           
         }
+        sel.render(g);
         
    
         
@@ -69,20 +74,31 @@ public class MainMenu extends State {
     public boolean ordenPop(){
         //arreglar
         if (eng.getKeyManager().enter){
-            
-            getName dialog = new getName(new java.awt.Frame(), true);
+            if (sel.getOpt()==1){
+                getName dialog = new getName(new java.awt.Frame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0); //quitar elboton de cerrar
                     }
                 });
                
-                dialog.setVisible(true);
-            if (dialog.isClick_ok()){
-                eng.setPlayerName(dialog.name);
-                eng.getKeyManager().eme=false;
-                return true;
+                    dialog.setVisible(true);
+                if (dialog.isClick_ok()){
+                    eng.setPlayerName(dialog.name);
+                    eng.getKeyManager().eme=false;
+                    return true;
+                }
             }
+            if (sel.getOpt()==2){
+                loadGame lgDialog = new loadGame(new java.awt.Frame());
+                lgDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0); //quitar elboton de cerrar
+                    }
+                });
+                lgDialog.setVisible(true);
+            }
+            
             
             
             
@@ -93,7 +109,12 @@ public class MainMenu extends State {
         return false;
     }
     public void tick(){
-        
+        if (eng.getKeyManager().down){
+            sel.down();
+        }
+        if(eng.getKeyManager().up){
+            sel.up();
+        }
     }
     public void onEnter(){
         
