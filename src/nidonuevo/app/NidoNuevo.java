@@ -28,7 +28,8 @@ public class NidoNuevo {
         //HE PUESTO EL SAVE DENTRODE NOMBRE PARA PROBARLO, DEBERIA IR DENTRO DE
         //UNA OPCION DE GUARDAR PARTIDA
         // public void setPlayerName(String name){ AHI LO PUSE, DIEGO
-//        engine.loadToXML();
+        //engine.saveToXML();
+        engine.loadToXML();
     }
     
     

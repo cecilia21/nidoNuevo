@@ -2,14 +2,16 @@
 
 <GameData>
   <Player>
-    <name>D9ego</name>
+    <name>Raul</name>
     <happiness>0.0</happiness>
     <numberOfFriends>0</numberOfFriends>
     <level>0</level>
     <numerOfTrophies>0</numerOfTrophies>
+    <Friends/>
     <Inventory>
       <Capacity>0</Capacity>
-      <Qunatity>0</Qunatity>
+      <Quantity>0</Quantity>
+      <Items/>
     </Inventory>
   </Player>
   <CurrentMap>

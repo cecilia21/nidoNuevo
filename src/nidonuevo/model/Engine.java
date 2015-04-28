@@ -220,24 +220,29 @@ public class Engine implements Runnable{
         }
         Document document=DocumentHelper.createDocument();
         Element root=document.addElement("GameData");
-        //Todo lo de player
+        //PLAYER
         Element player=root.addElement("Player");
         player.addElement("name").addText(LMS.getPlayer().getName());
         player.addElement("happiness").addText(""+LMS.getPlayer().getHappiness());
         player.addElement("numberOfFriends").addText(""+LMS.getPlayer().getNumberOfFriends());
         player.addElement("level").addText(""+LMS.getPlayer().getLevel());
         player.addElement("numerOfTrophies").addText(""+LMS.getPlayer().getNumerOfTrophies());
+        ////FRIENDS
+        Element friends=player.addElement("Friends");
         for(int i=0;i<LMS.getPlayer().getFriends().size();i++){
-            Element friend=player.addElement("Friend")
+            Element friend=friends.addElement("Friend")
                     .addAttribute("id",""+LMS.getPlayer().getFriends().get(i).getId());
         }
+        ////INVENTORY
         Element inventory=player.addElement("Inventory");
         inventory.addElement("Capacity").addText(""+LMS.getPlayer().getInventory().getCapacity());
-        inventory.addElement("Qunatity").addText(""+LMS.getPlayer().getInventory().getQuantity());        
+        inventory.addElement("Quantity").addText(""+LMS.getPlayer().getInventory().getQuantity());  
+        //////ITEMS
+        Element items=inventory.addElement("Items");
         for(int i=0;i<LMS.getPlayer().getInventory().getItems().size();i++){
-            Element item=inventory.addElement("Item")
+            Element item=items.addElement("Item")
                     .addAttribute("id",""+LMS.getPlayer().getInventory().getItems().get(i).getId());
-            //Como vamos a manejar la cantidad de items?
+            item.addElement("stock").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getStock());    
         }
         //Mapa Actual
         Element cMap=root.addElement("CurrentMap");
@@ -262,10 +267,39 @@ public class Engine implements Runnable{
         try {    
             Document document=reader.read("GameData.xml");
             Element root=document.getRootElement();
+            //Player
             Element player=root.element("Player");
             String name=player.element("name").getText();
             double happiness=Double.parseDouble(player.element("happiness").getText());
-            //Falta sacar mas elementos......
+            int numberOfFriends=Integer.parseInt(player.element("numberOfFriends").getText());
+            int level=Integer.parseInt(player.element("level").getText());
+            int numberOfTrophies=Integer.parseInt(player.element("numerOfTrophies").getText());
+            //Friends
+            Element friends=player.element("Friends");
+            int idFriends[]=new int[20],cantF=0;
+            for(Iterator i=friends.elementIterator("product");i.hasNext();){
+                Element friend=(Element)i.next();
+                int id=Integer.parseInt(friend.attribute("id").getText());
+                idFriends[cantF++]=id;
+            }
+            //Inventory
+            Element inventory=player.element("Inventory");
+            int capacity=Integer.parseInt(inventory.element("Capacity").getText());
+            int quantity=Integer.parseInt(inventory.element("Quantity").getText());
+            //Items
+            Element items=inventory.element("Items");
+            int idItems[]=new int[20],stocks[]=new int[20],cantI=0;
+            for(Iterator i=items.elementIterator("Item");i.hasNext();){
+                Element item=(Element)i.next();
+                int id=Integer.parseInt(item.attribute("id").getText());
+                int stock=Integer.parseInt(item.element("stock").getText());
+                idItems[cantI]=id;idItems[cantI]=stock;
+                cantI++;
+            }
+            //Current Map
+            Element currentMap=root.element("CurrentMap");
+            int mapId=Integer.parseInt(currentMap.element("Map").getText());
+            
         } catch (DocumentException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }
