@@ -47,12 +47,10 @@ public class Engine implements Runnable{
     private StateMachine SM;
     private LocalMap LMS;
     
-    public Engine(String title, int width, int height){
-        this.title = title;
-        this.width = width;
-        this.height =height;  
-        keyManager = new KeyManager();
+    public Engine(){
         
+        keyManager = new KeyManager();
+        setSM(new StateMachine());
     }   
     
     public void start(){
@@ -63,34 +61,9 @@ public class Engine implements Runnable{
 		thread.start(); //run();
     }
     private void init(){
-        loadGameFromXML();
-        display=new Display(title,width,height);
-        display.getFrame().addKeyListener(keyManager); //enlaza el key listener con el frame
-        setSM(new StateMachine());
-        
-        String[] paths=new String[2];
-
-        paths[0]="src/img/l1.txt";
-        
-        paths[1]="src/img/lc1.txt";
-        String[] dirImg=new String[2];
-        dirImg[0]="/img/l1.png";
-        dirImg[1]="/img/lc1.png";
-        Map map=new Map(this,2,paths,dirImg);//eng, cant layer, paths2, iamgeleyer
-        lc=map.getLC();
-        LMS=new LocalMap(this);
-        LMS.getMaps().add(map);
-        LocalMap LMS1=LMS;
-        //creando
-        
-        getSM().add(LMS);
-        //prueba del menu
-        MainMenu menu=new MainMenu(this);
-
-        SM.add(menu);
+        loadGameFromXML();                    
         //VAMOS A GUARDAR LA CONFIGURACION INICIAL DEL JUEGO
-        saveGameToXML();
-        
+        saveGameToXML();       
     }
     private void tick(){
         keyManager.tick();
@@ -226,7 +199,7 @@ public class Engine implements Runnable{
         player.addElement("happiness").addText(""+LMS.getPlayer().getHappiness());
         player.addElement("numberOfFriends").addText(""+LMS.getPlayer().getNumberOfFriends());
         player.addElement("level").addText(""+LMS.getPlayer().getLevel());
-        player.addElement("numerOfTrophies").addText(""+LMS.getPlayer().getNumerOfTrophies());
+        player.addElement("numerOfTrophies").addText(""+LMS.getPlayer().getNumberOfTrophies());
         ////FRIENDS
         Element friends=player.addElement("Friends");
         for(int i=0;i<LMS.getPlayer().getFriends().size();i++){
@@ -306,7 +279,92 @@ public class Engine implements Runnable{
     }
 
     private void loadGameFromXML() {
-       }
+        SAXReader reader= new SAXReader();
+        try {    
+            Document document=reader.read("GameInit.xml");
+            Element root=document.getRootElement();
+            //General
+            Element general=root.element("General");
+            title=general.element("title").getText();
+            width=Integer.parseInt(general.element("width").getText());
+            height=Integer.parseInt(general.element("height").getText());
+            display=new Display(title,width,height);
+            display.getFrame().addKeyListener(keyManager); 
+            //Maps
+            Element maps=root.element("Maps");
+            for(Iterator i=maps.elementIterator("Map");i.hasNext();){
+                
+                Element map=(Element)i.next();
+                
+                int id=Integer.parseInt(map.attribute("id").getText());
+                int numberLayers=Integer.parseInt(map.element("NumberLayers").getText());
+                String[] paths=new String[numberLayers];
+                String[] dirImg=new String[numberLayers];
+                Element source=map.element("Source");
+                int j1=0;
+                Iterator k=source.elementIterator("Img");
+                for (Iterator j=source.elementIterator("Path");j.hasNext();j1++){
+                    Element path=(Element)j.next();
+                    Element dir=(Element)k.next();
+                    paths[j1]=path.getText();
+                    dirImg[j1]=dir.getText();
+                }
+                Map map1=new Map(this,numberLayers,paths,dirImg);
+                lc=map1.getLC();//arreglar las colisiones, mas mapas
+                LMS=new LocalMap(this);
+                LMS.getMaps().add(map1);
+                
+              
+          
+            }
+            //Player
+            Element player=root.element("Player"); 
+            
+            LMS.getPlayer().setPositionX(Integer.parseInt(player.element("positionX").getText()));
+            LMS.getPlayer().setPositionY(Integer.parseInt(player.element("positionY").getText()));
+            LMS.getPlayer().setDir(Integer.parseInt(player.element("dir").getText()));
+            LMS.getPlayer().setPath(player.element("path").getText());
+            LMS.getPlayer().setContDelay(Integer.parseInt(player.element("contDelay").getText()));
+            LMS.getPlayer().setWidth(Integer.parseInt(player.element("width").getText()));
+            LMS.getPlayer().setHeight(Integer.parseInt(player.element("height").getText()));
+            LMS.getPlayer().settW(Integer.parseInt(player.element("tW").getText()));
+            LMS.getPlayer().settH(Integer.parseInt(player.element("tH").getText()));
+            LMS.getPlayer().setSpeed(Integer.parseInt(player.element("speed").getText()));
+            LMS.getPlayer().setHappiness(Double.parseDouble(player.element("happiness").getText()));
+            LMS.getPlayer().setNumberOfFriends(Integer.parseInt(player.element("numberOfFriends").getText()));
+            LMS.getPlayer().setNumberOfTrophies(Integer.parseInt(player.element("numberOfTrophies").getText()));
+            Element inventory=player.element("Inventory");        
+                for(Iterator i=inventory.elementIterator("Item");i.hasNext();){
+                    Element item=(Element)i.next();
+                    int id=Integer.parseInt(item.attribute("id").getText());
+                    String name=item.element("name").getText();
+                    int stock=Integer.parseInt(item.element("stock").getText());
+                    String description=item.element("description").getText();
+                    LMS.getPlayer().getInventory().getItems().add(new Item(id,name,stock,description));
+                }
+                          
+               
+           getSM().add(LMS);
+           //prueba del menu
+           MainMenu menu=new MainMenu(this);
+
+           SM.add(menu);
+            
+            
+
+            
+
+        
+            
+ 
+            
+        } catch (DocumentException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
 
     private void saveGameToXML() {
        Document document=DocumentHelper.createDocument();
@@ -329,6 +387,31 @@ public class Engine implements Runnable{
                 //falta width,gehith, layer. mapa, etc, terminar mapash
             }
         }
+        //Player
+        Element player=root.addElement("Player"); 
+        player.addElement("positionX").addText(""+LMS.getPlayer().getPositionX());
+        player.addElement("positionY").addText(""+LMS.getPlayer().getPositionY());
+        player.addElement("dir").addText(""+LMS.getPlayer().getDir());
+        player.addElement("path").addText(""+LMS.getPlayer().getPath());
+        player.addElement("contDelay").addText(""+LMS.getPlayer().getContDelay());
+        player.addElement("width").addText(""+LMS.getPlayer().getWidth());
+        player.addElement("height").addText(""+LMS.getPlayer().getHeight());
+        player.addElement("tW").addText(""+LMS.getPlayer().gettW());
+        player.addElement("tH").addText(""+LMS.getPlayer().gettH());
+        player.addElement("speed").addText(""+LMS.getPlayer().getSpeed());
+        player.addElement("happiness").addText(""+LMS.getPlayer().getHappiness());
+        player.addElement("numberOfFriends").addText(""+LMS.getPlayer().getNumberOfFriends());
+        player.addElement("numberOfTrophies").addText(""+LMS.getPlayer().getNumberOfTrophies());
+        Element inventory=player.addElement("Inventory");        
+            for(int i =0;i<LMS.getPlayer().getInventory().getItems().size();i++){
+                Element item=inventory.addElement("Item").addAttribute("id",""+LMS.getPlayer().getInventory().getItems().get(i).getId());
+                item.addElement("name").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getName());
+                item.addElement("stock").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getStock());
+                item.addElement("description").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getDescription());
+            }
+            
+        
+        
         
         
         
@@ -347,3 +430,4 @@ public class Engine implements Runnable{
     
 
 }
+

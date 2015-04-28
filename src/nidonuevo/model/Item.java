@@ -14,7 +14,14 @@ public class Item {
     protected String name;
     protected int stock;
     protected String description;
-
+    
+    public Item(int id,String name, int stock, String description){
+        this.id=id;
+        this.name=name;
+        this.stock=stock;
+        this.description=description;
+    }
+    
     public int getId() {
         return id;
     }

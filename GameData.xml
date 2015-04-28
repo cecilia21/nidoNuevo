@@ -2,7 +2,7 @@
 
 <GameData>
   <Player>
-    <name>Raul</name>
+    <name>Escribe tu nombre!</name>
     <happiness>0.0</happiness>
     <numberOfFriends>0</numberOfFriends>
     <level>0</level>
@@ -11,7 +11,11 @@
     <Inventory>
       <Capacity>0</Capacity>
       <Quantity>0</Quantity>
-      <Items/>
+      <Items>
+        <Item id="1">
+          <stock>1</stock>
+        </Item>
+      </Items>
     </Inventory>
   </Player>
   <CurrentMap>

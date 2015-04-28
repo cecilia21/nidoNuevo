@@ -23,15 +23,14 @@ public class Player extends Person implements Serializable{
     private int xMove;
     private int yMove;
     private int s=0; //0->3
-    private int delay=contDelay;
-    private int numerOfTrophies;
+    private int delay=getContDelay();
+    private int numberOfTrophies;
     private int speed=6;
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
     private Layer LC;
 
-    private int pointingDirection; // es -1 si mira hacia la izq, +1 hacia la derecha
-    // 2 hacia arriba y -2 hacia abajo
+
     private Inventory inventory=new Inventory();
     private ArrayList <Friend> friends=new ArrayList <Friend>();
     
@@ -71,12 +70,12 @@ public class Player extends Person implements Serializable{
                     //delay para actualizar sprite
                     //s es un sprite movimiento de una direccion
                     
-                    if (getDir()==3) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
+                    if (getDir()==3) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
                     this.setDir(3);
                     //collision
-                    if (valid(getPositionX(),getPositionY()-speed))//valida si esta en marco
-                    if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()-speed)]==1)//colision
-                    yMove = -speed;
+                    if (valid(getPositionX(),getPositionY()-getSpeed()))//valida si esta en marco
+                    if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()-getSpeed())]==1)//colision
+                    yMove = -getSpeed();
                     
                     
                 }
@@ -84,30 +83,30 @@ public class Player extends Person implements Serializable{
                         
                         
 		if(eng.getKeyManager().down){
-                    if (getDir()==0) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
+                    if (getDir()==0) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
                     this.setDir(0);
-                    if (valid(getPositionX(),getPositionY()+speed))
-                    if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()+speed)]==1)
-		    yMove = speed;
+                    if (valid(getPositionX(),getPositionY()+getSpeed()))
+                    if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()+getSpeed())]==1)
+		    yMove = getSpeed();
                 }
                         
                         
 		if(eng.getKeyManager().left){
-                    if (getDir()==1) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
+                    if (getDir()==1) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
                     this.setDir(1);
-                    if (valid(getPositionX()-speed, getPositionY()))
-                    if (LC.getTiles()[getT(getPositionX()-speed)][getT(getPositionY())]==1)
-                        xMove = -speed;
+                    if (valid(getPositionX()-getSpeed(), getPositionY()))
+                    if (LC.getTiles()[getT(getPositionX()-getSpeed())][getT(getPositionY())]==1)
+                        xMove = -getSpeed();
                     
                 }
 			
                         
 		if(eng.getKeyManager().right){
-                    if (getDir()==2) {if (delay==0) {s++; delay=contDelay;} else delay--;} else s=0;
+                    if (getDir()==2) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
                     this.setDir(2);
-                    if (valid(getPositionX()+speed, getPositionY()))
-                    if (LC.getTiles()[getT(getPositionX()+speed)][getT(getPositionY())]==1)
-                    xMove = speed;
+                    if (valid(getPositionX()+getSpeed(), getPositionY()))
+                    if (LC.getTiles()[getT(getPositionX()+getSpeed())][getT(getPositionY())]==1)
+                    xMove = getSpeed();
                 }
                 if (s==4) s=0;
                 
@@ -120,8 +119,8 @@ public class Player extends Person implements Serializable{
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
         positionY=y;
-        String path="/img/playerS.png";
-        Sprite sheet = new Sprite(ImageLoader.loadImage(path));
+        path="/img/playerS.png";
+        Sprite sheet = new Sprite(ImageLoader.loadImage(getPath()));
 		
 	sprite=new BufferedImage[16];	
         for(int py = 0;py < 4;py++){
@@ -143,22 +142,16 @@ public class Player extends Person implements Serializable{
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
         
-	g.drawImage(getSprite()[this.getDir()*4+s], (int)(getPositionX()), (int)(getPositionY()), width, height, null);
+	g.drawImage(getSprite()[this.getDir()*4+s], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
 	System.out.println(name);
     }
     public void move(){
         int newX=getPositionX()+xMove;
         int newY=getPositionY()+yMove;
-        if(this.getPositionY()==newY)
-            this.setPointingDirection(newX-this.getPositionX());
-        else
-            this.setPointingDirection(newY-(this.getPositionY()+1));
+
         this.setPositionX(newX);
         this.setPositionY(newY);
-        //aca como cambio el muñequito que se debe mostrar? le mando al 
-        //render de sprite? o como? :c
-        //no nada, aca se actualiza el render es despues
-        
+
     }
     
     public void increaseLevel(){ 
@@ -194,17 +187,17 @@ public class Player extends Person implements Serializable{
     }
 
     /**
-     * @return the numerOfTrophies
+     * @return the numberOfTrophies
      */
-    public int getNumerOfTrophies() {
-        return numerOfTrophies;
+    public int getNumberOfTrophies() {
+        return numberOfTrophies;
     }
 
     /**
-     * @param numerOfTrophies the numerOfTrophies to set
+     * @param numberOfTrophies the numberOfTrophies to set
      */
-    public void setNumerOfTrophies(int numerOfTrophies) {
-        this.numerOfTrophies = numerOfTrophies;
+    public void setNumberOfTrophies(int numberOfTrophies) {
+        this.numberOfTrophies = numberOfTrophies;
     }
 
     public double getHappiness() {
@@ -216,13 +209,6 @@ public class Player extends Person implements Serializable{
     }
 
 
-    public int getPointingDirection() {
-        return pointingDirection;
-    }
-
-    public void setPointingDirection(int pointingDirection) {
-        this.pointingDirection = pointingDirection;
-    }
 
     public Inventory getInventory() {
         return inventory;
@@ -238,6 +224,90 @@ public class Player extends Person implements Serializable{
 
     public void setFriends(ArrayList <Friend> friends) {
         this.friends = friends;
+    }
+
+    /**
+     * @return the contDelay
+     */
+    public int getContDelay() {
+        return contDelay;
+    }
+
+    /**
+     * @param contDelay the contDelay to set
+     */
+    public void setContDelay(int contDelay) {
+        this.contDelay = contDelay;
+    }
+
+    /**
+     * @return the speed
+     */
+    public int getSpeed() {
+        return speed;
+    }
+
+    /**
+     * @param speed the speed to set
+     */
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * @return the tW
+     */
+    public int gettW() {
+        return tW;
+    }
+
+    /**
+     * @param tW the tW to set
+     */
+    public void settW(int tW) {
+        this.tW = tW;
+    }
+
+    /**
+     * @return the tH
+     */
+    public int gettH() {
+        return tH;
+    }
+
+    /**
+     * @param tH the tH to set
+     */
+    public void settH(int tH) {
+        this.tH = tH;
+    }
+
+    /**
+     * @return the width
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * @param width the width to set
+     */
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    /**
+     * @return the height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(int height) {
+        this.height = height;
     }
     
     

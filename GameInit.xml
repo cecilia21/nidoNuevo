@@ -17,4 +17,26 @@
       </Source>
     </Map>
   </Maps>
+  <Player>
+    <positionX>0</positionX>
+    <positionY>0</positionY>
+    <dir>2</dir>
+    <path>/img/playerS.png</path>
+    <contDelay>5</contDelay>
+    <width>50</width>
+    <height>50</height>
+    <tW>200</tW>
+    <tH>200</tH>
+    <speed>6</speed>
+    <happiness>0.0</happiness>
+    <numberOfFriends>0</numberOfFriends>
+    <numberOfTrophies>0</numberOfTrophies>
+    <Inventory>
+      <Item id="1">
+        <name>Bici</name>
+        <stock>1</stock>
+        <description>Bicicleta montañera rapida</description>
+      </Item>
+    </Inventory>
+  </Player>
 </Game>

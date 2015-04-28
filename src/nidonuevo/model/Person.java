@@ -8,6 +8,7 @@ package nidonuevo.model;
 import java.awt.image.BufferedImage;
 
 public class Person {
+    protected String path;
     protected int id;
     protected String name;
     protected int positionX;
@@ -112,6 +113,20 @@ public class Person {
      */
     public void setSprite(BufferedImage[] sprite) {
         this.sprite = sprite;
+    }
+
+    /**
+     * @return the path
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * @param path the path to set
+     */
+    public void setPath(String path) {
+        this.path = path;
     }
     
     

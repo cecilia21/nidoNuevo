@@ -22,7 +22,7 @@ public class NidoNuevo {
         //archivo de inicialización XML, el path en la variable pathXML
         String pathXML="/files/xml/initNidoNuevo.xml";
         //Engine engine();
-        Engine engine=new Engine("Nido Nuevo, Amigos Nuevos!", 800, 700);        
+        Engine engine=new Engine();        
         engine.start();
         //cinematic de introduccion
         //HE PUESTO EL SAVE DENTRODE NOMBRE PARA PROBARLO, DEBERIA IR DENTRO DE
