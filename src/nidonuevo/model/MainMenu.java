@@ -90,13 +90,19 @@ public class MainMenu extends State {
                 }
             }
             if (sel.getOpt()==2){
-                loadGame lgDialog = new loadGame(new java.awt.Frame());
-                lgDialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0); //quitar elboton de cerrar
-                    }
-                });
-                lgDialog.setVisible(true);
+                
+                
+//                loadGame lgDialog = new loadGame(new java.awt.Frame());
+//                lgDialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0); //quitar elboton de cerrar
+//                    }
+//                });
+//                lgDialog.setVisible(true);
+                
+                eng.loadToBin();
+                eng.getSM().pop();
+                
             }
             
             

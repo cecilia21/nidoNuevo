@@ -5,11 +5,13 @@
  */
 package nidonuevo.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author TOSHIBA
  */
-public class Friend extends Person{
+public class Friend extends Person implements Serializable{
     private String province;
     private int homePositionX;
     private int homePositionY;

@@ -50,9 +50,9 @@ public class InGameMenu extends State {
         //arreglar
         if (eng.getKeyManager().enter){
             if (sel.getOpt()==1){
-                //Falta llamar a la funcion save
+                eng.saveToBin();
                 System.out.println("1");
-
+                eng.getSM().pop();
             }
             if (sel.getOpt()==2){
                 System.out.println("2");

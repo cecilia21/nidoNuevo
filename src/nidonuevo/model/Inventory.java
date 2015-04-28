@@ -5,13 +5,14 @@
  */
 package nidonuevo.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Usuario
  */
-public class Inventory {
+public class Inventory implements Serializable{
     private int quantity;
     private int capacity;
     private ArrayList <Item> items=new ArrayList <Item>();

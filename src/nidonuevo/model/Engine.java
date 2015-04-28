@@ -13,8 +13,14 @@
 package nidonuevo.model;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -187,11 +193,12 @@ public class Engine implements Runnable{
 
     
     public void saveToXML() {
-        try {
-            Thread.sleep(3000);//Para esperar a q se cargue todo, despues lo borraremos
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+//        try {
+//            Thread.sleep(3000);//Para esperar a q se cargue todo, despues lo borraremos
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         Document document=DocumentHelper.createDocument();
         Element root=document.addElement("GameData");
         //PLAYER
@@ -361,7 +368,7 @@ public class Engine implements Runnable{
             
         } catch (DocumentException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }   
         
         
         
@@ -428,6 +435,46 @@ public class Engine implements Runnable{
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void saveToBin(){
+        
+//        try {
+//            Thread.sleep(3000);//Para esperar a q se cargue todo, despues lo borraremos
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+//        }        
+        
+        try {
+            FileOutputStream fout=new FileOutputStream("GameData.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+            oos.writeObject(LMS.getPlayer());
+            fout.close();
+        }    
+        catch (FileNotFoundException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void loadToBin(){
+        try { 
+            FileInputStream fis = new FileInputStream("GameData.bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);  
+            Player play1=new Player ();
+            play1=(Player)ois.readObject();
+            LMS.getPlayer().copyPlayer(play1);
+            fis.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (IOException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }catch (ClassNotFoundException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+    
     
 
 }

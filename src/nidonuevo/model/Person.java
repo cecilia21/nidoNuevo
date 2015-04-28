@@ -6,14 +6,15 @@
 package nidonuevo.model;
 
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 
-public class Person {
+public class Person implements Serializable{
     protected String path;
     protected int id;
     protected String name;
     protected int positionX;
     protected int positionY;
-    protected BufferedImage[] sprite;
+    protected transient BufferedImage[] sprite;
     protected int gender;
     protected int dir;    
 

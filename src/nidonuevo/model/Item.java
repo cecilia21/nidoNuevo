@@ -5,11 +5,13 @@
  */
 package nidonuevo.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alulab14
  */
-public class Item {
+public class Item implements Serializable{
     protected int id;
     protected String name;
     protected int stock;

@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 public class Player extends Person implements Serializable{
     private int contDelay=5;
-    private Engine eng;
+    private transient Engine eng;
     private double happiness;
     private int numberOfFriends;
     private int level;
@@ -30,7 +30,7 @@ public class Player extends Person implements Serializable{
     private int speed=6;
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
-    private Layer LC;
+    private transient Layer LC;
 
 
     private Inventory inventory=new Inventory();
@@ -72,7 +72,7 @@ public class Player extends Person implements Serializable{
                     //delay para actualizar sprite
                     //s es un sprite movimiento de una direccion
                     
-                    if (getDir()==3) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
+                    if (getDir()==3) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(3);
                     //collision
                     if (valid(getPositionX(),getPositionY()-getSpeed()))//valida si esta en marco
@@ -85,7 +85,7 @@ public class Player extends Person implements Serializable{
                         
                         
 		if(eng.getKeyManager().down){
-                    if (getDir()==0) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
+                    if (getDir()==0) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(0);
                     if (valid(getPositionX(),getPositionY()+getSpeed()))
                     if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()+getSpeed())]==1)
@@ -94,7 +94,7 @@ public class Player extends Person implements Serializable{
                         
                         
 		if(eng.getKeyManager().left){
-                    if (getDir()==1) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
+                    if (getDir()==1) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(1);
                     if (valid(getPositionX()-getSpeed(), getPositionY()))
                     if (LC.getTiles()[getT(getPositionX()-getSpeed())][getT(getPositionY())]==1)
@@ -104,7 +104,7 @@ public class Player extends Person implements Serializable{
 			
                         
 		if(eng.getKeyManager().right){
-                    if (getDir()==2) {if (delay==0) {s++; delay=getContDelay();} else delay--;} else s=0;
+                    if (getDir()==2) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(2);
                     if (valid(getPositionX()+getSpeed(), getPositionY()))
                     if (LC.getTiles()[getT(getPositionX()+getSpeed())][getT(getPositionY())]==1)
@@ -123,7 +123,7 @@ public class Player extends Person implements Serializable{
                 
                 
                 
-                if (s==4) s=0;
+                if (getS()==4) setS(0);
                 
                         
                         
@@ -157,7 +157,7 @@ public class Player extends Person implements Serializable{
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
         
-	g.drawImage(getSprite()[this.getDir()*4+s], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
+	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
 	//System.out.println(name);
     }
     public void move(){
@@ -325,6 +325,36 @@ public class Player extends Person implements Serializable{
         this.height = height;
     }
     
-    
-    
+    public void copyPlayer(Player play1){
+        
+        positionX=play1.getPositionX();
+        positionY=play1.getPositionY();
+        
+        contDelay=play1.getContDelay();
+        happiness=play1.getHappiness();
+        numberOfFriends=play1.getNumberOfFriends();
+        level=play1.getLevel();
+        s=play1.getS();
+        delay=play1.getContDelay();
+        numberOfTrophies=play1.getNumberOfTrophies();
+       
+        id=play1.getId();
+        name=play1.getName();
+        gender=play1.getGender();
+        dir=play1.getDir();    
+
+        friends=play1.getFriends();
+        inventory=play1.getInventory();
+
+    }
+    public int getS() {
+        return s;
+    }
+
+    public void setS(int s) {
+        this.s = s;
+    }
+        
 }
+    
+
