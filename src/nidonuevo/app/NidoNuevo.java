@@ -29,7 +29,7 @@ public class NidoNuevo {
         //UNA OPCION DE GUARDAR PARTIDA
         // public void setPlayerName(String name){ AHI LO PUSE, DIEGO
         //engine.saveToXML();
-        engine.loadToXML();
+        //engine.loadToXML();
     }
     
     

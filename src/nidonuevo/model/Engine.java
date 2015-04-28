@@ -67,7 +67,8 @@ public class Engine implements Runnable{
     }
     private void tick(){
         keyManager.tick();
-        if (getSM().getOrdenPop()) getSM().pop();
+        if (getSM().getOrdenPop()) 
+            getSM().pop();
         if (!SM.getState().empty()){
             getSM().tick();
         }

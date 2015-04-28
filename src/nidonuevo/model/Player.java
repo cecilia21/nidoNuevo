@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -66,7 +68,7 @@ public class Player extends Person implements Serializable{
 		yMove = 0;
 		//der=2 izq=1 arr=3 aba=0
                 
-		if(eng.getKeyManager().up){
+                if(eng.getKeyManager().up){
                     //delay para actualizar sprite
                     //s es un sprite movimiento de una direccion
                     
@@ -108,6 +110,19 @@ public class Player extends Person implements Serializable{
                     if (LC.getTiles()[getT(getPositionX()+getSpeed())][getT(getPositionY())]==1)
                     xMove = getSpeed();
                 }
+                
+                if(eng.getKeyManager().m){
+                    InGameMenu inGameM=new InGameMenu(eng);
+                    eng.getSM().add(inGameM);
+                }
+                
+                if(eng.getKeyManager().enter){
+                    System.out.println("Solo se presiona enter");
+                    //Cuando tu mismo vuelves a presionar enter se para la secuencia
+                }
+                
+                
+                
                 if (s==4) s=0;
                 
                         
@@ -143,7 +158,7 @@ public class Player extends Person implements Serializable{
         //der=2 izq=1 arr=3 aba=0
         
 	g.drawImage(getSprite()[this.getDir()*4+s], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
-	System.out.println(name);
+	//System.out.println(name);
     }
     public void move(){
         int newX=getPositionX()+xMove;

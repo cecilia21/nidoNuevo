@@ -4,18 +4,86 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.util.Stack;
 import java.util.ArrayList;
 /**
  *
  * @author pucp
  */
-public class InGameMenu {
-    protected Stack<SubMenu> subMenus;
-    private int posY;
+public class InGameMenu extends State {
+    
     protected ArrayList<String> options;
-    public void render(){
+    protected ArrayList<Button> buttons;
+    private Selector sel;
+    private final int space=100;
+    private String title="Nido Nuevo, Amigos Nuevos!";
+    private Font fntT;
+    private final int fontSizeT=40;
+    private BufferedImage background;
+    private Engine eng;
+    private final int x=275;    
+    private final int y=250;
+    private final int  widthB=250; //buttton width
+    private final int  heightB=70; //button height
+
+    private int selectY=y; 
+    
+    public InGameMenu(Engine eng){
         
+        buttons=new ArrayList<Button>();        
+        options=new ArrayList<String>();
+        fntT =new Font("Comic Sans MS",Font.BOLD,fontSizeT);
+        options.add("SAVE");        
+        options.add("SALIR");
+        sel=new Selector(x-widthB,y,widthB,heightB,space,2);
+        buttons.add(new Button(options.get(0),x,y,widthB,heightB));
+        buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
+        this.eng=eng;
+        background=ImageLoader.loadImage("/img/bgF.jpg");
+        
+    }
+    
+    public boolean ordenPop(){
+        //arreglar
+        if (eng.getKeyManager().enter){
+            if (sel.getOpt()==1){
+                //Falta llamar a la funcion save
+                System.out.println("1");
+
+            }
+            if (sel.getOpt()==2){
+                System.out.println("2");
+                eng.getSM().pop();
+            }
+            
+        }
+        if (eng.getKeyManager().q){
+            System.exit(1);
+        }
+        return false;
+    }
+
+     public void render(Graphics g){
+        
+        g.drawImage(background,0,0,800,700,null);
+        for (int i=0;i<buttons.size();i++){
+            buttons.get(i).render(g);
+          
+        }
+        sel.render(g);   
+        
+    }
+     
+    public void tick(){
+        if (eng.getKeyManager().down){
+            sel.down();
+        }
+        if(eng.getKeyManager().up){
+            sel.up();
+        }
     }
     public void update(){
         
@@ -27,18 +95,6 @@ public class InGameMenu {
         
     }        
 
-    /**
-     * @return the posY
-     */
-    public int getPosY() {
-        return posY;
-    }
 
-    /**
-     * @param posY the posY to set
-     */
-    public void setPosY(int posY) {
-        this.posY = posY;
-    }
         
 }
