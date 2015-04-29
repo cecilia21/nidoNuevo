@@ -22,7 +22,7 @@ public class loadGame extends java.awt.Dialog {
         setLocation(430,300);
         initComponents();
         String[] fileNames; // For the filename declaration
-        String directory="C:\\Users\\TOSHIBA\\Documents\\NetBeansProjects\\nidoNuevo";     
+        String directory= System.getProperty("user.dir");     
       
 
         File dir = new File(directory);
