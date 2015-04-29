@@ -40,7 +40,7 @@ public class Player extends Person implements Serializable{
         positionX=0;    
         positionY=0;
         dir=2;//der=2 izq=1 arr=3 aba=0
-        String path="/img/playerS.png";
+        String path="/img/playerS2.png";
         Sprite sheet = new Sprite(ImageLoader.loadImage(path));
 		
 	sprite=new BufferedImage[16];	
@@ -134,7 +134,7 @@ public class Player extends Person implements Serializable{
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
         positionY=y;
-        path="/img/playerS.png";
+        path="/img/playerS2.png";
         Sprite sheet = new Sprite(ImageLoader.loadImage(getPath()));
 		
 	sprite=new BufferedImage[16];	

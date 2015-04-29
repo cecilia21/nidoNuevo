@@ -33,6 +33,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 public class Engine implements Runnable{
+    private int cantGuar=0;
     private String title;
     private int width, height;
     private Display display;
@@ -456,7 +457,7 @@ public class Engine implements Runnable{
         }
     }
     
-    public void saveToBin(){
+    public void saveToBin(String aux){
         
 //        try {
 //            Thread.sleep(3000);//Para esperar a q se cargue todo, despues lo borraremos
@@ -465,10 +466,13 @@ public class Engine implements Runnable{
 //        }        
         
         try {
-            FileOutputStream fout=new FileOutputStream("GameData.bin");
+//            String aux="GameData"+cantGuar+".bin";
+            aux=aux+".bin";
+            FileOutputStream fout=new FileOutputStream(aux);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(LMS.getPlayer());
             fout.close();
+            cantGuar++;
         }    
         catch (FileNotFoundException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
@@ -478,9 +482,9 @@ public class Engine implements Runnable{
         }
     }
     
-    public void loadToBin(){
+    public void loadToBin(String path){
         try { 
-            FileInputStream fis = new FileInputStream("GameData.bin");
+            FileInputStream fis = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(fis);  
             Player play1=new Player ();
             play1=(Player)ois.readObject();

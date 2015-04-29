@@ -47,10 +47,10 @@
     </Map>
   </Maps>
   <Player>
-    <positionX>0</positionX>
-    <positionY>0</positionY>
+    <positionX>372</positionX>
+    <positionY>252</positionY>
     <dir>2</dir>
-    <path>/img/playerS.png</path>
+    <path>/img/playerS2.png</path>
     <contDelay>5</contDelay>
     <width>50</width>
     <height>50</height>

@@ -5,37 +5,19 @@
  */
 package nidonuevo.model;
 
-import java.io.File;
-import java.io.FilenameFilter;
-
 /**
  *
  * @author TOSHIBA
  */
-public class loadGame extends java.awt.Dialog {
+public class setFile extends java.awt.Dialog {
 
     /**
      * Creates new form getName
      */
-    public loadGame(java.awt.Frame parent, boolean modal) {
+    public setFile(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setLocation(430,300);
         initComponents();
-        String[] fileNames; // For the filename declaration
-        String directory="C:\\Users\\TOSHIBA\\Documents\\NetBeansProjects\\nidoNuevo";     
-      
-
-        File dir = new File(directory);
-       fileNames=new String[dir.list().length];
-       fileNames =dir.list(new FilenameFilter() {
-    public boolean accept(File directory, String fileName) {
-        return fileName.endsWith(".bin");
-    } });      
-       
-       
-       for (int i=0;i<fileNames.length;i++){
-           choice1.add(fileNames[i]);
-       }
     }
 
     /**
@@ -48,7 +30,7 @@ public class loadGame extends java.awt.Dialog {
 
         panel1 = new java.awt.Panel();
         label1 = new java.awt.Label();
-        choice1 = new java.awt.Choice();
+        textField1 = new java.awt.TextField();
         button1 = new java.awt.Button();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -60,9 +42,20 @@ public class loadGame extends java.awt.Dialog {
         panel1.setPreferredSize(new java.awt.Dimension(500, 70));
 
         label1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        label1.setText("¿Nombre del archivo a abrir?");
+        label1.setText("¿Nombre del archivo a guardar?");
         panel1.add(label1);
-        panel1.add(choice1);
+
+        textField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        textField1.setMaximumSize(new java.awt.Dimension(100, 20));
+        textField1.setName(""); // NOI18N
+        textField1.setText("GameData");
+        textField1.setSelectionEnd(20);
+        textField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField1ActionPerformed(evt);
+            }
+        });
+        panel1.add(textField1);
 
         button1.setLabel("Ok");
         button1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -90,10 +83,14 @@ public class loadGame extends java.awt.Dialog {
         dispose();
     }//GEN-LAST:event_closeDialog
 
+    private void textField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField1ActionPerformed
+
     private void button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_button1MouseClicked
         // TODO add your handling code here:
         click_ok=true;
-        
+        name=textField1.getText();
         setVisible(false);
         dispose();
     }//GEN-LAST:event_button1MouseClicked
@@ -110,9 +107,9 @@ public class loadGame extends java.awt.Dialog {
     private boolean click_ok=false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
-    private java.awt.Choice choice1;
     private java.awt.Label label1;
     private java.awt.Panel panel1;
+    private java.awt.TextField textField1;
     // End of variables declaration//GEN-END:variables
 
     /**
@@ -120,9 +117,6 @@ public class loadGame extends java.awt.Dialog {
      */
     public boolean isClick_ok() {
         return click_ok;
-    }
-    public String sel(){
-        return choice1.getSelectedItem();
     }
 
     /**

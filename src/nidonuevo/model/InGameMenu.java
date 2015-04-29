@@ -50,13 +50,29 @@ public class InGameMenu extends State {
         //arreglar
         if (eng.getKeyManager().enter){
             if (sel.getOpt()==1){
-                eng.saveToBin();
-                System.out.println("1");
-                eng.getSM().pop();
+                setFile dialog = new setFile(new java.awt.Frame(), true);
+//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0); //quitar elboton de cerrar
+//                    }
+//                });
+               
+                    dialog.setVisible(true);
+                if (dialog.isClick_ok()){
+                    eng.saveToBin(dialog.name);
+                    eng.getKeyManager().eme=false;
+                    System.out.println("1");
+                    return true; //eng.getSM().pop();
+                }
+                
+                
+                
+               
+                
             }
             if (sel.getOpt()==2){
                 System.out.println("2");
-                eng.getSM().pop();
+                return true; //eng.getSM().pop();
             }
             
         }
