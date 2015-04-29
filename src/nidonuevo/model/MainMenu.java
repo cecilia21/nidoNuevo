@@ -11,6 +11,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author pucp
@@ -46,7 +47,7 @@ public class MainMenu extends State {
         buttons.add(new Button(options.get(0),x,y,widthB,heightB));
         buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
         buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));
-        buttons.add(new Button(options.get(2),x,y+3*space,widthB,heightB));
+        buttons.add(new Button(options.get(3),x,y+3*space,widthB,heightB));
        this.eng=eng;
        background=ImageLoader.loadImage("/img/bgF.jpg");
         
@@ -103,13 +104,28 @@ public class MainMenu extends State {
                     eng.loadToBin(lgDialog.sel());
                     eng.getKeyManager().eme=false;
                     return true; //eng.getSM().pop();
-                }
-                  
+                }    
 //                
                 
             }
             
-            
+            if (sel.getOpt()==3){
+                help dg = new help(new java.awt.Frame(),true);
+                dg.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0); //quitar elboton de cerrar
+                    }
+                });
+                dg.setVisible(true);
+                if (dg.isClick_ok()){
+                    
+                    eng.getKeyManager().eme=false;
+                    return false;
+                }
+            }
+            if (sel.getOpt()==4){
+                System.exit(0);
+            }
             
             
         }
