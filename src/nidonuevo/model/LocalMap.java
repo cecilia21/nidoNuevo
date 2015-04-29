@@ -11,12 +11,13 @@ import java.util.ArrayList;
  * @author pucp
  */
 public class LocalMap extends State{
+    private boolean ordenarPop=false;
     private Map map;
     private ArrayList<Map> maps=new ArrayList<Map>();
     private Player player;
     private ArrayList<Friend> friends;
     private int mapAct;
-    
+    private Engine eng;
     public LocalMap(Engine eng){
         //faltaria el super
         //se inicializa los mapas
@@ -38,14 +39,31 @@ public class LocalMap extends State{
         
     }
     public boolean ordenPop(){
-        return false;
+        return ordenarPop;
     }
     public void onExit(){
         
     }       
+    private int triggerActive(){
+        for(int i=0;i<maps.get(getMapAct()).getTriggers().size();i++){
+            if (player.getT(player.positionX)==maps.get(getMapAct()).getTriggers().get(i).getX() 
+                    &&player.getT(player.positionY)==maps.get(getMapAct()).getTriggers().get(i).getY()){
+                return i;
+            }
+        }
+        return -1;
+    }
     public void tick(){
-        maps.get(getMapAct()).tick();
+        
         getPlayer().tick();
+        int i=triggerActive();
+        if ((i)>=0){
+            maps.get(getMapAct()).getTriggers().get(i).execTrigger(this);
+            Layer aux=maps.get(getMapAct()).getLC();
+            player.setLC(aux);
+        }
+        
+        maps.get(getMapAct()).tick();
         //faltaria tick de amigos
     }
     public ArrayList<Map> getMaps(){

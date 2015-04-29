@@ -42,7 +42,7 @@ public class Engine implements Runnable{
     private Graphics g;
     
     //layer de collision
-    private Layer lc;
+ //   private Layer lc;
     //Actual map
     private int currentMap=0;
     
@@ -163,12 +163,6 @@ public class Engine implements Runnable{
         return this.keyManager;
     }
 
-    /**
-     * @return the lc
-     */
-    public Layer getLc() {
-        return lc;
-    }
 
 
     /**
@@ -299,6 +293,7 @@ public class Engine implements Runnable{
             display=new Display(title,width,height);
             display.getFrame().addKeyListener(keyManager); 
             //Maps
+            LMS=new LocalMap(this);
             Element maps=root.element("Maps");
             for(Iterator i=maps.elementIterator("Map");i.hasNext();){
                 
@@ -318,13 +313,29 @@ public class Engine implements Runnable{
                     dirImg[j1]=dir.getText();
                 }
                 Map map1=new Map(this,numberLayers,paths,dirImg);
-                lc=map1.getLC();//arreglar las colisiones, mas mapas
-                LMS=new LocalMap(this);
-                LMS.getMaps().add(map1);
+                //setLc(map1.getLC());//arreglar las colisiones, mas mapas
                 
+                
+                
+                Element triggers=map.element("Triggers");
+                for (Iterator j=triggers.elementIterator("Trigger");j.hasNext();){
+                    Element trigger=(Element)j.next();
+                    if(0==trigger.element("type").getText().compareTo("TriggerChangeMap")){
+                        Iterator u=trigger.elementIterator("par");
+                        Element parametro=(Element)u.next();
+                        int par1=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par2=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par3=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par4=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par5=Integer.parseInt(parametro.getText()); 
+                        map1.getTriggers().add(new TriggerChangeMap(par1,par2,par3,par4,par5));
+                    }
+                }
+                LMS.getMaps().add(map1);
               
           
             }
+            LMS.getPlayer().setLC(LMS.getMaps().get(0).getLC());
             //Player
             Element player=root.element("Player"); 
             
@@ -357,15 +368,7 @@ public class Engine implements Runnable{
            MainMenu menu=new MainMenu(this);
 
            SM.add(menu);
-            
-            
 
-            
-
-        
-            
- 
-            
         } catch (DocumentException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -394,6 +397,23 @@ public class Engine implements Runnable{
                 source.addElement("Img").addAttribute("id", ""+j).addText(LMS.getMaps().get(i).getDirImg()[j]);
                 //falta width,gehith, layer. mapa, etc, terminar mapash
             }
+            
+            
+            Element triggers=map.addElement("Triggers");
+                for (int j=0;j<LMS.getMaps().get(i).getTriggers().size();j++){
+                    Element trigger=triggers.addElement("Trigger");
+                    if (LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerChangeMap){
+                        TriggerChangeMap aux=(TriggerChangeMap)LMS.getMaps().get(i).getTriggers().get(j);
+                        trigger.addElement("type").addText("TriggerChangeMap");
+                        trigger.addElement("par").addText(""+aux.x);
+                        trigger.addElement("par").addText(""+aux.y);
+                        trigger.addElement("par").addText(""+aux.getChangeTo());
+                        trigger.addElement("par").addText(""+aux.getpX());
+                        trigger.addElement("par").addText(""+aux.getpY());
+                    }
+                    
+                }
+            
         }
         //Player
         Element player=root.addElement("Player"); 
@@ -474,8 +494,6 @@ public class Engine implements Runnable{
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
-    
-    
 
 }
 

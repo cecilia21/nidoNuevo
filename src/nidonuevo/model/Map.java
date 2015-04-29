@@ -16,12 +16,13 @@ import java.util.ArrayList;
 public class Map {
     int id;
     private ArrayList<Layer> layers=new ArrayList<Layer>();
-    private int width, height;
-    private int spawnX, spawnY;
+
     private String[] paths;
     private String[] dirImg;
-    
+    private ArrayList<Trigger> triggers=new ArrayList<Trigger>();
     public Map(Engine eng,int cantLayer,String[] paths,String[] dirImg){
+//        triggers.add(new TriggerChangeMap(16, 5, 1,410,618));
+//        triggers.add(new TriggerChangeMap(11, 17, 0,626,216));
         this.paths=paths;
         this.dirImg=dirImg;
         for (int i=0;i<cantLayer;i++){           
@@ -30,7 +31,7 @@ public class Map {
         
     }
     public void tick(){
-        
+        //para ver si se activa algun trigger
         
     }
     public Layer getLC(){
@@ -49,19 +50,7 @@ public class Map {
         return layers;
     }
 
-    /**
-     * @return the spawnX
-     */
-    public int getSpawnX() {
-        return spawnX;
-    }
 
-    /**
-     * @param spawnX the spawnX to set
-     */
-    public void setSpawnX(int spawnX) {
-        this.spawnX = spawnX;
-    }
 
     /**
      * @return the paths
@@ -75,6 +64,20 @@ public class Map {
      */
     public String[] getDirImg() {
         return dirImg;
+    }
+
+    /**
+     * @return the triggers
+     */
+    public ArrayList<Trigger> getTriggers() {
+        return triggers;
+    }
+
+    /**
+     * @param triggers the triggers to set
+     */
+    public void setTriggers(ArrayList<Trigger> triggers) {
+        this.triggers = triggers;
     }
     
 }

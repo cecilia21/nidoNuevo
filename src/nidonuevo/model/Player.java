@@ -56,8 +56,8 @@ public class Player extends Person implements Serializable{
         getInput();
         move();
     }
-    private int getT(int x){
-        int cW=(int)(LC.getTotalX()*1.0/LC.getWidth());
+    public int getT(int x){
+        int cW=(int)(getLC().getTotalX()*1.0/getLC().getWidth());
         return (x/cW)+1;
     }
     private boolean valid(int x, int y){
@@ -76,7 +76,7 @@ public class Player extends Person implements Serializable{
                     this.setDir(3);
                     //collision
                     if (valid(getPositionX(),getPositionY()-getSpeed()))//valida si esta en marco
-                    if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()-getSpeed())]==1)//colision
+                    if (getLC().getTiles()[getT(getPositionX())][getT(getPositionY()-getSpeed())]==1)//colision
                     yMove = -getSpeed();
                     
                     
@@ -88,7 +88,7 @@ public class Player extends Person implements Serializable{
                     if (getDir()==0) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(0);
                     if (valid(getPositionX(),getPositionY()+getSpeed()))
-                    if (LC.getTiles()[getT(getPositionX())][getT(getPositionY()+getSpeed())]==1)
+                    if (getLC().getTiles()[getT(getPositionX())][getT(getPositionY()+getSpeed())]==1)
 		    yMove = getSpeed();
                 }
                         
@@ -97,7 +97,7 @@ public class Player extends Person implements Serializable{
                     if (getDir()==1) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(1);
                     if (valid(getPositionX()-getSpeed(), getPositionY()))
-                    if (LC.getTiles()[getT(getPositionX()-getSpeed())][getT(getPositionY())]==1)
+                    if (getLC().getTiles()[getT(getPositionX()-getSpeed())][getT(getPositionY())]==1)
                         xMove = -getSpeed();
                     
                 }
@@ -107,7 +107,7 @@ public class Player extends Person implements Serializable{
                     if (getDir()==2) {if (delay==0) {setS(getS() + 1); delay=getContDelay();} else delay--;} else setS(0);
                     this.setDir(2);
                     if (valid(getPositionX()+getSpeed(), getPositionY()))
-                    if (LC.getTiles()[getT(getPositionX()+getSpeed())][getT(getPositionY())]==1)
+                    if (getLC().getTiles()[getT(getPositionX()+getSpeed())][getT(getPositionY())]==1)
                     xMove = getSpeed();
                 }
                 
@@ -117,7 +117,7 @@ public class Player extends Person implements Serializable{
                 }
                 
                 if(eng.getKeyManager().enter){
-                    System.out.println("Solo se presiona enter");
+                    //System.out.println("Solo se presiona enter");
                     //Cuando tu mismo vuelves a presionar enter se para la secuencia
                 }
                 
@@ -129,7 +129,7 @@ public class Player extends Person implements Serializable{
                         
 	}
     public Player(Engine eng,int x,int y){
-        LC=eng.getLc();
+       // LC=eng.getLc();
         this.eng=eng;
         name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
@@ -158,6 +158,8 @@ public class Player extends Person implements Serializable{
         //der=2 izq=1 arr=3 aba=0
         
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
+        System.out.println(getPositionX()+","+getPositionY());        
+        System.out.println(getT(getPositionX())+","+getT(getPositionY()));
 	//System.out.println(name);
     }
     public void move(){
@@ -353,6 +355,20 @@ public class Player extends Person implements Serializable{
 
     public void setS(int s) {
         this.s = s;
+    }
+
+    /**
+     * @return the LC
+     */
+    public Layer getLC() {
+        return LC;
+    }
+
+    /**
+     * @param LC the LC to set
+     */
+    public void setLC(Layer LC) {
+        this.LC = LC;
     }
         
 }

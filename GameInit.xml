@@ -15,6 +15,35 @@
         <Path id="1">src/img/lc1.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>16</par>
+          <par>5</par>
+          <par>1</par>
+          <par>410</par>
+          <par>618</par>
+        </Trigger>
+      </Triggers>
+    </Map>
+    <Map id="1">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/bg_barn.png</Img>
+        <Path id="1">src/img/lc2.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>11</par>
+          <par>17</par>
+          <par>0</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
     </Map>
   </Maps>
   <Player>
