@@ -11,6 +11,7 @@
 //El grabado de este XML se hizo mediante la función saveGameToXML
 //La lectura sera loadGameFromXML
 package nidonuevo.model;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.io.FileInputStream;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import nidonuevo.app.Display;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -33,6 +36,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 public class Engine implements Runnable{
+    private Loading loading;
     private int cantGuar=0;
     private String title;
     private int width, height;
@@ -54,9 +58,18 @@ public class Engine implements Runnable{
     private StateMachine SM;
     private LocalMap LMS;
     
-    public Engine(){
+    public Engine(String title,int width,int height){
+        
+        
+        
+        display=new Display(title, width, height);
+        
+        loading=new Loading(display,bs,g);
+        loading.setPriority(loading.MAX_PRIORITY);
+        loading.start();
         
         keyManager = new KeyManager();
+        display.getFrame().addKeyListener(keyManager);
         setSM(new StateMachine());
     }   
     
@@ -68,9 +81,13 @@ public class Engine implements Runnable{
 		thread.start(); //run();
     }
     private void init(){
+        
+        
         loadGameFromXML();                    
         //VAMOS A GUARDAR LA CONFIGURACION INICIAL DEL JUEGO
-        saveGameToXML();       
+        saveGameToXML();     
+        loading.stop();
+        //Utils.sleepFor(5000);
     }
     private void tick(){
         keyManager.tick();
@@ -293,8 +310,10 @@ public class Engine implements Runnable{
             title=general.element("title").getText();
             setWidth(Integer.parseInt(general.element("width").getText()));
             setHeight(Integer.parseInt(general.element("height").getText()));
-            display=new Display(title, getWidth(), getHeight());
-            display.getFrame().addKeyListener(keyManager); 
+            
+            
+            
+            
             //Maps
             LMS=new LocalMap(this);
             Element maps=root.element("Maps");

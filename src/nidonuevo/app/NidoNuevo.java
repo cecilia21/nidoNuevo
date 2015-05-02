@@ -11,6 +11,7 @@ package nidonuevo.app;
  */
 import java.io.File;
 import nidonuevo.model.Engine;
+import nidonuevo.model.Loading;
 
 public class NidoNuevo {
 
@@ -22,7 +23,8 @@ public class NidoNuevo {
         //archivo de inicialización XML, el path en la variable pathXML
         String pathXML="/files/xml/initNidoNuevo.xml";
         //Engine engine();
-        Engine engine=new Engine();        
+        
+        Engine engine=new Engine("Nido Nuevo",800,700);        
         engine.start();
         //cinematic de introduccion
         //HE PUESTO EL SAVE DENTRODE NOMBRE PARA PROBARLO, DEBERIA IR DENTRO DE
