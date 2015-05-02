@@ -81,14 +81,14 @@ public class Engine implements Runnable{
         }
     }
     private void render(){
-        bs = display.getCanvas().getBufferStrategy();
-		if(bs == null){
+        setBs(display.getCanvas().getBufferStrategy());
+		if(getBs() == null){
 			display.getCanvas().createBufferStrategy(3);
 			return;
 		}
-		g = bs.getDrawGraphics();
+		g = getBs().getDrawGraphics();
 		//Clear Screen
-		g.clearRect(0, 0, width, height);
+		g.clearRect(0, 0, getWidth(), getHeight());
 		//Draw Here!
 		
 		if(!SM.getState().empty())
@@ -96,7 +96,9 @@ public class Engine implements Runnable{
 			
 		
 		//End Drawing!
-		bs.show();
+                if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
+		getBs().show();
+                
 		g.dispose();
     }
     public void getInput(){
@@ -128,7 +130,7 @@ public class Engine implements Runnable{
 			lastTime = now;
 			
 			if(delta >= 1){
-				tick();
+				if (LMS.isChange()==false) tick();
 				render();
 				ticks++;
 				delta--;
@@ -289,9 +291,9 @@ public class Engine implements Runnable{
             //General
             Element general=root.element("General");
             title=general.element("title").getText();
-            width=Integer.parseInt(general.element("width").getText());
-            height=Integer.parseInt(general.element("height").getText());
-            display=new Display(title,width,height);
+            setWidth(Integer.parseInt(general.element("width").getText()));
+            setHeight(Integer.parseInt(general.element("height").getText()));
+            display=new Display(title, getWidth(), getHeight());
             display.getFrame().addKeyListener(keyManager); 
             //Maps
             LMS=new LocalMap(this);
@@ -384,8 +386,8 @@ public class Engine implements Runnable{
        //General
         Element general=root.addElement("General");
         general.addElement("title").addText(title);
-        general.addElement("width").addText(""+width);
-        general.addElement("height").addText(""+height);
+        general.addElement("width").addText(""+getWidth());
+        general.addElement("height").addText(""+getHeight());
        //Mapas
         Element maps=root.addElement("Maps");
         for(int i=0;i<LMS.getMaps().size();i++){
@@ -497,6 +499,48 @@ public class Engine implements Runnable{
         }catch (ClassNotFoundException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }  
+    }
+
+    /**
+     * @return the width
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * @param width the width to set
+     */
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    /**
+     * @return the height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    /**
+     * @return the bs
+     */
+    public BufferStrategy getBs() {
+        return bs;
+    }
+
+    /**
+     * @param bs the bs to set
+     */
+    public void setBs(BufferStrategy bs) {
+        this.bs = bs;
     }
 
 }

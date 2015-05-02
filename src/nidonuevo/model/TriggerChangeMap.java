@@ -5,6 +5,9 @@
  */
 package nidonuevo.model;
 
+import java.awt.Graphics;
+import java.awt.image.RescaleOp;
+
 /**
  *
  * @author TOSHIBA
@@ -19,14 +22,21 @@ public class TriggerChangeMap extends Trigger{
         this.changeTo=changeTo;
         this.pX=pX;
         this.pY=pY;
+        this.active=true;
     }
 
-
+  
     @Override
     public void execTrigger(LocalMap aThis) {
-        aThis.setMapAct(getChangeTo());
-        aThis.getPlayer().positionX=getpX();
-        aThis.getPlayer().positionY=getpY();
+        
+        if (this.active){
+            aThis.setChange(true);
+            aThis.setMapAct(getChangeTo());
+            aThis.getPlayer().positionX=getpX();
+            aThis.getPlayer().positionY=getpY(); 
+            
+        }
+        
     }
 
     /**

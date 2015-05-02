@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Map {
     int id;
     private ArrayList<Layer> layers=new ArrayList<Layer>();
-
+    private float bright=1f;
     private String[] paths;
     private String[] dirImg;
     private ArrayList<Trigger> triggers=new ArrayList<Trigger>();
@@ -39,7 +39,7 @@ public class Map {
     }
     public void render(Graphics g){
         for (int i=0;i<getLayers().size();i++){
-            getLayers().get(i).render(g);
+            getLayers().get(i).render(g,bright);
         }
     }
 
@@ -78,6 +78,20 @@ public class Map {
      */
     public void setTriggers(ArrayList<Trigger> triggers) {
         this.triggers = triggers;
+    }
+
+    /**
+     * @return the bright
+     */
+    public float getBright() {
+        return bright;
+    }
+
+    /**
+     * @param bright the bright to set
+     */
+    public void setBright(float bright) {
+        this.bright = bright;
     }
     
 }

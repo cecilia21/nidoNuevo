@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package nidonuevo.model;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.awt.image.RescaleOp;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,13 +57,20 @@ public class Layer {
 			}
 		}
 	}
-    public void render(Graphics g){
+    public void render(Graphics g,float bright){
+
+       
         int cW=(int)(getTotalX()*1.0/getWidth());
         int cH=(int)(totalY*1.0/getHeight());
         for(int y = 0;y < getHeight();y++){
 			for(int x = 0;x < getWidth();x++){
-				g.drawImage(gTilePalette[getTiles()[x][y]],(int) (x * cW),
+                                
+                                        
+                                BufferedImage img=gTilePalette[getTiles()[x][y]];
+
+				g.drawImage(img,(int) (x * cW),
 						(int) (y * cH), cW , cH, null);
+                                
 			}
 		}
         

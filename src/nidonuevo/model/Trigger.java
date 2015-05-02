@@ -5,6 +5,8 @@
  */
 package nidonuevo.model;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author TOSHIBA
@@ -12,7 +14,7 @@ package nidonuevo.model;
 class  Trigger {
     protected int x;
     protected int y;
-   
+    protected boolean active;
     public int getX(){
         return x;
     }
@@ -23,6 +25,20 @@ class  Trigger {
 
     void execTrigger(LocalMap aThis){
         
+    }
+
+    /**
+     * @return the active
+     */
+    public boolean isActive() {
+        return active;
+    }
+
+    /**
+     * @param active the active to set
+     */
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
 
