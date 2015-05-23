@@ -33,10 +33,8 @@ public class TriggerMap extends Trigger {
             aThis.setMapAct(getChangeTo());
             aThis.getPlayer().positionX=getpX();
             aThis.getPlayer().positionY=getpY();
-            
-        
-        
-        
+                
+               
             }
             
         }*/
