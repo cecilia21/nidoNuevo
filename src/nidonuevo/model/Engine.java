@@ -352,6 +352,16 @@ public class Engine implements Runnable{
                         int par5=Integer.parseInt(parametro.getText()); 
                         map1.getTriggers().add(new TriggerChangeMap(par1,par2,par3,par4,par5));
                     }
+                    if(0==trigger.element("type").getText().compareTo("TriggerMap")){
+                        Iterator u=trigger.elementIterator("par");
+                        Element parametro=(Element)u.next();
+                        int par1=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par2=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par3=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par4=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par5=Integer.parseInt(parametro.getText()); 
+                        map1.getTriggers().add(new TriggerMap(par1,par2,par3,par4,par5));
+                    }
                 }
                 LMS.getMaps().add(map1);
               
@@ -433,7 +443,15 @@ public class Engine implements Runnable{
                         trigger.addElement("par").addText(""+aux.getpX());
                         trigger.addElement("par").addText(""+aux.getpY());
                     }
-                    
+                    if (LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMap){
+                        TriggerMap aux=(TriggerMap)LMS.getMaps().get(i).getTriggers().get(j);
+                        trigger.addElement("type").addText("TriggerMap");
+                        trigger.addElement("par").addText(""+aux.x);
+                        trigger.addElement("par").addText(""+aux.y);
+                        trigger.addElement("par").addText(""+aux.getChangeTo());
+                        trigger.addElement("par").addText(""+aux.getpX());
+                        trigger.addElement("par").addText(""+aux.getpY());
+                    }
                 }
             
         }

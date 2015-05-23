@@ -56,9 +56,17 @@ public class LocalMap extends State{
     }       
     private int triggerActive(){
         for(int i=0;i<maps.get(getMapAct()).getTriggers().size();i++){
+            if(maps.get(getMapAct()).getTriggers().get(i) instanceof TriggerChangeMap)
             if (getPlayer().getT(getPlayer().positionX)==maps.get(getMapAct()).getTriggers().get(i).getX() 
                     &&getPlayer().getT(getPlayer().positionY)==maps.get(getMapAct()).getTriggers().get(i).getY()){
                 return i;
+            }
+            
+            if(maps.get(getMapAct()).getTriggers().get(i) instanceof TriggerMap){
+                TriggerMap trig = (TriggerMap)maps.get(getMapAct()).getTriggers().get(i);
+                if(getPlayer().getT(getPlayer().positionX)==trig.getX()
+                    &&getPlayer().getT(getPlayer().positionY)==trig.getY())
+                    return i;
             }
         }
         return -1;
@@ -71,8 +79,7 @@ public class LocalMap extends State{
             maps.get(getMapAct()).getTriggers().get(i).execTrigger(this);
             Layer aux=maps.get(getMapAct()).getLC();
             getPlayer().setLC(aux);
-        }
-        
+        }        
         maps.get(getMapAct()).tick();
         //faltaria tick de amigos
     }

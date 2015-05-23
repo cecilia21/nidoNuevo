@@ -5,18 +5,16 @@
  */
 package nidonuevo.model;
 
-import java.awt.Graphics;
-import java.awt.image.RescaleOp;
-
 /**
  *
- * @author TOSHIBA
+ * @author alulab14
  */
-public class TriggerChangeMap extends Trigger{
+public class TriggerMap extends Trigger {
     private int pX;
     private int pY;
     private int changeTo;
-    public TriggerChangeMap(int x,int y,int changeTo,int pX,int pY){
+    
+    public TriggerMap(int x,int y,int changeTo,int pX,int pY){
         this.x=x;
         this.y=y;
         this.changeTo=changeTo;
@@ -24,16 +22,19 @@ public class TriggerChangeMap extends Trigger{
         this.pY=pY;
         this.active=true;
     }
-
-  
+    
     @Override
     public void execTrigger(LocalMap aThis) {
-        
+        //if(aThis.getPlayer().positionX )
         if (this.active){
-            aThis.setChange(true);
+            if((x==1 && aThis.getPlayer().positionX <=1) || (x==19 && aThis.getPlayer().positionX >=749) ||
+                    (y==1 && aThis.getPlayer().positionY <= 1) || (y==17 && aThis.getPlayer().positionY >=645)){
+                aThis.setChange(true);
             aThis.setMapAct(getChangeTo());
             aThis.getPlayer().positionX=getpX();
-            aThis.getPlayer().positionY=getpY();    
+            aThis.getPlayer().positionY=getpY();
+            }
+            
         }
         
     }
@@ -42,6 +43,7 @@ public class TriggerChangeMap extends Trigger{
      * @return the pX
      */
     public int getpX() {
+        //return 0;
         return pX;
     }
 
@@ -56,6 +58,7 @@ public class TriggerChangeMap extends Trigger{
      * @return the pY
      */
     public int getpY() {
+        //return 0;
         return pY;
     }
 
@@ -70,6 +73,7 @@ public class TriggerChangeMap extends Trigger{
      * @return the changeTo
      */
     public int getChangeTo() {
+        //return 0;
         return changeTo;
     }
 
@@ -79,5 +83,4 @@ public class TriggerChangeMap extends Trigger{
     public void setChangeTo(int changeTo) {
         this.changeTo = changeTo;
     }
-    
 }
