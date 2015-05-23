@@ -34,6 +34,9 @@ public class TriggerMap extends Trigger {
             aThis.getPlayer().positionX=getpX();
             aThis.getPlayer().positionY=getpY();
             
+        
+        
+        
             }
             
         }*/
