@@ -462,6 +462,14 @@ public class Engine implements Runnable{
                         trigger.addElement("par").addText(""+aux.getChangeTo());
                         trigger.addElement("par").addText(""+aux.getpX());
                         trigger.addElement("par").addText(""+aux.getpY());
+                    }else if (LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMap){
+                        TriggerMap aux=(TriggerMap)LMS.getMaps().get(i).getTriggers().get(j);
+                        trigger.addElement("type").addText("TriggerMap");
+                        trigger.addElement("par").addText(""+aux.x);
+                        trigger.addElement("par").addText(""+aux.y);
+                        trigger.addElement("par").addText(""+aux.getChangeTo());
+                        trigger.addElement("par").addText(""+aux.getpX());
+                        trigger.addElement("par").addText(""+aux.getpY());
                     }
                     
                 }
@@ -479,15 +487,7 @@ public class Engine implements Runnable{
               
                   
                     
-                    if (LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMap){
-                        TriggerMap aux=(TriggerMap)LMS.getMaps().get(i).getTriggers().get(j);
-                        trigger.addElement("type").addText("TriggerMap");
-                        trigger.addElement("par").addText(""+aux.x);
-                        trigger.addElement("par").addText(""+aux.y);
-                        trigger.addElement("par").addText(""+aux.getChangeTo());
-                        trigger.addElement("par").addText(""+aux.getpX());
-                        trigger.addElement("par").addText(""+aux.getpY());
-                    }
+                    
                 }
             
         }

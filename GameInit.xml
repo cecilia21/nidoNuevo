@@ -117,38 +117,38 @@
         <name>Bicicleta</name>
         <stock>1</stock>
         <description>Bicicleta montañera rapida</description>
-		<image>src/img/bicicleta.jpg</image>
+        <image>src/img/bicicleta.jpg</image>
       </Item>
       <Item id="2">
         <name>Manzana</name>
         <stock>1</stock>
         <description>Manzana para profesora</description>
-		<image>src/img/manzana.jpg</image>
+        <image>src/img/manzana.jpg</image>
       </Item>
       <Item id="3">
         <name>Pelota</name>
         <stock>1</stock>
         <description>Pelota pequeña</description>
-		<image>src/img/pelota.jpg</image>
+        <image>src/img/pelota.jpg</image>
       </Item>
       <Item id="4">
         <name>Célular</name>
         <stock>1</stock>
         <description>Smartphone con internet</description>
-		<image>src/img/celular.jpg</image>
-      </Item>	  
+        <image>src/img/celular.jpg</image>
+      </Item>
       <Item id="5">
         <name>Libro</name>
         <stock>1</stock>
         <description>Libro de operaciones aritméticas</description>
-		<image>src/img/libro.jpg</image>
-      </Item>	 
+        <image>src/img/libro.jpg</image>
+      </Item>
       <Item id="6">
         <name>Platano</name>
         <stock>1</stock>
         <description>Platano de seda</description>
-		<image>src/img/platano.jpg</image>
-      </Item>	 	  
+        <image>src/img/platano.jpg</image>
+      </Item>
     </Inventory>
   </Player>
 </Game>
