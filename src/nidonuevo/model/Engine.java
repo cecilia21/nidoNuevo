@@ -114,6 +114,7 @@ public class Engine implements Runnable{
 		
 		//End Drawing!
                 if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
+                
 		getBs().show();
                 
 		g.dispose();

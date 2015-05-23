@@ -20,6 +20,7 @@ public class Map {
     private String[] paths;
     private String[] dirImg;
     private ArrayList<Trigger> triggers=new ArrayList<Trigger>();
+    private ArrayList<Goal> goals=new ArrayList<Goal>();
     public Map(Engine eng,int cantLayer,String[] paths,String[] dirImg){
 //        triggers.add(new TriggerChangeMap(16, 5, 1,410,618));
 //        triggers.add(new TriggerChangeMap(11, 17, 0,626,216));
