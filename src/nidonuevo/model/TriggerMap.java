@@ -5,6 +5,8 @@
  */
 package nidonuevo.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author alulab14
@@ -23,12 +25,23 @@ public class TriggerMap extends Trigger {
         this.active=true;
     }
     
+    public boolean goalsAchieved(LocalMap aThis){
+        ArrayList<Goal> metas = new ArrayList<Goal>();
+        metas = aThis.getMap().getGoals();
+        for(int i = 0; i<metas.size(); i++){
+            if(metas.get(i).isActive())
+                return false;
+        }
+        return true;
+    }
+    
     @Override
     public void execTrigger(LocalMap aThis) {
         //if(aThis.getPlayer().positionX )
         if (this.active){
-            if((x==1 && aThis.getPlayer().positionX <=2) || (x==19 && aThis.getPlayer().positionX >=749) ||
-                    (y==1 && aThis.getPlayer().positionY <= 1) || (y==17 && aThis.getPlayer().positionY >=645)){
+            if(((x==1 && aThis.getPlayer().positionX <=2) || (x==19 && aThis.getPlayer().positionX >=749) ||
+                    (y==1 && aThis.getPlayer().positionY <= 1) || (y==17 && aThis.getPlayer().positionY >=645)) &&
+                    goalsAchieved(aThis)){
                 aThis.setChange(true);
             aThis.setMapAct(getChangeTo());
             aThis.getPlayer().positionX=getpX();
