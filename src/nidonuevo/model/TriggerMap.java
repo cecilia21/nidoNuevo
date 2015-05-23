@@ -26,8 +26,8 @@ public class TriggerMap extends Trigger {
     @Override
     public void execTrigger(LocalMap aThis) {
         //if(aThis.getPlayer().positionX )
-       /* if (this.active){
-            if((x==1 && aThis.getPlayer().positionX <=1) || (x==19 && aThis.getPlayer().positionX >=749) ||
+        if (this.active){
+            if((x==1 && aThis.getPlayer().positionX <=2) || (x==19 && aThis.getPlayer().positionX >=749) ||
                     (y==1 && aThis.getPlayer().positionY <= 1) || (y==17 && aThis.getPlayer().positionY >=645)){
                 aThis.setChange(true);
             aThis.setMapAct(getChangeTo());
@@ -37,13 +37,14 @@ public class TriggerMap extends Trigger {
                
             }
             
-        }*/
+        }
+        /*
         if (this.active){
             aThis.setChange(true);
             aThis.setMapAct(getChangeTo());
             aThis.getPlayer().positionX=getpX();
             aThis.getPlayer().positionY=getpY();    
-        }
+        }*/
         
     }
 
