@@ -49,6 +49,20 @@
           <par>618</par>
         </Trigger>
       </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
     </Map>
     <Map id="1">
       <NumberLayers>2</NumberLayers>
@@ -68,6 +82,20 @@
           <par>216</par>
         </Trigger>
       </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
     </Map>
   </Maps>
   <Player>
@@ -86,10 +114,41 @@
     <numberOfTrophies>0</numberOfTrophies>
     <Inventory>
       <Item id="1">
-        <name>Bici</name>
+        <name>Bicicleta</name>
         <stock>1</stock>
         <description>Bicicleta montañera rapida</description>
+		<image>src/img/bicicleta.jpg</image>
       </Item>
+      <Item id="2">
+        <name>Manzana</name>
+        <stock>1</stock>
+        <description>Manzana para profesora</description>
+		<image>src/img/manzana.jpg</image>
+      </Item>
+      <Item id="3">
+        <name>Pelota</name>
+        <stock>1</stock>
+        <description>Pelota pequeña</description>
+		<image>src/img/pelota.jpg</image>
+      </Item>
+      <Item id="4">
+        <name>Célular</name>
+        <stock>1</stock>
+        <description>Smartphone con internet</description>
+		<image>src/img/celular.jpg</image>
+      </Item>	  
+      <Item id="5">
+        <name>Libro</name>
+        <stock>1</stock>
+        <description>Libro de operaciones aritméticas</description>
+		<image>src/img/libro.jpg</image>
+      </Item>	 
+      <Item id="6">
+        <name>Platano</name>
+        <stock>1</stock>
+        <description>Platano de seda</description>
+		<image>src/img/platano.jpg</image>
+      </Item>	 	  
     </Inventory>
   </Player>
 </Game>

@@ -20,6 +20,7 @@ public class Map {
     private String[] paths;
     private String[] dirImg;
     private ArrayList<Trigger> triggers=new ArrayList<Trigger>();
+    private ArrayList<Goal> goals=new ArrayList<Goal>();
     public Map(Engine eng,int cantLayer,String[] paths,String[] dirImg){
 //        triggers.add(new TriggerChangeMap(16, 5, 1,410,618));
 //        triggers.add(new TriggerChangeMap(11, 17, 0,626,216));
@@ -92,6 +93,20 @@ public class Map {
      */
     public void setBright(float bright) {
         this.bright = bright;
+    }
+
+    /**
+     * @return the goals
+     */
+    public ArrayList<Goal> getGoals() {
+        return goals;
+    }
+
+    /**
+     * @param goals the goals to set
+     */
+    public void setGoals(ArrayList<Goal> goals) {
+        this.goals = goals;
     }
     
 }

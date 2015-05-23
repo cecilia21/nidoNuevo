@@ -16,12 +16,14 @@ public class Item implements Serializable{
     protected String name;
     protected int stock;
     protected String description;
+    private String image;
     
-    public Item(int id,String name, int stock, String description){
+    public Item(int id,String name, int stock, String description,String image){
         this.id=id;
         this.name=name;
         this.stock=stock;
         this.description=description;
+        this.image=image;
     }
     
     public int getId() {
@@ -54,6 +56,20 @@ public class Item implements Serializable{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the image
+     */
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(String image) {
+        this.image = image;
     }
     
     

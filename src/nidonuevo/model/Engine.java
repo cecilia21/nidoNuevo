@@ -85,6 +85,7 @@ public class Engine implements Runnable{
         
         loadGameFromXML();                    
         //VAMOS A GUARDAR LA CONFIGURACION INICIAL DEL JUEGO
+        
         saveGameToXML();     
         loading.stop();
         //Utils.sleepFor(5000);
@@ -114,6 +115,7 @@ public class Engine implements Runnable{
 		
 		//End Drawing!
                 if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
+                
 		getBs().show();
                 
 		g.dispose();
@@ -337,7 +339,7 @@ public class Engine implements Runnable{
                 Map map1=new Map(this,numberLayers,paths,dirImg);
                 //setLc(map1.getLC());//arreglar las colisiones, mas mapas
                 
-                
+                //TRIGGERS
                 
                 Element triggers=map.element("Triggers");
                 for (Iterator j=triggers.elementIterator("Trigger");j.hasNext();){
@@ -363,6 +365,23 @@ public class Engine implements Runnable{
                         map1.getTriggers().add(new TriggerMap(par1,par2,par3,par4,par5));
                     }
                 }
+                //GOALS
+                
+                Element goals=map.element("Goals");
+                for (Iterator j=goals.elementIterator("Goal");j.hasNext();){
+                    Element goal=(Element)j.next();
+                    
+                    //int id, boolean active,String desc,int tipo
+                    int idGoal=Integer.parseInt(goal.element("id").getText());
+                    boolean active=(goal.element("active").getText().compareTo("true")==0);
+                    String desc=goal.element("description").getText();
+                    int tipo=Integer.parseInt(goal.element("type").getText());
+                    map1.getGoals().add(new Goal(idGoal,active,desc,tipo));
+                    
+                }
+              //  map1.getGoals().add(new Goal(1,true,"Meta conversar con NPC 1",2));
+               
+                
                 LMS.getMaps().add(map1);
               
           
@@ -391,7 +410,8 @@ public class Engine implements Runnable{
                     String name=item.element("name").getText();
                     int stock=Integer.parseInt(item.element("stock").getText());
                     String description=item.element("description").getText();
-                    LMS.getPlayer().getInventory().getItems().add(new Item(id,name,stock,description));
+                    String image=item.element("image").getText();
+                    LMS.getPlayer().getInventory().getItems().add(new Item(id,name,stock,description,image));
                 }
                           
                
@@ -408,7 +428,7 @@ public class Engine implements Runnable{
         
         
     }
-
+    //GUARDA EL INICIO DEL JUEGO
     private void saveGameToXML() {
        Document document=DocumentHelper.createDocument();
        Element root=document.addElement("Game");
@@ -430,7 +450,7 @@ public class Engine implements Runnable{
                 //falta width,gehith, layer. mapa, etc, terminar mapash
             }
             
-            
+            //TRIGGERS
             Element triggers=map.addElement("Triggers");
                 for (int j=0;j<LMS.getMaps().get(i).getTriggers().size();j++){
                     Element trigger=triggers.addElement("Trigger");
@@ -443,6 +463,22 @@ public class Engine implements Runnable{
                         trigger.addElement("par").addText(""+aux.getpX());
                         trigger.addElement("par").addText(""+aux.getpY());
                     }
+                    
+                }
+            //GOALS
+            Element goals=map.addElement("Goals");
+                for (int j=0;j<LMS.getMaps().get(i).getGoals().size();j++){
+                    
+                    Element goal=goals.addElement("Goal");
+                    Goal aux=LMS.getMaps().get(i).getGoals().get(j);
+                    //int id, boolean active,String desc,int tipo
+                    goal.addElement("id").addText(""+aux.getId());
+                    goal.addElement("active").addText(""+aux.isActive());
+                    goal.addElement("description").addText(""+aux.getDescription());
+                    goal.addElement("type").addText(""+aux.getTipo());
+              
+                  
+                    
                     if (LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMap){
                         TriggerMap aux=(TriggerMap)LMS.getMaps().get(i).getTriggers().get(j);
                         trigger.addElement("type").addText("TriggerMap");
@@ -476,6 +512,7 @@ public class Engine implements Runnable{
                 item.addElement("name").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getName());
                 item.addElement("stock").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getStock());
                 item.addElement("description").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getDescription());
+                item.addElement("image").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getImage());
             }
             
         
