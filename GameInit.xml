@@ -25,6 +25,20 @@
           <par>618</par>
         </Trigger>
       </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
     </Map>
     <Map id="1">
       <NumberLayers>2</NumberLayers>
@@ -44,6 +58,20 @@
           <par>216</par>
         </Trigger>
       </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
     </Map>
   </Maps>
   <Player>

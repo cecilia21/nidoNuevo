@@ -42,6 +42,34 @@ public class Goal {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public int getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
    
    
 }

@@ -94,5 +94,19 @@ public class Map {
     public void setBright(float bright) {
         this.bright = bright;
     }
+
+    /**
+     * @return the goals
+     */
+    public ArrayList<Goal> getGoals() {
+        return goals;
+    }
+
+    /**
+     * @param goals the goals to set
+     */
+    public void setGoals(ArrayList<Goal> goals) {
+        this.goals = goals;
+    }
     
 }
