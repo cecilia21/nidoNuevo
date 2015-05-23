@@ -400,7 +400,8 @@ public class Engine implements Runnable{
                     String name=item.element("name").getText();
                     int stock=Integer.parseInt(item.element("stock").getText());
                     String description=item.element("description").getText();
-                    LMS.getPlayer().getInventory().getItems().add(new Item(id,name,stock,description));
+                    String image=item.element("image").getText();
+                    LMS.getPlayer().getInventory().getItems().add(new Item(id,name,stock,description,image));
                 }
                           
                
@@ -492,6 +493,7 @@ public class Engine implements Runnable{
                 item.addElement("name").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getName());
                 item.addElement("stock").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getStock());
                 item.addElement("description").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getDescription());
+                item.addElement("image").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getImage());
             }
             
         
