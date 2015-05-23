@@ -158,8 +158,8 @@ public class Player extends Person implements Serializable{
         //der=2 izq=1 arr=3 aba=0
         
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
-        System.out.println(getPositionX()+","+getPositionY());        
-        System.out.println(getT(getPositionX())+","+getT(getPositionY()));
+        System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
+        System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
 	//System.out.println(name);
     }
     public void move(){
