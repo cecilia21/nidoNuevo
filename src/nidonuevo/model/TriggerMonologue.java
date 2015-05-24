@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import nidonuevo.app.Display;
 import javax.swing.JFrame;
 
+
 /**
  *
  * @author alulab14
@@ -30,9 +31,13 @@ public class TriggerMonologue extends Trigger {
     
     @Override
     public void execTrigger(LocalMap aThis) {
-        System.out.println("ejucutar monolgo");
         if (this.active){
             aThis.getEng().getDisplay().setOnMonPanel();
+            while(!aThis.getEng().keyManager.s){
+                aThis.getEng().keyManager.tick();
+            }
+            this.active = false;
+            aThis.getEng().getDisplay().setOffMonPanel();;
         }
         
     }

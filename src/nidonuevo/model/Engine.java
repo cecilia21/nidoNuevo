@@ -45,14 +45,15 @@ public class Engine implements Runnable{
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
-    
+    private final Object GUI_INITIALIZATION_MONITOR = new Object();
+    private boolean pauseThreadFlag = false;
     //layer de collision
  //   private Layer lc;
     //Actual map
     private int currentMap=0;
     
     //Input
-    private KeyManager keyManager;
+    public KeyManager keyManager;
     
     //States
     private StateMachine SM;
@@ -89,6 +90,10 @@ public class Engine implements Runnable{
         saveGameToXML();     
         loading.stop();
         //Utils.sleepFor(5000);
+    }
+    
+    public void tecla(){
+        keyManager.tick();
     }
     private void tick(){
         keyManager.tick();
@@ -148,14 +153,12 @@ public class Engine implements Runnable{
 			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
 			lastTime = now;
-			
 			if(delta >= 1){
 				if (LMS.isChange()==false) tick();
 				render();
 				ticks++;
 				delta--;
 			}
-			
 			if(timer >= 1000000000){
 				System.out.println("Ticks and Frames: " + ticks);
 				ticks = 0;
@@ -177,7 +180,7 @@ public class Engine implements Runnable{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
+	}    
     public int getCurrentMap(){
         return currentMap;
         

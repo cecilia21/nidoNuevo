@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Panel;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -56,7 +57,7 @@ public class Display {
         panel1.setBackground(new java.awt.Color(102, 255, 0));
         panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         textArea1.setText("Holi boli :D");
-        panel1.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, width, -1));
+        //panel1.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, width, -1));
 
         panel1.setVisible(false);
         frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, height-110, width, 110));
@@ -79,6 +80,10 @@ public class Display {
 public void setFrame(JFrame fr){
     frame = fr;
     frame.pack();
+}
+
+public Panel getPanel(){
+    return panel1;
 }
 
 public void setOnMonPanel(){

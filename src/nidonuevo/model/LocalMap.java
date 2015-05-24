@@ -80,7 +80,7 @@ public class LocalMap extends State{
             if(maps.get(getMapAct()).getTriggers().get(i) instanceof TriggerMonologue){
                 TriggerMonologue trig = (TriggerMonologue)maps.get(getMapAct()).getTriggers().get(i);
                 if(getPlayer().getT(getPlayer().positionX)==trig.getX()
-                    &&getPlayer().getT(getPlayer().positionY)==trig.getY())
+                    &&getPlayer().getT(getPlayer().positionY)==trig.getY() && trig.active)
                     return i;
             }
             
