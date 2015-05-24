@@ -49,18 +49,15 @@ public class Display {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(true);
         //frame.setLocationRelativeTo(null);
+        java.awt.TextArea textArea1 = new java.awt.TextArea();
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/ico_NN.jpg"));
         frame.setIconImage(icon);
         panel1 = new java.awt.Panel();
         panel1.setBackground(new java.awt.Color(102, 255, 0));
-        java.awt.Button button1 = new java.awt.Button();
-        button1.setLabel("button1");
-
-        panel1.setBackground(new java.awt.Color(102, 255, 0));
         panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        textArea1.setText("Holi boli :D");
+        panel1.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, width, -1));
 
-        button1.setLabel("button1");
-        panel1.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
         panel1.setVisible(false);
         frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, height-110, width, 110));
         
