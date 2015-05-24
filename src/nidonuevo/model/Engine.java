@@ -92,6 +92,7 @@ public class Engine implements Runnable{
     }
     private void tick(){
         keyManager.tick();
+        
         if (getSM().getOrdenPop()) 
             getSM().pop();
         if (!SM.getState().empty()){
@@ -364,6 +365,16 @@ public class Engine implements Runnable{
                         int par5=Integer.parseInt(parametro.getText()); 
                         map1.getTriggers().add(new TriggerMap(par1,par2,par3,par4,par5));
                     }
+                    if(0==trigger.element("type").getText().compareTo("TriggerMini")){
+                        Iterator u=trigger.elementIterator("par");
+                        Element parametro=(Element)u.next();
+                        int par1=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par2=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par3=Integer.parseInt(parametro.getText());
+                        map1.getTriggers().add(new TriggerMini(par1,par2,par3));
+                    }
+                    
+                    
                 }
                 //GOALS
                 
@@ -470,6 +481,13 @@ public class Engine implements Runnable{
                         trigger.addElement("par").addText(""+aux.getChangeTo());
                         trigger.addElement("par").addText(""+aux.getpX());
                         trigger.addElement("par").addText(""+aux.getpY());
+                    }else if(LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMini){
+                        TriggerMini aux=(TriggerMini)LMS.getMaps().get(i).getTriggers().get(j);
+                        trigger.addElement("type").addText("TriggerMini");
+                        trigger.addElement("par").addText(""+aux.x);
+                        trigger.addElement("par").addText(""+aux.y);
+                        trigger.addElement("par").addText(""+aux.getChangeTo());
+                        
                     }
                     
                 }

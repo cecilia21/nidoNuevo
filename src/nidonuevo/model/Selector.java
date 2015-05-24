@@ -15,23 +15,29 @@ import java.awt.image.BufferedImage;
 public class Selector {
     
     protected BufferedImage sprite;
-    private int opt; //option default
+    private int optY; //option default
+    private int optX;
     private String path;
     private int x,y,w,h;
     private int stepY;
+    private int stepX;
     private int contDelay=10;
     private int delay=contDelay;
-    private int max_opts;
-    public Selector(int x,int y,int w,int h,int stepY,int max){
-        this.max_opts=max;
-        this.opt=1;
+    private int max_optsY;
+    private int max_optsX;
+    public Selector(int x,int y,int w,int h,int stepY,int stepX,int maxY,int maxX,String path){
+        this.max_optsY=maxY;
+        this.max_optsX=maxX;
+        this.optY=1;
+        this.optX=1;
         this.x=x;
         this.y=y;
         this.w=w;
         this.h=h;
         this.stepY=stepY;
-        path="/img/selector.png";
-        
+        this.stepX=stepX;
+        //this.path="/img/selector.png";
+        this.path=path;
         sprite = ImageLoader.loadImage(path);
             
         
@@ -43,14 +49,26 @@ public class Selector {
     }
     public void down(){
         
-        if(getOpt()<max_opts) if(delay==0) {y+=stepY; delay=contDelay; opt++;} else delay--;
+        if(getOpt()<max_optsY) if(delay==0) {y+=stepY; delay=contDelay; optY++;} else delay--;
+        
+    }
+    public void right(){
+     
+        if(getOptX()<max_optsX) if(delay==0) {x+=stepX; delay=contDelay; optX++;} else delay--;
         
     }
     public void up(){
      
-        if(getOpt()>1) if(delay==0) {y-=stepY; delay=contDelay; opt--;} else delay--;
+        if(getOpt()>1) if(delay==0) {y-=stepY; delay=contDelay; optY--;} else delay--;
         
     }
+    
+    public void left(){
+     
+        if(getOptX()>1) if(delay==0) {x-=stepX; delay=contDelay; optX--;} else delay--;
+        
+    }
+    
     public void render(Graphics g){
         
 
@@ -62,6 +80,13 @@ public class Selector {
      * @return the opt
      */
     public int getOpt() {
-        return opt;
+        return optY;
+    }
+
+    public int getOptX() {
+        return optX;
+    }
+    public void print(){
+        System.out.println("Y: "+optY+" , X:"+optX);
     }
 }

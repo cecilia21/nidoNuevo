@@ -43,7 +43,7 @@ public class MainMenu extends State {
         options.add("LOAD");
         options.add("HELP");
         options.add("SALIR");
-        sel=new Selector(x-widthB,y,widthB,heightB,space,4);
+        sel=new Selector(x-widthB,y,widthB,heightB,space,0,2,0,"/img/selector.png");
         buttons.add(new Button(options.get(0),x,y,widthB,heightB));
         buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
         buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));

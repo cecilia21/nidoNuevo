@@ -17,6 +17,8 @@ import java.util.logging.Logger;
  * @author alulab14
  */
 public class Player extends Person implements Serializable{
+    private int auxR=0;
+    public boolean correct;
     private int contDelay=5;
     private transient Engine eng;
     private double happiness;
@@ -110,12 +112,26 @@ public class Player extends Person implements Serializable{
                     if (getLC().getTiles()[getT(getPositionX()+getSpeed())][getT(getPositionY())]==1)
                     xMove = getSpeed();
                 }
-                
-                if(eng.getKeyManager().m){
+                if (eng.getKeyManager().m){
+                    if (auxR==0) auxR++;
+                }
+                if (eng.getKeyManager().mR){
+                    if (auxR==1) auxR++;
+                }
+                if(auxR==2){
+                    eng.getKeyManager().mR=false;
+                   eng.getKeyManager().m=false;
+                    auxR=0;
                     InGameMenu inGameM=new InGameMenu(eng);
                     eng.getSM().add(inGameM);
                 }
-                
+                if (eng.getKeyManager().s && correct){
+                    
+                    MiniGame mini=new MiniGame(eng);
+                   
+                    
+                     eng.getSM().add(mini);
+                }
                 if(eng.getKeyManager().enter){
                     //System.out.println("Solo se presiona enter");
                     //Cuando tu mismo vuelves a presionar enter se para la secuencia
@@ -160,6 +176,7 @@ public class Player extends Person implements Serializable{
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
         System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
         System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
+        System.out.println("Aux: "+auxR);
 	//System.out.println(name);
     }
     public void move(){

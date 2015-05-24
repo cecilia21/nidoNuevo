@@ -38,7 +38,7 @@ public class InGameMenu extends State {
         fntT =new Font("Comic Sans MS",Font.BOLD,fontSizeT);
         options.add("SAVE");        
         options.add("SALIR");
-        sel=new Selector(x-widthB,y,widthB,heightB,space,2);
+        sel=new Selector(x-widthB,y,widthB,heightB,space,0,2,0,"/img/selector.png");
         buttons.add(new Button(options.get(0),x,y,widthB,heightB));
         buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
         this.eng=eng;
