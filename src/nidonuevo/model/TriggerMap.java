@@ -26,18 +26,13 @@ public class TriggerMap extends Trigger {
     }
     
     public boolean goalsAchieved(LocalMap aThis){
-        try {
-        ArrayList<Goal> metas = aThis.getMap().getGoals();
+        ArrayList<Goal> metas = aThis.getMaps().get(aThis.getMapAct()).getGoals();
         //metas = aThis.getMap().getGoals();
         for(int i = 0; i<metas.size(); i++){
             if(metas.get(i).isActive())
                 return false;
         }
         return true;
-        }
-        catch(java.lang.NullPointerException e){
-            return true;
-        }
     }
     
     @Override

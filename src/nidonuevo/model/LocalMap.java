@@ -16,7 +16,7 @@ public class LocalMap extends State{
     private double bright=1;
     private int iter=1;
     private boolean ordenarPop=false;
-    private Map map;
+   // private Map map;
     private ArrayList<Map> maps=new ArrayList<Map>();
     private Player player;
     private ArrayList<Friend> friends;
@@ -87,19 +87,7 @@ public class LocalMap extends State{
         return maps;
     }
 
-    /**
-     * @return the map
-     */
-    public Map getMap() {
-        return map;
-    }
 
-    /**
-     * @param map the map to set
-     */
-    public void setMap(Map map) {
-        this.map = map;
-    }
 
     /**
      * @return the player
