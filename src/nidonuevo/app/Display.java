@@ -62,7 +62,7 @@ public class Display {
         button1.setLabel("button1");
         panel1.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
         panel1.setVisible(false);
-        frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 110));
+        frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, height-110, width, 110));
         
         canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
