@@ -205,7 +205,9 @@ public class Engine implements Runnable{
         ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
         saveToXML();
     }
-
+    public Display getDisplay(){
+        return display;
+    }
 
 
     
@@ -373,7 +375,14 @@ public class Engine implements Runnable{
                         int par3=Integer.parseInt(parametro.getText());
                         map1.getTriggers().add(new TriggerMini(par1,par2,par3));
                     }
-                    
+                    if(0==trigger.element("type").getText().compareTo("TriggerMonologue")){
+                        Iterator u=trigger.elementIterator("par");
+                        Element parametro=(Element)u.next();
+                        int par1=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par2=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par3=Integer.parseInt(parametro.getText());
+                        map1.getTriggers().add(new TriggerMonologue(par1,par2));
+                    }
                     
                 }
                 //GOALS
@@ -484,6 +493,13 @@ public class Engine implements Runnable{
                     }else if(LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMini){
                         TriggerMini aux=(TriggerMini)LMS.getMaps().get(i).getTriggers().get(j);
                         trigger.addElement("type").addText("TriggerMini");
+                        trigger.addElement("par").addText(""+aux.x);
+                        trigger.addElement("par").addText(""+aux.y);
+                        trigger.addElement("par").addText(""+aux.getChangeTo());
+                        
+                    }else if(LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMonologue){
+                        TriggerMonologue aux=(TriggerMonologue)LMS.getMaps().get(i).getTriggers().get(j);
+                        trigger.addElement("type").addText("TriggerMonologue");
                         trigger.addElement("par").addText(""+aux.x);
                         trigger.addElement("par").addText(""+aux.y);
                         trigger.addElement("par").addText(""+aux.getChangeTo());

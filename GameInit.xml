@@ -41,6 +41,12 @@
           <par>618</par>
         </Trigger>
         <Trigger>
+          <type>TriggerMonologue</type>
+          <par>10</par>
+          <par>10</par>
+          <par>1</par>
+        </Trigger>
+        <Trigger>
           <type>TriggerMini</type>
           <par>5</par>
           <par>5</par>

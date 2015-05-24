@@ -18,6 +18,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.Panel;
+
 /**
  *
  * @author TOSHIBA
@@ -27,6 +29,7 @@ public class Display {
     private String title;
     private int width, height;
     private Canvas canvas;
+    private Panel panel1;
     
     public Display(String title, int width, int height){
         this.title = title;
@@ -41,13 +44,25 @@ public class Display {
     private void createDisplay(){
      
         frame = new JFrame(title);
-
-        frame.setSize(width,height);
+        frame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        //frame.setSize(width,height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+        frame.setResizable(true);
+        //frame.setLocationRelativeTo(null);
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/ico_NN.jpg"));
         frame.setIconImage(icon);
+        panel1 = new java.awt.Panel();
+        panel1.setBackground(new java.awt.Color(102, 255, 0));
+        java.awt.Button button1 = new java.awt.Button();
+        button1.setLabel("button1");
+
+        panel1.setBackground(new java.awt.Color(102, 255, 0));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        button1.setLabel("button1");
+        panel1.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
+        panel1.setVisible(false);
+        frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 380, 110));
         
         canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
@@ -55,7 +70,7 @@ public class Display {
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
 		canvas.setBackground(Color.black);
-		frame.add(canvas);
+		frame.getContentPane().add(canvas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 800, 700));
 		frame.pack();
     }
     public JFrame getFrame(){
@@ -64,6 +79,16 @@ public class Display {
     public Canvas getCanvas(){
 		return canvas;
 	}
-	
+public void setFrame(JFrame fr){
+    frame = fr;
+    frame.pack();
+}
+
+public void setOnMonPanel(){
+    panel1.setVisible(true);
+}
+        public void setOffMonPanel(){
+            panel1.setVisible(false);
+        }
 
 }
