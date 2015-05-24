@@ -15,7 +15,7 @@ public class KeyManager implements KeyListener {
 	}
 	
 	public void tick(){
-            System.out.println("esta haciendo tick :D");
+            System.out.println();
 		up = keys[KeyEvent.VK_UP];
 		down = keys[KeyEvent.VK_DOWN];
 		left = keys[KeyEvent.VK_LEFT];
