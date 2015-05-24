@@ -29,13 +29,12 @@ public class TriggerMap extends Trigger {
         try {
         ArrayList<Goal> metas = aThis.getMap().getGoals();
         //metas = aThis.getMap().getGoals();
-        if(metas == null ) return true;
-        if(metas.size() < 1 ) return true ;
         for(int i = 0; i<metas.size(); i++){
             if(metas.get(i).isActive())
                 return false;
         }
-        return true;}
+        return true;
+        }
         catch(java.lang.NullPointerException e){
             return true;
         }
