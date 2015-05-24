@@ -33,8 +33,10 @@ public class MiniGame extends State {
     private Font fnt0;
     private int selectY=y; 
     private int turno =0;
+    private ArrayList<Person> persons;
     
-    public MiniGame(Engine eng){
+    public MiniGame(Engine eng,ArrayList<Person> persons){
+        this.persons=persons;
         fnt0 = new Font("Monotype Corsiva",Font.BOLD,50);
         buttons=new ArrayList<Button>();        
         options=new ArrayList<String>();
@@ -86,7 +88,12 @@ public class MiniGame extends State {
        if (!messages.isEmpty()) g.drawString(messages.get(0),350,200);   
         
     }
-     
+     private void nextTurn(){
+         if (turno<persons.size()-1)
+         turno++;
+         else
+         turno=0;
+     }
     public void tick(){
        
         if (eng.getKeyManager().enter){
@@ -101,7 +108,7 @@ public class MiniGame extends State {
             if (sel.getOpt()==1 && sel.getOptX()==1){
                 aux=0;
                 
-                turno++;
+                nextTurn();
                 messages.clear();
                 messages.add("Ataque "+turno);
 

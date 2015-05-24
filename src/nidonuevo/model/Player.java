@@ -126,8 +126,10 @@ public class Player extends Person implements Serializable{
                     eng.getSM().add(inGameM);
                 }
                 if (eng.getKeyManager().s && correct){
-                    
-                    MiniGame mini=new MiniGame(eng);
+                    //Primero se crea los jugadores del minigame
+                    ArrayList<Person> persons=new ArrayList<Person>();
+                    persons.add(this);
+                    MiniGame mini=new MiniGame(eng,persons);
                    
                     
                      eng.getSM().add(mini);
