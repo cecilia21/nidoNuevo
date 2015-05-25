@@ -51,6 +51,7 @@ public class Engine implements Runnable{
     private Boolean flagCanvas=false;
     private final Object GUI_INITIALIZATION_MONITOR = new Object();
     private boolean pauseThreadFlag = false;
+    private int aux=0;
     //layer de collision
  //   private Layer lc;
     //Actual map
@@ -109,11 +110,22 @@ public class Engine implements Runnable{
         }
     }
     private void render(){
-        if(keyManager.i) {
-            flagCanvas=true;
-            System.out.println("presionando iiiiiiiiiiiiiiiiiiii");
+        if(keyManager.i){
+            if(aux==0) aux++;
         }
-        if(keyManager.o) flagCanvas=false;
+        if(keyManager.iR){
+            if(aux==1) aux++;
+        }
+        if(aux==2) {
+            keyManager.i=false;
+            keyManager.iR=false;
+            aux=0;
+            if(!flagCanvas) flagCanvas=true;
+            else flagCanvas=false;
+            System.out.println("presionando iiiiiiiiiiiiiiiiiiii");
+
+        }
+
         setBs(display.getCanvas().getBufferStrategy());
 		if(getBs() == null){
 			display.getCanvas().createBufferStrategy(3);
@@ -125,7 +137,7 @@ public class Engine implements Runnable{
 		//Draw Here!
 		if(flagCanvas) renderInventory();
                 else {if(!SM.getState().empty())
-                        getSM().render(g);
+                        getSM().render(g); 
                 }	
 		
 		//End Drawing!
