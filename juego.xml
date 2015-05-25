@@ -155,7 +155,7 @@
       <Source>
         <Path id="0">src/img/l1.txt</Path>
         <Img id="0">/img/playground.png</Img>
-        <Path id="1">src/img/lc3.txt</Path>
+        <Path id="1">src/img/lcplayground.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>
       <Triggers>
@@ -254,7 +254,7 @@
       <Source>
         <Path id="0">src/img/l1.txt</Path>
         <Img id="0">/img/calle.png</Img>
-        <Path id="1">src/img/lc3.txt</Path>
+        <Path id="1">src/img/lccalle.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>
       <Triggers>
