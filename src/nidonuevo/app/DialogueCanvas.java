@@ -10,11 +10,16 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nidonuevo.model.KeyManager;
 
 
 /**
@@ -29,20 +34,26 @@ public class DialogueCanvas extends Canvas{
         private int i=0;
         private int cotI=0;
         private int cotF=60;
-        public DialogueCanvas(ArrayList<String> letras){
+        public DialogueCanvas(ArrayList<String> letras,KeyManager keyManager){
 //            setPreferredSize(new Dimension(100, 600));
 //            setMaximumSize(new Dimension(800, 600));
 //            setMinimumSize(new Dimension(800, 600));
 //            setFocusable(false);
-            setBackground(Color.WHITE);
-            conversacion=letras;
-            addMouseMotionListener(new MouseMotionAdapter() {//Lo hize para probar, cada vez que arrastras el 
+            setBackground(Color.green);
+            conversacion=letras;          
+//            if(keyManager.z){
+//                    repaint();
+//            }
+
+            
+            addMouseListener(new MouseAdapter() {//Lo hize para probar, cada vez que arrastras el 
                                                             // mouse se pinta la siguiente linea del letras[i],solo se
                                                             //cambia por lectura del teclado        
                 @Override
-            public void mouseDragged(MouseEvent e){
-                repaint();
-            }
+                public void mouseClicked(MouseEvent me) {
+                    repaint(); //To change body of generated methods, choose Tools | Templates.
+                }
+
         });
             repaint();
         }
@@ -51,9 +62,9 @@ public class DialogueCanvas extends Canvas{
             if(i>=(conversacion.size()-1))
                 return;
             g.clearRect(0, 0, 600, 800);
-            Font fuente=new Font("Monospaced", Font.BOLD, 18);
+            Font fuente=new Font("Monospaced", Font.BOLD, 20);
             g.setFont(fuente);
-            g.setColor(Color.black);
+            g.setColor(Color.BLACK);
             altura=30;
             cotI=0;
             cotF=60;

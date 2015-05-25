@@ -22,6 +22,7 @@ import javax.swing.JLabel;
 import java.awt.Panel;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import nidonuevo.model.KeyManager;
 
 /**
  *
@@ -96,7 +97,7 @@ public void setOffMonPanel(){
     panel1.setVisible(false);
 }
 
-public void setOnDialogos(ArrayList<String> letras){
+public void setOnDialogos(ArrayList<String> letras, KeyManager keyManager){
 
 //        Font fuente=new Font("Monospaced", Font.BOLD, 25);
 //        panel1.removeAll();
@@ -105,7 +106,7 @@ public void setOnDialogos(ArrayList<String> letras){
 //        textArea.setFont(fuente);
 //        panel1.add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, width, -1));
 //        frame.pack();
-        canvasLetras= new DialogueCanvas(letras);
+        canvasLetras= new DialogueCanvas(letras,keyManager);
         panel1.add(canvasLetras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,800,110));
         frame.pack();
         //Ultima version

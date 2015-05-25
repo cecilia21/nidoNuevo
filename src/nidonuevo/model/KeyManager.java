@@ -7,7 +7,7 @@ public class KeyManager implements KeyListener {
 	
 	private boolean[] keys;
         private boolean[] keysR;
-	public boolean up, down, left, right,eme,q,enter,m,s,enterR,mR,i,iR;
+	public boolean up, down, left, right,eme,q,enter,m,s,enterR,mR,i,iR,z;
 	
 	public KeyManager(){
 		keys = new boolean[256];
@@ -28,7 +28,7 @@ public class KeyManager implements KeyListener {
                 enterR=keysR[KeyEvent.VK_ENTER];
                 i=keys[KeyEvent.VK_I];
                 iR=keysR[KeyEvent.VK_I];
-                
+                z=keysR[KeyEvent.VK_Z];
 	}
 
 	@Override

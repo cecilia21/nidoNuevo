@@ -36,7 +36,7 @@ public class TriggerMonologue extends Trigger {
         if (this.active){
             //Esto se leera del XML, solo es para probar
             ArrayList<String> letras= new ArrayList<String> ();
-            letras.add("Hola, como estas? Me llamo, Vania, te gustaria\n jugar conmigo y mi demas amigos");/////////Limite
+            letras.add("Hola, como estas? Me llamo, Vania, te gustaria jugar conmigo y mi demas amigos");/////////Limite
             letras.add("En el mundo de los animales vivía una liebre muy orgullosa y vanidosa");
             letras.add(", que no cesaba de pregonar que ella era la más veloz y se burlaba de ello ante la lentitud de la tortuga");
             letras.add("Un día, a la tortuga se le ocurrió hacerle una inusual apuesta a la liebre:");
@@ -48,10 +48,13 @@ public class TriggerMonologue extends Trigger {
             letras.add("y de llegada, y sin más preámbulos comenzó la carrera en medio de la incredulidad de los asistentes.");
 
             aThis.getEng().getDisplay().setOnMonPanel();
-            aThis.getEng().getDisplay().setOnDialogos(letras);//Se llama al establecer canvas
+            aThis.getEng().getDisplay().setOnDialogos(letras,aThis.getEng().keyManager);//Se llama al establecer canvas
             
             while(!aThis.getEng().keyManager.s){
                         aThis.getEng().keyManager.tick();
+                        if(aThis.getEng().keyManager.z){
+                            System.out.println("z");
+                        }
             }
             this.active = false;
             aThis.getEng().getDisplay().setOffMonPanel();
