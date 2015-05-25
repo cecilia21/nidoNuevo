@@ -40,7 +40,7 @@ public class TriggerMap extends Trigger {
     public void execTrigger(LocalMap aThis) {
         //if(aThis.getPlayer().positionX )
         if (this.active){
-            if(((x==1 && aThis.getPlayer().positionX <=2) || (x==19 && aThis.getPlayer().positionX >=749) ||
+            if(((x==1 && aThis.getPlayer().positionX <=2) || (x==19 && aThis.getPlayer().positionX >=746) ||
                     (y==1 && aThis.getPlayer().positionY <= 1) || (y==17 && aThis.getPlayer().positionY >=645)) &&
                     goalsAchieved(aThis)){
                 aThis.setChange(true);

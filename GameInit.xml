@@ -218,6 +218,39 @@
       </Source>
       <Triggers>
         <Trigger>
+          <type>TriggerMap</type>
+          <par>19</par>
+          <par>8</par>
+          <par>6</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="6">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/calle.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
           <type>TriggerChangeMap</type>
           <par>11</par>
           <par>17</par>
