@@ -108,7 +108,7 @@ public void setOnDialogos(ArrayList<String> letras){
         canvasLetras= new DialogueCanvas(letras);
         panel1.add(canvasLetras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,800,110));
         frame.pack();
-        
+        //Ultima version
 }
 
 }
