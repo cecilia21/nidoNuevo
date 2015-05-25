@@ -60,7 +60,7 @@ public class Display {
         //panel1.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, width, -1));
 
         panel1.setVisible(false);
-        frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, height-110, width, 110));
+        frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, height-110, width, 110));
         
         canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
@@ -68,7 +68,7 @@ public class Display {
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
 		canvas.setBackground(Color.black);
-		frame.getContentPane().add(canvas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 800, 700));
+		frame.getContentPane().add(canvas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 700));
 		frame.pack();
     }
     public JFrame getFrame(){
