@@ -12,7 +12,9 @@
 //La lectura sera loadGameFromXML
 package nidonuevo.model;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import nidonuevo.app.Display;
@@ -45,6 +48,7 @@ public class Engine implements Runnable{
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
+    private Boolean flagCanvas=false;
     private final Object GUI_INITIALIZATION_MONITOR = new Object();
     private boolean pauseThreadFlag = false;
     //layer de collision
@@ -105,6 +109,11 @@ public class Engine implements Runnable{
         }
     }
     private void render(){
+        if(keyManager.i) {
+            flagCanvas=true;
+            System.out.println("presionando iiiiiiiiiiiiiiiiiiii");
+        }
+        if(keyManager.o) flagCanvas=false;
         setBs(display.getCanvas().getBufferStrategy());
 		if(getBs() == null){
 			display.getCanvas().createBufferStrategy(3);
@@ -114,10 +123,10 @@ public class Engine implements Runnable{
 		//Clear Screen
 		g.clearRect(0, 0, getWidth(), getHeight());
 		//Draw Here!
-		
-		if(!SM.getState().empty())
+		if(flagCanvas) renderInventory();
+                else {if(!SM.getState().empty())
                         getSM().render(g);
-			
+                }	
 		
 		//End Drawing!
                 if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
@@ -188,7 +197,22 @@ public class Engine implements Runnable{
     public KeyManager getKeyManager(){
         return this.keyManager;
     }
-
+    public void renderInventory(){
+        Image img2 = new ImageIcon("src/img/board.jpg").getImage();
+        g.drawImage(img2, 0, 0, display.getCanvas());
+        ArrayList <Item> inv= LMS.getPlayer().getInventory().getItems();
+        for (int i=0;i<inv.size();i++) {
+            Image img = new ImageIcon(inv.get(i).getImage()).getImage();
+            g.drawImage(img,120+i*100, 150, display.getCanvas());
+            g.setColor(Color.red);
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,20));
+                           
+            g.drawString(""+inv.get(i).getStock(), 145+i*100, 220); 
+                            
+        }
+        g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
+        g.drawString("Inventory game", 300, 50);           
+    }
 
 
     /**
