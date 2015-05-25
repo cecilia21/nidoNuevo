@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Game>
+  <General>
+    <title>Nido Nuevo, Amigos Nuevos!</title>
+    <width>800</width>
+    <height>700</height>
+  </General>
+  <Maps>
+    <Map id="0">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/l1.png</Img>
+        <Path id="1">src/img/lc1.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>16</par>
+          <par>5</par>
+          <par>1</par>
+          <par>410</par>
+          <par>618</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>1</par>
+          <par>7</par>
+          <par>2</par>
+          <par>410</par>
+          <par>618</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>15</par>
+          <par>17</par>
+          <par>1</par>
+          <par>410</par>
+          <par>618</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>12</par>
+          <par>1</par>
+          <par>7</par>
+          <par>524</par>
+          <par>630</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMonologue</type>
+          <par>10</par>
+          <par>10</par>
+          <par>1</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMini</type>
+          <par>5</par>
+          <par>5</par>
+          <par>1</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="1">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/bg_barn.png</Img>
+        <Path id="1">src/img/lc2.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>11</par>
+          <par>17</par>
+          <par>0</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="2">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/bg_schoolFloor.png</Img>
+        <Path id="1">src/img/lc2.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>11</par>
+          <par>17</par>
+          <par>0</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>18</par>
+          <par>17</par>
+          <par>3</par>
+          <par>410</par>
+          <par>618</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="3">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/playground.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>14</par>
+          <par>1</par>
+          <par>4</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="4">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/cafeteria.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>1</par>
+          <par>7</par>
+          <par>5</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="5">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/library.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>19</par>
+          <par>8</par>
+          <par>6</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="6">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/calle.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>11</par>
+          <par>17</par>
+          <par>0</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="7">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/libraryf.jpg</Img>
+        <Path id="1">src/img/lc7.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>14</par>
+          <par>17</par>
+          <par>0</par>
+          <par>500</par>
+          <par>10</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+  </Maps>
+  <Player>
+    <positionX>372</positionX>
+    <positionY>252</positionY>
+    <dir>2</dir>
+    <path>/img/playerS2.png</path>
+    <contDelay>5</contDelay>
+    <width>50</width>
+    <height>50</height>
+    <tW>200</tW>
+    <tH>200</tH>
+    <speed>6</speed>
+    <happiness>0.0</happiness>
+    <numberOfFriends>0</numberOfFriends>
+    <numberOfTrophies>0</numberOfTrophies>
+    <Inventory>
+      <Item id="1">
+        <name>Bicicleta</name>
+        <stock>1</stock>
+        <description>Bicicleta montañera rapida</description>
+        <image>src/img/bicicleta.jpg</image>
+      </Item>
+      <Item id="2">
+        <name>Manzana</name>
+        <stock>1</stock>
+        <description>Manzana para profesora</description>
+        <image>src/img/manzana.jpg</image>
+      </Item>
+      <Item id="3">
+        <name>Pelota</name>
+        <stock>1</stock>
+        <description>Pelota pequeña</description>
+        <image>src/img/pelota.jpg</image>
+      </Item>
+      <Item id="4">
+        <name>Célular</name>
+        <stock>1</stock>
+        <description>Smartphone con internet</description>
+        <image>src/img/celular.jpg</image>
+      </Item>
+      <Item id="5">
+        <name>Libro</name>
+        <stock>1</stock>
+        <description>Libro de operaciones aritméticas</description>
+        <image>src/img/libro.jpg</image>
+      </Item>
+      <Item id="6">
+        <name>Platano</name>
+        <stock>1</stock>
+        <description>Platano de seda</description>
+        <image>src/img/platano.jpg</image>
+      </Item>
+    </Inventory>
+  </Player>
+</Game>

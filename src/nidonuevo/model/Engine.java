@@ -347,7 +347,7 @@ public class Engine implements Runnable{
     private void loadGameFromXML() {
         SAXReader reader= new SAXReader();
         try {    
-            Document document=reader.read("GameInit.xml");
+            Document document=reader.read("juego.xml");
             Element root=document.getRootElement();
             //General
             Element general=root.element("General");
@@ -597,7 +597,7 @@ public class Engine implements Runnable{
         try { 
             OutputFormat format = OutputFormat.createPrettyPrint();
              format.setIndent(true);
-            XMLWriter writer=new XMLWriter(new FileWriter("GameInit.xml"),format);
+            XMLWriter writer=new XMLWriter(new FileWriter("juego.xml"),format);
             writer.write(document);
             writer.setIndentLevel(2);
             writer.close();
