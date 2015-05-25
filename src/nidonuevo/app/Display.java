@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.MalformedURLException;
@@ -20,6 +21,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Panel;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,6 +33,7 @@ public class Display {
     private int width, height;
     private Canvas canvas;
     private Panel panel1;
+    DialogueCanvas canvasLetras;
     
     public Display(String title, int width, int height){
         this.title = title;
@@ -89,8 +92,23 @@ public Panel getPanel(){
 public void setOnMonPanel(){
     panel1.setVisible(true);
 }
-        public void setOffMonPanel(){
-            panel1.setVisible(false);
-        }
+public void setOffMonPanel(){
+    panel1.setVisible(false);
+}
+
+public void setOnDialogos(ArrayList<String> letras){
+
+//        Font fuente=new Font("Monospaced", Font.BOLD, 25);
+//        panel1.removeAll();
+//        java.awt.TextArea textArea = new java.awt.TextArea();
+//        textArea.setText(letras.get(linea));
+//        textArea.setFont(fuente);
+//        panel1.add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, width, -1));
+//        frame.pack();
+        canvasLetras= new DialogueCanvas(letras);
+        panel1.add(canvasLetras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,800,110));
+        frame.pack();
+        
+}
 
 }
