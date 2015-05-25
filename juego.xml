@@ -188,7 +188,7 @@
       <Source>
         <Path id="0">src/img/l1.txt</Path>
         <Img id="0">/img/cafeteria.png</Img>
-        <Path id="1">src/img/lc3.txt</Path>
+        <Path id="1">src/img/lccafeteria.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>
       <Triggers>
@@ -221,7 +221,7 @@
       <Source>
         <Path id="0">src/img/l1.txt</Path>
         <Img id="0">/img/library.png</Img>
-        <Path id="1">src/img/lc3.txt</Path>
+        <Path id="1">src/img/lcbiblio.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>
       <Triggers>
