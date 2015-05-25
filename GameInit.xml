@@ -41,6 +41,12 @@
           <par>618</par>
         </Trigger>
         <Trigger>
+          <type>TriggerMonologue</type>
+          <par>10</par>
+          <par>10</par>
+          <par>1</par>
+        </Trigger>
+        <Trigger>
           <type>TriggerMini</type>
           <par>5</par>
           <par>5</par>
@@ -141,6 +147,72 @@
       <Source>
         <Path id="0">src/img/l1.txt</Path>
         <Img id="0">/img/playground.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>14</par>
+          <par>1</par>
+          <par>4</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="4">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/cafeteria.png</Img>
+        <Path id="1">src/img/lc3.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>1</par>
+          <par>7</par>
+          <par>5</par>
+          <par>626</par>
+          <par>216</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="5">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/library.png</Img>
         <Path id="1">src/img/lc3.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>

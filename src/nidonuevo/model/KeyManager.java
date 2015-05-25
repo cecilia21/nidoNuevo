@@ -7,7 +7,7 @@ public class KeyManager implements KeyListener {
 	
 	private boolean[] keys;
         private boolean[] keysR;
-	public boolean up, down, left, right,eme,q,enter,m,s,enterR,mR;
+	public boolean up, down, left, right,eme,q,enter,m,s,enterR,mR,i,o;
 	
 	public KeyManager(){
 		keys = new boolean[256];
@@ -15,6 +15,7 @@ public class KeyManager implements KeyListener {
 	}
 	
 	public void tick(){
+            System.out.println();
 		up = keys[KeyEvent.VK_UP];
 		down = keys[KeyEvent.VK_DOWN];
 		left = keys[KeyEvent.VK_LEFT];
@@ -24,7 +25,9 @@ public class KeyManager implements KeyListener {
                 m=keys[KeyEvent.VK_M];
                 mR=keysR[KeyEvent.VK_M];
                 s=keys[KeyEvent.VK_S];
-                enterR=keysR[KeyEvent.VK_ENTER];;
+                enterR=keysR[KeyEvent.VK_ENTER];
+                i=keysR[KeyEvent.VK_I];
+                o=keysR[KeyEvent.VK_O];
 	}
 
 	@Override

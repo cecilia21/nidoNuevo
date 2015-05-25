@@ -12,7 +12,9 @@
 //La lectura sera loadGameFromXML
 package nidonuevo.model;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferStrategy;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import nidonuevo.app.Display;
@@ -45,14 +48,16 @@ public class Engine implements Runnable{
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
-    
+    private Boolean flagCanvas=false;
+    private final Object GUI_INITIALIZATION_MONITOR = new Object();
+    private boolean pauseThreadFlag = false;
     //layer de collision
  //   private Layer lc;
     //Actual map
     private int currentMap=0;
     
     //Input
-    private KeyManager keyManager;
+    public KeyManager keyManager;
     
     //States
     private StateMachine SM;
@@ -90,6 +95,10 @@ public class Engine implements Runnable{
         loading.stop();
         //Utils.sleepFor(5000);
     }
+    
+    public void tecla(){
+        keyManager.tick();
+    }
     private void tick(){
         keyManager.tick();
         
@@ -100,6 +109,11 @@ public class Engine implements Runnable{
         }
     }
     private void render(){
+        if(keyManager.i) {
+            flagCanvas=true;
+            System.out.println("presionando iiiiiiiiiiiiiiiiiiii");
+        }
+        if(keyManager.o) flagCanvas=false;
         setBs(display.getCanvas().getBufferStrategy());
 		if(getBs() == null){
 			display.getCanvas().createBufferStrategy(3);
@@ -109,10 +123,10 @@ public class Engine implements Runnable{
 		//Clear Screen
 		g.clearRect(0, 0, getWidth(), getHeight());
 		//Draw Here!
-		
-		if(!SM.getState().empty())
+		if(flagCanvas) renderInventory();
+                else {if(!SM.getState().empty())
                         getSM().render(g);
-			
+                }	
 		
 		//End Drawing!
                 if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
@@ -148,14 +162,12 @@ public class Engine implements Runnable{
 			delta += (now - lastTime) / timePerTick;
 			timer += now - lastTime;
 			lastTime = now;
-			
 			if(delta >= 1){
 				if (LMS.isChange()==false) tick();
 				render();
 				ticks++;
 				delta--;
 			}
-			
 			if(timer >= 1000000000){
 				System.out.println("Ticks and Frames: " + ticks);
 				ticks = 0;
@@ -177,7 +189,7 @@ public class Engine implements Runnable{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
+	}    
     public int getCurrentMap(){
         return currentMap;
         
@@ -185,7 +197,22 @@ public class Engine implements Runnable{
     public KeyManager getKeyManager(){
         return this.keyManager;
     }
-
+    public void renderInventory(){
+        Image img2 = new ImageIcon("src/img/board.jpg").getImage();
+        g.drawImage(img2, 0, 0, display.getCanvas());
+        ArrayList <Item> inv= LMS.getPlayer().getInventory().getItems();
+        for (int i=0;i<inv.size();i++) {
+            Image img = new ImageIcon(inv.get(i).getImage()).getImage();
+            g.drawImage(img,120+i*100, 150, display.getCanvas());
+            g.setColor(Color.red);
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,20));
+                           
+            g.drawString(""+inv.get(i).getStock(), 145+i*100, 220); 
+                            
+        }
+        g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
+        g.drawString("Inventory game", 300, 50);           
+    }
 
 
     /**
@@ -205,7 +232,9 @@ public class Engine implements Runnable{
         ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
         saveToXML();
     }
-
+    public Display getDisplay(){
+        return display;
+    }
 
 
     
@@ -373,7 +402,14 @@ public class Engine implements Runnable{
                         int par3=Integer.parseInt(parametro.getText());
                         map1.getTriggers().add(new TriggerMini(par1,par2,par3));
                     }
-                    
+                    if(0==trigger.element("type").getText().compareTo("TriggerMonologue")){
+                        Iterator u=trigger.elementIterator("par");
+                        Element parametro=(Element)u.next();
+                        int par1=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par2=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
+                        int par3=Integer.parseInt(parametro.getText());
+                        map1.getTriggers().add(new TriggerMonologue(par1,par2));
+                    }
                     
                 }
                 //GOALS
@@ -484,6 +520,13 @@ public class Engine implements Runnable{
                     }else if(LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMini){
                         TriggerMini aux=(TriggerMini)LMS.getMaps().get(i).getTriggers().get(j);
                         trigger.addElement("type").addText("TriggerMini");
+                        trigger.addElement("par").addText(""+aux.x);
+                        trigger.addElement("par").addText(""+aux.y);
+                        trigger.addElement("par").addText(""+aux.getChangeTo());
+                        
+                    }else if(LMS.getMaps().get(i).getTriggers().get(j) instanceof TriggerMonologue){
+                        TriggerMonologue aux=(TriggerMonologue)LMS.getMaps().get(i).getTriggers().get(j);
+                        trigger.addElement("type").addText("TriggerMonologue");
                         trigger.addElement("par").addText(""+aux.x);
                         trigger.addElement("par").addText(""+aux.y);
                         trigger.addElement("par").addText(""+aux.getChangeTo());

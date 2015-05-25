@@ -18,6 +18,9 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import java.awt.Panel;
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author TOSHIBA
@@ -27,6 +30,7 @@ public class Display {
     private String title;
     private int width, height;
     private Canvas canvas;
+    private Panel panel1;
     
     public Display(String title, int width, int height){
         this.title = title;
@@ -41,13 +45,22 @@ public class Display {
     private void createDisplay(){
      
         frame = new JFrame(title);
-
-        frame.setSize(width,height);
+        frame.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        //frame.setSize(width,height);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLocationRelativeTo(null);
+        frame.setResizable(true);
+        //frame.setLocationRelativeTo(null);
+        java.awt.TextArea textArea1 = new java.awt.TextArea();
         Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/img/ico_NN.jpg"));
         frame.setIconImage(icon);
+        panel1 = new java.awt.Panel();
+        panel1.setBackground(new java.awt.Color(102, 255, 0));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        textArea1.setText("Holi boli :D");
+        //panel1.add(textArea1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, width, -1));
+
+        panel1.setVisible(false);
+        frame.getContentPane().add(panel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, height-110, width, 110));
         
         canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
@@ -55,7 +68,7 @@ public class Display {
 		canvas.setMinimumSize(new Dimension(width, height));
 		canvas.setFocusable(false);
 		canvas.setBackground(Color.black);
-		frame.add(canvas);
+		frame.getContentPane().add(canvas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 800, 700));
 		frame.pack();
     }
     public JFrame getFrame(){
@@ -64,6 +77,20 @@ public class Display {
     public Canvas getCanvas(){
 		return canvas;
 	}
-	
+public void setFrame(JFrame fr){
+    frame = fr;
+    frame.pack();
+}
+
+public Panel getPanel(){
+    return panel1;
+}
+
+public void setOnMonPanel(){
+    panel1.setVisible(true);
+}
+        public void setOffMonPanel(){
+            panel1.setVisible(false);
+        }
 
 }
