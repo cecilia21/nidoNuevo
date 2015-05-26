@@ -97,7 +97,7 @@ public void setOffMonPanel(){
     panel1.setVisible(false);
 }
 
-public void setOnDialogos(ArrayList<String> letras, KeyManager keyManager){
+public void setOnDialogos(ArrayList<String> letras){
 
 //        Font fuente=new Font("Monospaced", Font.BOLD, 25);
 //        panel1.removeAll();
@@ -106,14 +106,17 @@ public void setOnDialogos(ArrayList<String> letras, KeyManager keyManager){
 //        textArea.setFont(fuente);
 //        panel1.add(textArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, width, -1));
 //        frame.pack();
-        canvasLetras= new DialogueCanvas(letras,keyManager);
+        canvasLetras= new DialogueCanvas(letras);
         panel1.add(canvasLetras, new org.netbeans.lib.awtextra.AbsoluteConstraints(0,0,800,110));
         frame.pack();
         //Ultima version
 }
 
-public DialogueCanvas sacarCanvas(){
+public DialogueCanvas getCanvasLetras(){
     return canvasLetras;
+}
+public void removePanel(){
+    frame.remove(panel1);
 }
 
 

@@ -50,7 +50,7 @@ public class TriggerMonologue extends Trigger {
             letras.add("y de llegada, y sin más preámbulos comenzó la carrera en medio de la incredulidad de los asistentes.");
 
             aThis.getEng().getDisplay().setOnMonPanel();
-            aThis.getEng().getDisplay().setOnDialogos(letras,aThis.getEng().keyManager);//Se llama al establecer canvas
+            aThis.getEng().getDisplay().setOnDialogos(letras);//Se llama al establecer canvas
             
             while(!aThis.getEng().keyManager.s){
                         aThis.getEng().keyManager.tick();
@@ -62,13 +62,14 @@ public class TriggerMonologue extends Trigger {
                             aThis.getEng().keyManager.z=false;
                             aThis.getEng().keyManager.zR=false;
                             aux=0;
-                            System.out.println("z");
-                              aThis.getEng().getDisplay().sacarCanvas().repaint();
-//                            
+                              aThis.getEng().getDisplay().getCanvasLetras().repaint();
                         }
+                        if (aThis.getEng().getDisplay().getCanvasLetras().isFinish()&&aThis.getEng().keyManager.z)
+                                break;
             }
             this.active = false;
             aThis.getEng().getDisplay().setOffMonPanel();
+            aThis.getEng().getDisplay().removePanel();
         }
         
     }

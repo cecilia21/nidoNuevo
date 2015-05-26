@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -19,6 +20,7 @@ import java.awt.event.MouseMotionAdapter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import nidonuevo.model.KeyManager;
 
 
@@ -27,41 +29,27 @@ import nidonuevo.model.KeyManager;
  * @author Cecilia
  */
 public class DialogueCanvas extends Canvas{
-    
         ArrayList<String> conversacion;
         Graphics g;
         private int altura=30;
         private int i=0;
-        private int cotI=0;
-        private int cotF=60;
-        KeyManager chapaTecla;
+        private int cotI;
+        private int cotF;
         
-        public DialogueCanvas(ArrayList<String> letras,KeyManager keyManager){
+        public DialogueCanvas(ArrayList<String> letras){
 //            setPreferredSize(new Dimension(100, 600));
 //            setMaximumSize(new Dimension(800, 600));
 //            setMinimumSize(new Dimension(800, 600));
 //            setFocusable(false);
             setBackground(Color.green);
-            conversacion=letras;          
-//            if(keyManager.z){
-//                    repaint();
-//            }
-
             
-//            addMouseListener(new MouseAdapter() {//Lo hize para probar, cada vez que arrastras el 
-//                                                            // mouse se pinta la siguiente linea del letras[i],solo se
-//                                                            //cambia por lectura del teclado        
-//                @Override
-//                public void mouseClicked(MouseEvent me) {
-//                    repaint(); //To change body of generated methods, choose Tools | Templates.
-//                }
-//
-//        });
-//            repaint();
+            conversacion=letras;          
         }
 
         public void paint(Graphics g){
-            if(i>=(conversacion.size()-1))
+//            Image img2 = new ImageIcon("src/img/cloud.png").getImage();
+//            g.drawImage(img2, 10, 10,null);
+            if(i>conversacion.size())
                 return;
             g.clearRect(0, 0, 600, 800);
             Font fuente=new Font("Monospaced", Font.BOLD, 20);
@@ -69,21 +57,24 @@ public class DialogueCanvas extends Canvas{
             g.setColor(Color.BLACK);
             altura=30;
             cotI=0;
-            cotF=60;
+            cotF=62;
             for(int k=0;k<2;k++){//se muestra en dos lineas todo
                 String linea=new String();
                 try{
                     linea=conversacion.get(i).substring(cotI, cotF);
-                    g.drawString(linea,0,altura);
+                    g.drawString(" "+linea,0,altura);
                     altura+=30;//lo q se suma a la altura para que se muestre en la siguiente linea
                 }catch(Exception e){
                     linea=conversacion.get(i).substring(cotI, conversacion.get(i).length());
-                    g.drawString(linea,0,altura);//falta acomodar la altura para que se vea
+                    g.drawString(" "+linea,0,altura);//falta acomodar la altura para que se vea
                      i++;
                     break;
                 }
                 cotI=cotF;
-                cotF=cotF+60;
+                cotF+=cotF;
             }      
+        }
+        public boolean isFinish(){
+            return (i>=conversacion.size());
         }
 }
