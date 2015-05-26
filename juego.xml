@@ -49,6 +49,14 @@
           <par>630</par>
         </Trigger>
         <Trigger>
+          <type>TriggerMap</type>
+          <par>19</par>
+          <par>17</par>
+          <par>8</par>
+          <par>524</par>
+          <par>630</par>
+        </Trigger>
+        <Trigger>
           <type>TriggerMonologue</type>
           <par>10</par>
           <par>10</par>
@@ -288,6 +296,39 @@
         <Path id="0">src/img/l1.txt</Path>
         <Img id="0">/img/libraryf.jpg</Img>
         <Path id="1">src/img/lc7.txt</Path>
+        <Img id="1">/img/lc1.png</Img>
+      </Source>
+      <Triggers>
+        <Trigger>
+          <type>TriggerChangeMap</type>
+          <par>14</par>
+          <par>17</par>
+          <par>0</par>
+          <par>500</par>
+          <par>10</par>
+        </Trigger>
+      </Triggers>
+      <Goals>
+        <Goal>
+          <id>1</id>
+          <active>true</active>
+          <description>Meta conversar con NPC 1</description>
+          <type>2</type>
+        </Goal>
+        <Goal>
+          <id>2</id>
+          <active>true</active>
+          <description>Meta terminar minigame id2</description>
+          <type>1</type>
+        </Goal>
+      </Goals>
+    </Map>
+    <Map id="8">
+      <NumberLayers>2</NumberLayers>
+      <Source>
+        <Path id="0">src/img/l1.txt</Path>
+        <Img id="0">/img/School.png</Img>
+        <Path id="1">src/img/lc8.txt</Path>
         <Img id="1">/img/lc1.png</Img>
       </Source>
       <Triggers>
