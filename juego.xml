@@ -53,8 +53,8 @@
           <par>19</par>
           <par>17</par>
           <par>8</par>
-          <par>524</par>
-          <par>630</par>
+          <par>380</par>
+          <par>600</par>
         </Trigger>
         <Trigger>
           <type>TriggerMonologue</type>
@@ -334,7 +334,7 @@
       <Triggers>
         <Trigger>
           <type>TriggerChangeMap</type>
-          <par>14</par>
+          <par>10</par>
           <par>17</par>
           <par>0</par>
           <par>500</par>
