@@ -62,6 +62,10 @@ public class DialogueCanvas extends Canvas{
                 String linea=new String();
                 try{
                     linea=conversacion.get(i).substring(cotI, cotF);
+                        while(linea.charAt(cotF-1)!=' '){
+                            cotF--;
+                        }
+                    linea=conversacion.get(i).substring(cotI, cotF);
                     g.drawString(" "+linea,0,altura);
                     altura+=30;//lo q se suma a la altura para que se muestre en la siguiente linea
                 }catch(Exception e){
