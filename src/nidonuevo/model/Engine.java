@@ -285,7 +285,7 @@ public class Engine implements Runnable{
         }
         //Mapa Actual
         Element cMap=root.addElement("CurrentMap");
-        cMap.addElement("Map").addText(""+currentMap);
+        cMap.addElement("Map").addText(""+getCurrentMap());
         
         try { 
             OutputFormat format = OutputFormat.createPrettyPrint();
@@ -688,6 +688,13 @@ public class Engine implements Runnable{
      */
     public void setBs(BufferStrategy bs) {
         this.bs = bs;
+    }
+
+    /**
+     * @param currentMap the currentMap to set
+     */
+    public void setCurrentMap(int currentMap) {
+        this.currentMap = currentMap;
     }
 
 }

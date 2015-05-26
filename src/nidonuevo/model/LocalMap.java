@@ -37,6 +37,7 @@ public class LocalMap extends State{
         
         if (isChange()) onChangeEnter(g);
         maps.get(getMapAct()).render(g);
+        eng.setCurrentMap(getMapAct());
         getPlayer().render(g);
         if (isChange()) onChangeExit(g);
         

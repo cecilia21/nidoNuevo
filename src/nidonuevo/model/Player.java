@@ -212,7 +212,7 @@ public class Player extends Person implements Serializable{
         System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
         System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
         System.out.println("Aux: "+auxR);
-        if((getT(getPositionX())==8) && (getT(getPositionY())==14)){
+        if((getT(getPositionX())==8) && (getT(getPositionY())==14)&&(eng.getCurrentMap()==0)){
                     Image img2 = new ImageIcon("src/img/cloud.png").getImage();
                      g.drawImage(img2, 335, 435,null);
                      g.setFont(new Font("Comic Sans MS",Font.BOLD,10));
