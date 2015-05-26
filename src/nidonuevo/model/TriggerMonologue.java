@@ -23,11 +23,13 @@ public class TriggerMonologue extends Trigger {
     //private int pX;
     //private int pY;
     //private int changeTo;
+    private int aux=0;
     
     public TriggerMonologue(int x,int y){
         this.x=x;
         this.y=y;
         this.active=true;
+        
     }
     
     
@@ -52,8 +54,17 @@ public class TriggerMonologue extends Trigger {
             
             while(!aThis.getEng().keyManager.s){
                         aThis.getEng().keyManager.tick();
-                        if(aThis.getEng().keyManager.z){
+                        if(aThis.getEng().keyManager.z)
+                            if(aux==0) aux++;
+                        if(aThis.getEng().keyManager.zR)
+                            if(aux==1) aux++;
+                        if(aux==2){
+                            aThis.getEng().keyManager.z=false;
+                            aThis.getEng().keyManager.zR=false;
+                            aux=0;
                             System.out.println("z");
+                              aThis.getEng().getDisplay().sacarCanvas().repaint();
+//                            
                         }
             }
             this.active = false;

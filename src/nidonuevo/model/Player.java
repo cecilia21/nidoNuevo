@@ -123,7 +123,7 @@ public class Player extends Person implements Serializable{
                 }
                 if(auxR==2){
                     eng.getKeyManager().mR=false;
-                   eng.getKeyManager().m=false;
+                    eng.getKeyManager().m=false;
                     auxR=0;
                     InGameMenu inGameM=new InGameMenu(eng);
                     eng.getSM().add(inGameM);
@@ -431,5 +431,3 @@ public class Player extends Person implements Serializable{
     }
         
 }
-    
-

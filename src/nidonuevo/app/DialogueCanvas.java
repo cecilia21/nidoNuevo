@@ -34,6 +34,8 @@ public class DialogueCanvas extends Canvas{
         private int i=0;
         private int cotI=0;
         private int cotF=60;
+        KeyManager chapaTecla;
+        
         public DialogueCanvas(ArrayList<String> letras,KeyManager keyManager){
 //            setPreferredSize(new Dimension(100, 600));
 //            setMaximumSize(new Dimension(800, 600));
@@ -46,16 +48,16 @@ public class DialogueCanvas extends Canvas{
 //            }
 
             
-            addMouseListener(new MouseAdapter() {//Lo hize para probar, cada vez que arrastras el 
-                                                            // mouse se pinta la siguiente linea del letras[i],solo se
-                                                            //cambia por lectura del teclado        
-                @Override
-                public void mouseClicked(MouseEvent me) {
-                    repaint(); //To change body of generated methods, choose Tools | Templates.
-                }
-
-        });
-            repaint();
+//            addMouseListener(new MouseAdapter() {//Lo hize para probar, cada vez que arrastras el 
+//                                                            // mouse se pinta la siguiente linea del letras[i],solo se
+//                                                            //cambia por lectura del teclado        
+//                @Override
+//                public void mouseClicked(MouseEvent me) {
+//                    repaint(); //To change body of generated methods, choose Tools | Templates.
+//                }
+//
+//        });
+//            repaint();
         }
 
         public void paint(Graphics g){

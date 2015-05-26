@@ -112,4 +112,9 @@ public void setOnDialogos(ArrayList<String> letras, KeyManager keyManager){
         //Ultima version
 }
 
+public DialogueCanvas sacarCanvas(){
+    return canvasLetras;
+}
+
+
 }
