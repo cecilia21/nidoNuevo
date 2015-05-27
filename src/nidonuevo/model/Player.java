@@ -39,6 +39,7 @@ public class Player extends Person implements Serializable{
     private transient ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
     private int idMinigame;
     private int auxEnter=0;
+    private int currentMap;
 
     private Inventory inventory=new Inventory();
     private ArrayList <Friend> friends=new ArrayList <Friend>();
@@ -438,6 +439,20 @@ public class Player extends Person implements Serializable{
      */
     public void setIdMinigame(int idMinigame) {
         this.idMinigame = idMinigame;
+    }
+
+    /**
+     * @return the currentMap
+     */
+    public int getCurrentMap() {
+        return currentMap;
+    }
+
+    /**
+     * @param currentMap the currentMap to set
+     */
+    public void setCurrentMap(int currentMap) {
+        this.currentMap = currentMap;
     }
         
 }

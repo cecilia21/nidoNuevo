@@ -167,25 +167,27 @@ public class Engine implements Runnable{
         }
 
         setBs(display.getCanvas().getBufferStrategy());
-		if(getBs() == null){
-			display.getCanvas().createBufferStrategy(3);
-			return;
-		}
-		g = getBs().getDrawGraphics();
-		//Clear Screen
-		g.clearRect(0, 0, getWidth(), getHeight());
-		//Draw Here!
-		if(flagCanvas) renderInventory();
-                else {if(!SM.getState().empty())
-                        getSM().render(g); 
-                }	
-		
-		//End Drawing!
-                if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
+        if(getBs() == null){
+                display.getCanvas().createBufferStrategy(3);
+                return;
+        }
+        g = getBs().getDrawGraphics();
+        //Clear Screen
+        g.clearRect(0, 0, getWidth(), getHeight());
+        //Draw Here!
+        if(flagCanvas) renderInventory();
+        else {if(!SM.getState().empty())
+                getSM().render(g); 
+        }	
+
+        //End Drawing!
+        if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
+
+        getBs().show();
+
+        g.dispose();
                 
-		getBs().show();
-                
-		g.dispose();
+        LMS.getPlayer().setCurrentMap(LMS.getMapAct());
     }
     public void getInput(){
         
@@ -791,6 +793,7 @@ public class Engine implements Runnable{
             Player play1=new Player ();
             play1=(Player)(ois.readObject());
             LMS.getPlayer().copyPlayer(play1);
+            LMS.setMapAct(play1.getCurrentMap());
             fis.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
