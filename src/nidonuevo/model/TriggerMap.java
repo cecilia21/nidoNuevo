@@ -30,8 +30,8 @@ public class TriggerMap extends Trigger {
         ArrayList<Goal> metas = aThis.getMaps().get(aThis.getMapAct()).getGoals();
         //metas = aThis.getMap().getGoals();
         for(int i = 0; i<metas.size(); i++){
-            //if(metas.get(i).isActive())
-               // return false;
+//            if(metas.get(i).isActive())
+//                return false;
         }
         return true;
     }

@@ -27,7 +27,7 @@
         <Trigger>
           <type>TriggerMap</type>
           <par>1</par>
-          <par>7</par>
+          <par>13</par>
           <par>2</par>
           <par>410</par>
           <par>618</par>
@@ -131,16 +131,16 @@
           <par>11</par>
           <par>17</par>
           <par>0</par>
-          <par>626</par>
-          <par>216</par>
+          <par>5</par>
+          <par>480</par>
         </Trigger>
         <Trigger>
-          <type>TriggerMap</type>
+          <type>TriggerChangeMap</type>
           <par>18</par>
-          <par>17</par>
+          <par>7</par>
           <par>3</par>
-          <par>410</par>
-          <par>618</par>
+          <par>5</par>
+          <par>480</par>
         </Trigger>
       </Triggers>
       <Goals>
@@ -174,6 +174,14 @@
           <par>4</par>
           <par>626</par>
           <par>216</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMap</type>
+          <par>7</par>
+          <par>7</par>
+          <par>3</par>
+          <par>450</par>
+          <par>300</par>
         </Trigger>
       </Triggers>
       <Goals>

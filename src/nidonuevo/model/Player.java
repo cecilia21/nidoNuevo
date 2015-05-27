@@ -133,7 +133,7 @@ public class Player extends Person implements Serializable{
                 if (eng.getKeyManager().s && correct){
                     
                     eng.getSM().add(miniGames.get(idMinigame));
-                     
+                    correct=false;
                      
                      
                 }

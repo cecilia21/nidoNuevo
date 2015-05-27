@@ -73,6 +73,7 @@ public class LocalMap extends State{
             if(maps.get(getMapAct()).getTriggers().get(i) instanceof TriggerMini)
             if (getPlayer().getT(getPlayer().positionX)==maps.get(getMapAct()).getTriggers().get(i).getX() 
                     &&getPlayer().getT(getPlayer().positionY)==maps.get(getMapAct()).getTriggers().get(i).getY()){
+                if (maps.get(getMapAct()).getTriggers().get(i).isActive())
                 return i;
             }else{
                 player.correct=false;
