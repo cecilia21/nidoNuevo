@@ -73,6 +73,7 @@ public class Selector {
         
 
         g.drawImage(sprite,x,y,w,h, null);
+        print();
 
     }
 
