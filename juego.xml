@@ -410,4 +410,36 @@
       </Item>
     </Inventory>
   </Player>
+  <MiniGames>
+    <MiniGame>
+      <id>0</id>
+      <Persons>
+        <id>0</id>
+      </Persons>
+      <Messages>
+        <message>Capital de Rumania?</message>
+        <message>Presidente de Ecuador?</message>
+        <message>Primer elemento de la, tabla periodica?</message>
+        <message>Descubridor del electrón?</message>
+      </Messages>
+      <Answers>
+        <answer>Lima-Kajaskitan-Correcto</answer>
+        <answer>Humala-Niño Nieto-Diego Bustamante xD</answer>
+        <answer>H-N-Br</answer>
+        <answer>Rutterford-Einstein-Fischer</answer>
+      </Answers>
+      <Correct1>
+        <correct>1</correct>
+        <correct>2</correct>
+        <correct>3</correct>
+        <correct>1</correct>
+      </Correct1>
+      <Points>
+        <point>1</point>
+        <point>5</point>
+        <point>1</point>
+        <point>5</point>
+      </Points>
+    </MiniGame>
+  </MiniGames>
 </Game>

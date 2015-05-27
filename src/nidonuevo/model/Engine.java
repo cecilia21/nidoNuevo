@@ -39,6 +39,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 public class Engine implements Runnable{
+    private ArrayList<Person> idPersons=new ArrayList<Person>();
     private Loading loading;
     private int cantGuar=0;
     private String title;
@@ -86,12 +87,50 @@ public class Engine implements Runnable{
 		thread = new Thread(this);
 		thread.start(); //run();
     }
+    private void minic(){
+        //debe ser cargado del xml
+                    //Primero se crea los jugadores del minigame
+                    ArrayList<Person> persons=new ArrayList<Person>();
+                    persons.add(LMS.getPlayer());
+                    //preguntas
+                    ArrayList<String> messages=new ArrayList<String>();
+                    messages.add("Capital de Rumania?");
+                    messages.add("Presidente de Ecuador?");
+                    messages.add("Primer elemento de la, tabla periodica?");
+                    messages.add("Descubridor del electrón?");
+                    //respuestas
+                    ArrayList<String[]> answers=new ArrayList<String[]>();
+                    String[] ans1={"Lima","Kajaskitan","Correcto"};
+                    answers.add(ans1);
+                    String[] ans2={"Humala","Niño Nieto","Diego Bustamante xD"};
+                    answers.add(ans2);
+                    String[] ans3={"H","N","Br"};
+                    answers.add(ans3);
+                    String[] ans4={"Rutterford","Einstein","Fischer"};
+                    answers.add(ans4);
+                    //repuestas correctas
+                    ArrayList<Integer> correct1=new ArrayList<Integer>();
+                    correct1.add(1);
+                    correct1.add(2);
+                    correct1.add(3);
+                    correct1.add(1);
+                    //puntos
+                    ArrayList<Integer> points=new ArrayList<Integer>();
+                    points.add(1);
+                    points.add(5);
+                    points.add(1);
+                    points.add(5);
+                    
+                    MiniGame mini=new MiniGame(this,persons,messages,answers,correct1,points);
+                   
+                    LMS.getPlayer().getMiniGames().add(mini);
+    }
     private void init(){
         
         
         loadGameFromXML();                    
         //VAMOS A GUARDAR LA CONFIGURACION INICIAL DEL JUEGO
-        
+       //minic();
         saveGameToXML();     
         loading.stop();
         //Utils.sleepFor(5000);
@@ -448,6 +487,7 @@ public class Engine implements Runnable{
             LMS.getPlayer().setLC(LMS.getMaps().get(0).getLC());
             //Player
             Element player=root.element("Player"); 
+            LMS.getPlayer().setId(0);
             
             LMS.getPlayer().setPositionX(Integer.parseInt(player.element("positionX").getText()));
             LMS.getPlayer().setPositionY(Integer.parseInt(player.element("positionY").getText()));
@@ -473,13 +513,70 @@ public class Engine implements Runnable{
                     LMS.getPlayer().getInventory().getItems().add(new Item(id,name,stock,description,image));
                 }
                           
-               
+           idPersons.add(LMS.getPlayer());
            getSM().add(LMS);
            //prueba del menu
            MainMenu menu=new MainMenu(this);
 
            SM.add(menu);
-
+           
+           
+            //MINIJUEGOS
+         Element miniGames=root.element("MiniGames");
+         
+         for (Iterator i=miniGames.elementIterator("MiniGame");i.hasNext();){
+                    Element miniGame=(Element)i.next();
+                    int idMini=Integer.parseInt(miniGame.element("id").getText());
+                 
+                    
+                    
+                    //jugadores
+                    ArrayList<Person> persons1=new ArrayList<Person>();
+                    
+                    Element persons=miniGame.element("Persons");;
+                    for (Iterator k=persons.elementIterator("id");k.hasNext();){
+                        Element person=(Element)k.next();
+                        int u=Integer.parseInt(person.getText());
+                        persons1.add(idPersons.get(u));
+                    }
+                    //mensajes
+                    ArrayList<String> messages1=new ArrayList<String>();
+                    Element messages=miniGame.element("Messages");
+                   for (Iterator k=messages.elementIterator("message");k.hasNext();){
+                       Element message=(Element)k.next();
+                       messages1.add(message.getText());
+                    }
+                   
+                   //respuestas
+                   ArrayList<String[]> answers1=new ArrayList<String[]>();
+                   Element answers=miniGame.element("Answers");
+                   for (Iterator k=answers.elementIterator("answer");k.hasNext();){
+                        
+                        Element answer=(Element)k.next();
+                        
+                        String[] auxS=answer.getText().split("-");
+                        answers1.add(auxS);
+                    }
+                   //respuestas correctas
+                   ArrayList<Integer> correct1=new ArrayList<Integer>();
+                   Element correctP=miniGame.element("Correct1");
+                   for (Iterator k=correctP.elementIterator("correct");k.hasNext();){
+                        Element correct=(Element)k.next();
+                        correct1.add(Integer.parseInt(correct.getText()));
+                    }
+                  //puntos
+                   ArrayList<Integer> points1=new ArrayList<Integer>();
+                   Element points=miniGame.element("Points");
+                   for (Iterator k=points.elementIterator("point");k.hasNext();){
+                        Element point=(Element)k.next();
+                        points1.add(Integer.parseInt(point.getText()));
+                    }
+                    MiniGame mini=new MiniGame(this,persons1,messages1,answers1,correct1,points1);
+                    LMS.getPlayer().getMiniGames().add(mini);
+                    
+                }
+               //FIN
+           
         } catch (DocumentException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }   
@@ -562,6 +659,9 @@ public class Engine implements Runnable{
                     
                     
                 }
+                
+            //MINIGAME
+            
             
         }
         //Player
@@ -588,6 +688,58 @@ public class Engine implements Runnable{
                 item.addElement("image").addText(""+LMS.getPlayer().getInventory().getItems().get(i).getImage());
             }
             
+            
+         //MINIJUEGOS
+         Element miniGames=root.addElement("MiniGames");
+         for (int j=0;j<LMS.getPlayer().getMiniGames().size();j++){
+                    
+                    Element miniGame=miniGames.addElement("MiniGame");
+                    miniGame.addElement("id").addText(""+j);
+                    MiniGame aux=LMS.getPlayer().getMiniGames().get(j);
+                    //jugadores
+                    Element persons=miniGame.addElement("Persons");;
+                    for (int k=0;k<aux.getPersons().size();k++){
+                        
+                        persons.addElement("id").addText(""+aux.getPersons().get(k).id);
+                    }
+                    //mensajes
+                    Element messages=miniGame.addElement("Messages");
+                   for (int k=0;k<aux.getMessages().size();k++){
+                        
+                        messages.addElement("message").addText(""+aux.getMessages().get(k));
+                    }
+                   //respuestas
+                   Element answers=miniGame.addElement("Answers");
+                   for (int k=0;k<aux.getAnswers().size();k++){
+                        
+                        
+                        String auxS="";
+                        for (int j1=0;j1<aux.getAnswers().get(k).length;j1++){
+                            if (j1==0){
+                               auxS=aux.getAnswers().get(k)[j1]; 
+                            }else{
+                               auxS=auxS+"-"+aux.getAnswers().get(k)[j1]; 
+                            }
+                            
+                        }
+                        answers.addElement("answer").addText(auxS);
+                    }
+                   //respuestas correctas
+                   Element correct=miniGame.addElement("Correct1");
+                   for (int k=0;k<aux.getCorrect().size();k++){
+                        
+                        correct.addElement("correct").addText(""+aux.getCorrect().get(k));
+                    }
+                  //puntos
+                   Element points=miniGame.addElement("Points");
+                   for (int k=0;k<aux.getPoints().size();k++){
+                        
+                        points.addElement("point").addText(""+aux.getPoints().get(k));
+                    }
+                    
+                    
+                }
+               //FIN
         
         
         

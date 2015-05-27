@@ -36,6 +36,8 @@ public class Player extends Person implements Serializable{
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
     private transient Layer LC;
+    private ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
+    private int idMinigame;
 
 
     private Inventory inventory=new Inventory();
@@ -129,43 +131,11 @@ public class Player extends Person implements Serializable{
                     eng.getSM().add(inGameM);
                 }
                 if (eng.getKeyManager().s && correct){
-                    //debe ser cargado del xml
-                    //Primero se crea los jugadores del minigame
-                    ArrayList<Person> persons=new ArrayList<Person>();
-                    persons.add(this);
-                    //preguntas
-                    ArrayList<String> messages=new ArrayList<String>();
-                    messages.add("Capital de Rumania?");
-                    messages.add("Presidente de Ecuador?");
-                    messages.add("Primer elemento de la, tabla periodica?");
-                    messages.add("Descubridor del electrón?");
-                    //respuestas
-                    ArrayList<String[]> answers=new ArrayList<String[]>();
-                    String[] ans1={"Lima","Kajaskitan","Correcto"};
-                    answers.add(ans1);
-                    String[] ans2={"Humala","Niño Nieto","Diego Bustamante xD"};
-                    answers.add(ans2);
-                    String[] ans3={"H","N","Br"};
-                    answers.add(ans3);
-                    String[] ans4={"Rutterford","Einstein","Fischer"};
-                    answers.add(ans4);
-                    //repuestas correctas
-                    ArrayList<Integer> correct1=new ArrayList<Integer>();
-                    correct1.add(1);
-                    correct1.add(2);
-                    correct1.add(3);
-                    correct1.add(1);
-                    //puntos
-                    ArrayList<Integer> points=new ArrayList<Integer>();
-                    points.add(1);
-                    points.add(5);
-                    points.add(1);
-                    points.add(5);
                     
-                    MiniGame mini=new MiniGame(eng,persons,messages,answers,correct1,points);
-                   
-                    
-                     eng.getSM().add(mini);
+                    eng.getSM().add(miniGames.get(idMinigame));
+                     
+                     
+                     
                 }
                 if(eng.getKeyManager().enter){
                     //System.out.println("Solo se presiona enter");
@@ -428,6 +398,34 @@ public class Player extends Person implements Serializable{
      */
     public void setLC(Layer LC) {
         this.LC = LC;
+    }
+
+    /**
+     * @return the miniGames
+     */
+    public ArrayList<MiniGame> getMiniGames() {
+        return miniGames;
+    }
+
+    /**
+     * @param miniGames the miniGames to set
+     */
+    public void setMiniGames(ArrayList<MiniGame> miniGames) {
+        this.miniGames = miniGames;
+    }
+
+    /**
+     * @return the idMinigame
+     */
+    public int getIdMinigame() {
+        return idMinigame;
+    }
+
+    /**
+     * @param idMinigame the idMinigame to set
+     */
+    public void setIdMinigame(int idMinigame) {
+        this.idMinigame = idMinigame;
     }
         
 }
