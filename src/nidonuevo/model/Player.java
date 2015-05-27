@@ -36,7 +36,7 @@ public class Player extends Person implements Serializable{
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
     private transient Layer LC;
-    private ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
+    private transient ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
     private int idMinigame;
     private int auxEnter=0;
 

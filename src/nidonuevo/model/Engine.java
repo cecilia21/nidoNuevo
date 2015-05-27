@@ -789,7 +789,7 @@ public class Engine implements Runnable{
             FileInputStream fis = new FileInputStream(path);
             ObjectInputStream ois = new ObjectInputStream(fis);  
             Player play1=new Player ();
-            play1=(Player)ois.readObject();
+            play1=(Player)(ois.readObject());
             LMS.getPlayer().copyPlayer(play1);
             fis.close();
         } catch (FileNotFoundException ex) {
