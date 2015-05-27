@@ -43,6 +43,9 @@ public class MiniGameMemory extends State {
             if(auxEnter==1) auxEnter++;
         }   
         if(auxEnter==2){
+            eng.getKeyManager().enter=false;
+            eng.getKeyManager().enterR=false;
+            auxEnter=0;
             int y=sel.getOpt();
             int x=sel.getOptX();
             if((x==185) &&(y==203)){
