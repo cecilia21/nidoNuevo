@@ -88,6 +88,7 @@ public class MiniGame extends State {
 //            }
             if (getSel().getOpt()==2 && getSel().getOptX()==2 ){
                 System.out.println("2");
+                
                 return true; //eng.getSM().pop();
             }
             
@@ -179,6 +180,7 @@ public class MiniGame extends State {
                     int tot=getTotal().get(getTurno());
                     tot+=getPoints().get(getCont());
                     getTotal().set(getTurno(), tot);
+                    
                     setResultado("Correcto:" + getTotal().get(getTurno()));
                  }else{
                     setResultado("Mal:" + getTotal().get(getTurno()));
@@ -203,6 +205,7 @@ public class MiniGame extends State {
             
         }else if(getCont()==getMessages().size()){
             setForce(true);
+            
         }else if(getAux()==2 && getAuxI()==1){
             setAuxI(0);
             setAux(0);
@@ -225,7 +228,7 @@ public class MiniGame extends State {
         if(getEng().getKeyManager().right){
             getSel().right();
            // sel.print();
-        }
+        }   
     }
     public void update(){
         

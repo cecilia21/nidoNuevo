@@ -64,7 +64,7 @@ public class Engine implements Runnable{
     
     //States
     private StateMachine SM;
-    private LocalMap LMS;
+    public LocalMap LMS;
     
     public Engine(String title,int width,int height){
         
