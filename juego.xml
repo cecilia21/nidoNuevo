@@ -417,16 +417,16 @@
         <id>0</id>
       </Persons>
       <Messages>
-        <message>Capital de Rumania?</message>
-        <message>Presidente de Ecuador?</message>
-        <message>Primer elemento de la, tabla periodica?</message>
-        <message>Descubridor del electrón?</message>
+        <message>Animal típico de la, sierra?</message>
+        <message>Capital de Peru?</message>
+        <message>Presidente actual del Perú?</message>
+        <message>Descubridor del America?</message>
       </Messages>
       <Answers>
-        <answer>Lima-Kajaskitan-Correcto</answer>
-        <answer>Humala-Niño Nieto-Diego Bustamante xD</answer>
-        <answer>H-N-Br</answer>
-        <answer>Rutterford-Einstein-Fischer</answer>
+        <answer>Vicuña-Liebra-Leon</answer>
+        <answer>Lima-USA-Ecuador</answer>
+        <answer>Nieto-Alan Garcia-Humala</answer>
+        <answer>Colon-El profesor-Mi papa</answer>
       </Answers>
       <Correct1>
         <correct>1</correct>
