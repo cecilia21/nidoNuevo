@@ -36,9 +36,10 @@ public class Player extends Person implements Serializable{
     private int tW=200,tH=200;
     private  int width = 50, height = 50;
     private transient Layer LC;
-    private ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
+    private transient ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
     private int idMinigame;
-
+    private int auxEnter=0;
+    private int currentMap;
 
     private Inventory inventory=new Inventory();
     private ArrayList <Friend> friends=new ArrayList <Friend>();
@@ -186,7 +187,19 @@ public class Player extends Person implements Serializable{
                     Image img2 = new ImageIcon("src/img/cloud.png").getImage();
                      g.drawImage(img2, 335, 435,null);
                      g.setFont(new Font("Comic Sans MS",Font.BOLD,10));
-                           
+                    if(eng.getKeyManager().enter){
+                        if(auxEnter==0) auxEnter++;
+                    }
+                    if(eng.getKeyManager().enterR){
+                        if(auxEnter==1) auxEnter++;
+                    }
+                    if(auxEnter==2){
+                        eng.getKeyManager().enter=false;
+                        eng.getKeyManager().enterR=false;
+                        auxEnter=0;
+                        MiniGameMemory memory= new MiniGameMemory(eng);
+                        eng.getSM().add(memory);
+                    }
                     g.drawString("Hola soy cecilia", 345, 470);                      
         }
 	//System.out.println(name);
@@ -426,6 +439,20 @@ public class Player extends Person implements Serializable{
      */
     public void setIdMinigame(int idMinigame) {
         this.idMinigame = idMinigame;
+    }
+
+    /**
+     * @return the currentMap
+     */
+    public int getCurrentMap() {
+        return currentMap;
+    }
+
+    /**
+     * @param currentMap the currentMap to set
+     */
+    public void setCurrentMap(int currentMap) {
+        this.currentMap = currentMap;
     }
         
 }

@@ -50,8 +50,8 @@
         </Trigger>
         <Trigger>
           <type>TriggerMap</type>
-          <par>19</par>
-          <par>17</par>
+          <par>1</par>
+          <par>13</par>
           <par>8</par>
           <par>380</par>
           <par>600</par>
@@ -345,8 +345,8 @@
           <par>10</par>
           <par>17</par>
           <par>0</par>
-          <par>500</par>
-          <par>10</par>
+          <par>626</par>
+          <par>226</par>
         </Trigger>
       </Triggers>
       <Goals>

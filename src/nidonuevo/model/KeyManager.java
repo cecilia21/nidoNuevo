@@ -30,6 +30,7 @@ public class KeyManager implements KeyListener {
                 iR=keysR[KeyEvent.VK_I];
                 z=keys[KeyEvent.VK_Z];
                 zR=keysR[KeyEvent.VK_Z];
+                
 	}
 
 	@Override
