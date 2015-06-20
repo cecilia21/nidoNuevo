@@ -24,6 +24,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -39,6 +41,7 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import serverrmi.IServices;
 public class Engine implements Runnable{
     private ArrayList<Person> idPersons=new ArrayList<Person>();
     private Loading loading;
@@ -65,13 +68,25 @@ public class Engine implements Runnable{
     //States
     private StateMachine SM;
     public LocalMap LMS;
-    
+    public static Registry reg = null;
+    public static IServices proxy = null;    
+    	static {
+		try {
+			reg = LocateRegistry.getRegistry("192.168.207.230", 1099);
+			//reg = LocateRegistry.getRegistry("10.101.40.104", 1099);
+			proxy = (IServices)reg.lookup("MyRMIServer");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
     public Engine(String title,int width,int height){
         
         
+        ThreadSend hilo= new ThreadSend(this);
+        hilo.start();
         
-        display=new Display(title, width, height);
-        
+        display=new Display(title, width, height);        
         loading=new Loading(display,bs,g);
         loading.setPriority(loading.MAX_PRIORITY);
         loading.start();
