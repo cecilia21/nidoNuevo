@@ -85,7 +85,8 @@ public class Engine implements Runnable{
         
         ThreadSend hilo= new ThreadSend(this);
         hilo.start();
-        
+        ThreadGet hilo2= new ThreadGet(this);
+        hilo2.start();
         display=new Display(title, width, height);        
         loading=new Loading(display,bs,g);
         loading.setPriority(loading.MAX_PRIORITY);
