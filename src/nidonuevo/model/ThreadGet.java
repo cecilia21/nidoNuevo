@@ -6,6 +6,7 @@
 package nidonuevo.model;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import serverrmi.IServices;
@@ -16,6 +17,7 @@ import serverrmi.IServices;
  */
 public class ThreadGet extends Thread {
     //public Player jug= null;
+    public ArrayList<Integer> dat= new ArrayList<Integer>() ;
     public IServices proxy = null;  
     public ThreadGet(Engine eng){
         super();
@@ -24,14 +26,12 @@ public class ThreadGet extends Thread {
     }
     public void run(){
         while (true){
-            Integer posX=0;
-            Integer posY=0;
-            Integer map=0;
+
             try {
-                proxy.receiveData(posX, posY, map);
-                System.out.println(posX);
-                System.out.println(posY);
-                System.out.println(map);
+                dat=proxy.receiveData();
+                System.out.println(dat.get(0));
+                System.out.println(dat.get(1));
+                System.out.println(dat.get(2));
             } catch (RemoteException ex) {
                 Logger.getLogger(ThreadSend.class.getName()).log(Level.SEVERE, null, ex);
             }

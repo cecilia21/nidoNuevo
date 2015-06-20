@@ -72,7 +72,7 @@ public class Engine implements Runnable{
     public static IServices proxy = null;    
     	static {
 		try {
-			reg = LocateRegistry.getRegistry("192.168.207.230", 1099);
+			reg = LocateRegistry.getRegistry("192.168.205.130", 1099);
 			//reg = LocateRegistry.getRegistry("10.101.40.104", 1099);
 			proxy = (IServices)reg.lookup("MyRMIServer");
 		} catch (Exception e) {
@@ -83,10 +83,7 @@ public class Engine implements Runnable{
     public Engine(String title,int width,int height){
         
         
-        ThreadSend hilo= new ThreadSend(this);
-        hilo.start();
-        ThreadGet hilo2= new ThreadGet(this);
-        hilo2.start();
+
         display=new Display(title, width, height);        
         loading=new Loading(display,bs,g);
         loading.setPriority(loading.MAX_PRIORITY);
@@ -95,6 +92,9 @@ public class Engine implements Runnable{
         keyManager = new KeyManager();
         display.getFrame().addKeyListener(keyManager);
         setSM(new StateMachine());
+        
+
+        
     }   
     
     public void start(){
@@ -219,6 +219,10 @@ public class Engine implements Runnable{
     public void run(){
 		
 		init();
+                        ThreadSend hilo= new ThreadSend(this);
+                     hilo.start();
+                 ThreadGet hilo2= new ThreadGet(this);
+                  hilo2.start();
 		int fps = 60;
 		double timePerTick = 1000000000 / fps;
 		double delta = 0;

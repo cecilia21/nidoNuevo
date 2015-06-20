@@ -16,14 +16,17 @@ import serverrmi.IServices;
  */
 public class ThreadSend extends Thread {
     public Player jug= null;
-    public IServices proxy = null;  
+    public IServices proxy = null; 
+    public Engine eng=null;
     public ThreadSend(Engine eng){
         super();
         proxy=eng.proxy;
         jug=eng.LMS.getPlayer();
+        this.eng=eng;
     }
     public void run(){
         while (true){
+            jug=eng.LMS.getPlayer();
             int posX=jug.positionX;
             int posY=jug.positionY;
             int map=jug.getCurrentMap();
