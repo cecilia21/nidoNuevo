@@ -92,7 +92,8 @@ public class MainMenu extends State {
                     eng.setPlayerName(dialog.name);
                     eng.getKeyManager().eme=false;
                     Player p=eng.LMS.getPlayer();
-                    serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(), p.getCurrentMap());
+                    serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
+                                                    p.getCurrentMap(),p.getDir(),p.getS());
         try {
             proxy.conexionPlayer(pp);
         } catch (RemoteException ex) {

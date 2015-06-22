@@ -38,6 +38,7 @@ public class ThreadGet extends Thread {
                         System.out.print(dat.get(i).posY);
                         System.out.print("-");
                         System.out.println(dat.get(i).map);
+                        jug.setOtherPlayer(dat.get(i));
                     }
                 }
             } catch (RemoteException ex) {

@@ -23,7 +23,8 @@ public class ThreadSend extends Thread {
         super();
         proxy=eng.proxy;
         jug=eng.LMS.getPlayer();
-        jugP=new serverrmi.IServices.Player(jug.getName(),jug.getPositionX(),jug.getPositionY(),jug.getCurrentMap());
+        jugP=new serverrmi.IServices.Player(jug.getName(),jug.getPositionX(),jug.getPositionY(),jug.getCurrentMap(),
+                                        jug.getDir(),jug.getS());
         this.eng=eng;
     }
     public void run(){
@@ -33,6 +34,8 @@ public class ThreadSend extends Thread {
             jugP.posY=jug.positionY;
             jugP.map=jug.getCurrentMap();
             jugP.name=jug.getName();
+            jugP.dir=jug.getDir();
+            jugP.s=jug.getS();
             try {
                 proxy.giveData(jugP);
             } catch (RemoteException ex) {
