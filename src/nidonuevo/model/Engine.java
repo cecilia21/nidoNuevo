@@ -286,12 +286,13 @@ public class Engine implements Runnable{
 			}
 		}
                 
-		
+		System.out.println("entrara al stop");
 		stop();
 		
 	}
     
     public synchronized void stop(){
+                System.out.println("entro al stop");
 		if(!running)
 			return;
 		running = false;
