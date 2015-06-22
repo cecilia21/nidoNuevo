@@ -92,17 +92,18 @@ public class MainMenu extends State {
                     eng.setPlayerName(dialog.name);
                     eng.getKeyManager().eme=false;
                     Player p=eng.LMS.getPlayer();
+                    p.setCurrentMap(0);
                     serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
-        try {
-            proxy.conexionPlayer(pp);
-        } catch (RemoteException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                        ThreadSend hilo= new ThreadSend(eng);
-                     hilo.start();
-                 ThreadGet hilo2= new ThreadGet(eng);
-                  hilo2.start();                            
+                    try {
+                        proxy.conexionPlayer(pp);
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ThreadSend hilo= new ThreadSend(eng);
+                    hilo.start();
+                    ThreadGet hilo2= new ThreadGet(eng);
+                    hilo2.start();                            
                     return true;
                 }
             }

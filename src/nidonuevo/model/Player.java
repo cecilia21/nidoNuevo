@@ -178,7 +178,7 @@ public class Player extends Person implements Serializable{
     }
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
-        if(amigo!=null){
+        if(amigo!=null && amigo.map==currentMap){
             g.drawImage(getSprite()[amigo.dir*4+amigo.s], (int)amigo.posX, (int)amigo.posY, getWidth(), getHeight(), null);
         }
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
