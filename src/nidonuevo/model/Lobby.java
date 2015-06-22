@@ -15,6 +15,7 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import serverrmi.IServices;
 
 /**
@@ -75,15 +76,22 @@ public class Lobby extends State{
                     serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
                     try {
-                        proxy.conexionPlayer(pp);
+                        if(!proxy.conexionPlayer(pp)){
+                            JOptionPane.showMessageDialog(null, "juego ya iniciado");
+                            eng.getSM().pop();
+                        }
+                        else{
+                            ThreadSend hilo= new ThreadSend(eng, this);
+                            hilo.start();
+                            ThreadGet hilo2= new ThreadGet(eng, this);
+                            hilo2.start(); 
+                            return false;
+                        }
                     } catch (RemoteException ex) {
                         Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    ThreadSend hilo= new ThreadSend(eng, this);
-                    hilo.start();
-                    ThreadGet hilo2= new ThreadGet(eng, this);
-                    hilo2.start();                            
-                    return false;
+                                              
+                    
                 }
                 return true;
     }
