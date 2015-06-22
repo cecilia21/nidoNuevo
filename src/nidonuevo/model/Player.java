@@ -142,6 +142,7 @@ public class Player extends Person implements Serializable{
                     //System.out.println("Solo se presiona enter");
                     //Cuando tu mismo vuelves a presionar enter se para la secuencia
                 }
+
                 
                 
                 
@@ -204,6 +205,7 @@ public class Player extends Person implements Serializable{
                     }
                     g.drawString("Hola soy cecilia", 345, 470);                      
         }
+        
 	//System.out.println(name);
     }
     public void move(){

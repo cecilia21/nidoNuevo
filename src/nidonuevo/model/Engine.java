@@ -58,6 +58,8 @@ public class Engine implements Runnable{
     private final Object GUI_INITIALIZATION_MONITOR = new Object();
     private boolean pauseThreadFlag = false;
     private int aux=0;
+    private int auxP=0;
+    public boolean pause=false;
     //layer de collision
  //   private Layer lc;
     //Actual map
@@ -92,10 +94,7 @@ public class Engine implements Runnable{
         
         keyManager = new KeyManager();
         display.getFrame().addKeyListener(keyManager);
-        setSM(new StateMachine());
-        
-
-        
+        setSM(new StateMachine());       
     }   
     
     public void start(){
@@ -158,15 +157,46 @@ public class Engine implements Runnable{
         keyManager.tick();
     }
     private void tick(){
-        keyManager.tick();
         
+        keyManager.tick();
+        if(keyManager.p){
+            if(auxP==0) auxP++;
+        }
+        if(keyManager.pR){
+            if(auxP==1) auxP++;
+        }
+        if(auxP==2){
+            keyManager.p=false;
+            keyManager.pR=false;
+            auxP=0;
+            
+            if(pause) {
+                pause=false;
+            }
+            else pause=true;
+            try {
+                proxy.setpauseGame(pause);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            pause=proxy.getPauseState();
+        } catch (RemoteException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if(pause==false){
         if (getSM().getOrdenPop()) 
             getSM().pop();
         if (!SM.getState().empty()){
             getSM().tick();
         }
+        }
     }
     private void render(){
+        
+        
         if(keyManager.i){
             if(aux==0) aux++;
         }
@@ -196,7 +226,11 @@ public class Engine implements Runnable{
         else {if(!SM.getState().empty())
                 getSM().render(g); 
         }	
-
+        if(pause) {
+             g.setFont(new Font("Comic Sans MS",Font.BOLD,40));
+             g.setColor(Color.red);
+            g.drawString("Juego pausado GG", 320, 300);
+        }
         //End Drawing!
         if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
 
@@ -205,6 +239,9 @@ public class Engine implements Runnable{
         g.dispose();
                 
         LMS.getPlayer().setCurrentMap(LMS.getMapAct());
+      
+        
+
     }
     public void getInput(){
         
