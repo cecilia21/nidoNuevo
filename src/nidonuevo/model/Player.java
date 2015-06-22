@@ -153,7 +153,7 @@ public class Player extends Person implements Serializable{
     public Player(Engine eng,int x,int y){
        // LC=eng.getLc();
         this.eng=eng;
-        name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
+        //name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
         positionX=x;
         positionY=y;
         path="/img/playerS2.png";
@@ -180,9 +180,9 @@ public class Player extends Person implements Serializable{
         //der=2 izq=1 arr=3 aba=0
         
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
-        System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
-        System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
-        System.out.println("Aux: "+auxR);
+        //System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
+        //System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
+        //System.out.println("Aux: "+auxR);
         if((getT(getPositionX())==8) && (getT(getPositionY())==14)&&(eng.getCurrentMap()==0)){
                     Image img2 = new ImageIcon("src/img/cloud.png").getImage();
                      g.drawImage(img2, 335, 435,null);

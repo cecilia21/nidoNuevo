@@ -10,8 +10,12 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static nidonuevo.model.Engine.proxy;
 /**
  *
  * @author pucp
@@ -87,6 +91,17 @@ public class MainMenu extends State {
                 if (dialog.isClick_ok()){
                     eng.setPlayerName(dialog.name);
                     eng.getKeyManager().eme=false;
+                    Player p=eng.LMS.getPlayer();
+                    serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(), p.getCurrentMap());
+        try {
+            proxy.conexionPlayer(pp);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        ThreadSend hilo= new ThreadSend(eng);
+                     hilo.start();
+                 ThreadGet hilo2= new ThreadGet(eng);
+                  hilo2.start();                            
                     return true;
                 }
             }

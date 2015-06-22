@@ -24,6 +24,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class Engine implements Runnable{
     public static IServices proxy = null;    
     	static {
 		try {
-			reg = LocateRegistry.getRegistry("192.168.205.130", 1099);
+			reg = LocateRegistry.getRegistry("192.168.1.38", 1099);
 			//reg = LocateRegistry.getRegistry("10.101.40.104", 1099);
 			proxy = (IServices)reg.lookup("MyRMIServer");
 		} catch (Exception e) {
@@ -217,12 +218,11 @@ public class Engine implements Runnable{
         
     }
     public void run(){
-		
-		init();
-                        ThreadSend hilo= new ThreadSend(this);
-                     hilo.start();
-                 ThreadGet hilo2= new ThreadGet(this);
-                  hilo2.start();
+        init();
+     
+        
+        
+
 		int fps = 60;
 		double timePerTick = 1000000000 / fps;
 		double delta = 0;
@@ -305,6 +305,7 @@ public class Engine implements Runnable{
     public void setPlayerName(String name){
         ((LocalMap)(SM.getState().get(0))).getPlayer().setName(name);
         saveToXML();
+        
     }
     public Display getDisplay(){
         return display;
