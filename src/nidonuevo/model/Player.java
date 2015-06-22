@@ -40,7 +40,7 @@ public class Player extends Person implements Serializable{
     private int idMinigame;
     private int auxEnter=0;
     private int currentMap;
-    private serverrmi.IServices.Player amigo=null;
+    private ArrayList<serverrmi.IServices.Player> amigos=new ArrayList<serverrmi.IServices.Player>() ;
     private Inventory inventory=new Inventory();
     private ArrayList <Friend> friends=new ArrayList <Friend>();
     
@@ -179,8 +179,11 @@ public class Player extends Person implements Serializable{
     }
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
-        if(amigo!=null && amigo.map==currentMap){
-            g.drawImage(getSprite()[amigo.dir*4+amigo.s], (int)amigo.posX, (int)amigo.posY, getWidth(), getHeight(), null);
+        for(int i=0;i<amigos.size();i++){
+            if(amigos.get(i).map==currentMap){
+                g.drawImage(getSprite()[amigos.get(i).dir*4+amigos.get(i).s], (int)amigos.get(i).posX, (int)amigos.get(i).posY, getWidth(), getHeight(), null);
+            }
+            
         }
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
         //System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
@@ -216,15 +219,16 @@ public class Player extends Person implements Serializable{
         this.setPositionY(newY);
 
     }
-    public void setOtherPlayer(serverrmi.IServices.Player p){
-       if(amigo==null) amigo=new serverrmi.IServices.Player(p.name,p.posX,p.posY,p.map,p.dir,p.s);
-       else{ //actualizo player
-           amigo.dir=p.dir;
-           amigo.map=p.map;
-           amigo.posX=p.posX;
-           amigo.posY=p.posY;
-           amigo.s=p.s;
-       }
+    public void setOtherPlayer(ArrayList<serverrmi.IServices.Player> friends){
+        amigos=friends;
+//       if(amigo==null) amigo=new serverrmi.IServices.Player(p.name,p.posX,p.posY,p.map,p.dir,p.s);
+//       else{ //actualizo player
+//           amigo.dir=p.dir;
+//           amigo.map=p.map;
+//           amigo.posX=p.posX;
+//           amigo.posY=p.posY;
+//           amigo.s=p.s;
+//       }
     }
     public void increaseLevel(){ 
         

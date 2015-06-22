@@ -19,6 +19,7 @@ public class ThreadGet extends Thread {
     public Player jug= null;
     public ArrayList<serverrmi.IServices.Player> dat= new ArrayList<serverrmi.IServices.Player>() ;
     public IServices proxy = null;  
+    public int indMine=0;
     public ThreadGet(Engine eng){
         super();
         proxy=eng.proxy;
@@ -38,9 +39,12 @@ public class ThreadGet extends Thread {
                         System.out.print(dat.get(i).posY);
                         System.out.print("-");
                         System.out.println(dat.get(i).map);
-                        jug.setOtherPlayer(dat.get(i));
+                        //jug.setOtherPlayer(dat.get(i));
                     }
+                    else indMine=i;
                 }
+                dat.remove(indMine);
+                jug.setOtherPlayer(dat);
             } catch (RemoteException ex) {
                 Logger.getLogger(ThreadSend.class.getName()).log(Level.SEVERE, null, ex);
             }
