@@ -30,16 +30,16 @@ public class Lobby extends State{
     public static IServices proxy = null;
     private boolean flagDialogo = true;
     private boolean [] listosList;
-    	static {
-		try {
-			//reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
-			reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
-			proxy = (IServices)reg.lookup("MyRMIServer");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    static {
+            try {
+                    //reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
+                    reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
+                    proxy = (IServices)reg.lookup("MyRMIServer");
+            } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+            }
+    }
     
     public Lobby(Engine eng){
         this.eng = eng;
@@ -125,12 +125,12 @@ public class Lobby extends State{
                     eng.getSM().pop();
                     eng.getSM().add(lmap);
                     
-                }
+        }
         } catch (RemoteException ex){
             ex.printStackTrace();
         }
             
-                 return false;
+        return false;
     }
     
     public void render(Graphics g){

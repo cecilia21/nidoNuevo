@@ -143,11 +143,8 @@ public class Player extends Person implements Serializable{
                     eng.getSM().add(inGameM);
                 }
                 if (eng.getKeyManager().s && correct){
-                    
                     eng.getSM().add(miniGames.get(idMinigame));
                     correct=false;
-                     
-                     
                 }
                 if(eng.getKeyManager().enter){
                     //System.out.println("Solo se presiona enter");
@@ -201,10 +198,10 @@ public class Player extends Person implements Serializable{
                 g.drawImage(friends.get(i).img,friends.get(i).positionX ,friends.get(i).getPositionY(),getWidth(),getHeight(), null);
             }
         }
-        System.out.println("cantidad de friends: "+friends.size());
+//        System.out.println("cantidad de friends: "+friends.size());
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
-        //System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
-        //System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
+        System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
+        System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
         //System.out.println("Aux: "+auxR);
         if((getT(getPositionX())==8) && (getT(getPositionY())==14)&&(eng.getCurrentMap()==0)){
                     Image img2 = new ImageIcon("src/img/cloud.png").getImage();
@@ -224,6 +221,9 @@ public class Player extends Person implements Serializable{
                         eng.getSM().add(memory);
                     }
                     g.drawString("Hola soy cecilia", 345, 470);                      
+        }
+        if((getT(getPositionX())==8) && (getT(getPositionY())==7)&&(eng.getCurrentMap()==0)){
+            eng.getSM().add(miniGames.get(1));
         }
         
 	//System.out.println(name);

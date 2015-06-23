@@ -546,6 +546,7 @@ public class Engine implements Runnable{
                         map1.getTriggers().add(new TriggerMonologue(par1,par2));
                     }
                     
+                    
                 }
                 //GOALS
                 
