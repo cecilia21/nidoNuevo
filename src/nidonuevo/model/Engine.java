@@ -75,8 +75,8 @@ public class Engine implements Runnable{
     public static IServices proxy = null;    
     	static {
 		try {
-			reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
-			//reg = LocateRegistry.getRegistry("10.101.40.104", 1099);
+			//reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
+			reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
 			proxy = (IServices)reg.lookup("MyRMIServer");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
