@@ -137,7 +137,7 @@ public class Engine implements Runnable{
                     points.add(5);
                     points.add(1);
                     points.add(5);
-                    
+                     
                     MiniGame mini=new MiniGame(this,persons,messages,answers,correct1,points);
                    
                     LMS.getPlayer().getMiniGames().add(mini);

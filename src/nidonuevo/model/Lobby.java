@@ -5,11 +5,14 @@
  */
 package nidonuevo.model;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import serverrmi.IServices;
@@ -63,10 +66,11 @@ public class Lobby extends State{
                     dialog.setVisible(true);
                 if (dialog.isClick_ok()){
                     eng.setPlayerName(dialog.name);
+                    
                     eng.getKeyManager().eme=false;
                     Player p=eng.LMS.getPlayer();
                     p.setCurrentMap(0);
-                    
+                    System.out.println(p.getName());
                     serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
                     try {
@@ -94,6 +98,20 @@ public class Lobby extends State{
             System.out.println("gg");
         }
             g.drawImage(background,0,0,800,700,null);
+        try {
+            ArrayList<serverrmi.IServices.Player> plist = proxy.receiveData();
+            
+            for(int i = 0; i< plist.size();i++){
+                g.setFont(new Font("Comic Sans MS",Font.BOLD,50));
+                System.out.println("entroooooooooooooooo===");
+                g.setColor(Color.red);
+                g.drawString(plist.get(i).name, 100, i*100);
+                
+            }
+        } catch (RemoteException ex) {
+            Logger.getLogger(Lobby.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }
     
     public void setPauseGame(boolean pause){

@@ -18,7 +18,8 @@ public class NidoNuevo {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void 
+        main(String[] args) {
         // TODO code application logic here
         //archivo de inicialización XML, el path en la variable pathXML
         String pathXML="/files/xml/initNidoNuevo.xml";
