@@ -35,6 +35,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import nidonuevo.app.Display;
+import static nidonuevo.model.Lobby.proxy;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
@@ -45,6 +46,7 @@ import org.dom4j.io.XMLWriter;
 import serverrmi.IServices;
 public class Engine implements Runnable{
     private ArrayList<Person> idPersons=new ArrayList<Person>();
+    public boolean multiplayer=false;
     private Loading loading;
     private int cantGuar=0;
     private String title;
@@ -174,9 +176,14 @@ public class Engine implements Runnable{
                 pause=false;
             }
             else pause=true;
-            if(getSM().getState().peek() instanceof Lobby){
-                Lobby lob = (Lobby)getSM().getState().peek();
-                lob.setPauseGame(pause);
+            if(getSM().getState().peek() instanceof Lobby || multiplayer){
+                //Lobby lob = (Lobby)getSM().getState().peek();
+                //lob.setPauseGame(pause);
+                        try {
+                proxy.setpauseGame(pause);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
             /*try {
                 proxy.setpauseGame(pause);
@@ -185,9 +192,15 @@ public class Engine implements Runnable{
             }*/
         }
         
-        if(getSM().getState().peek() instanceof Lobby){
-                Lobby lob = (Lobby)getSM().getState().peek();
-                pause=lob.getPauseState();
+        if(getSM().getState().peek() instanceof Lobby || multiplayer){
+                //Lobby lob = (Lobby)getSM().getState().peek();
+                //pause=lob.getPauseState();
+                    try {
+            pause=proxy.getPauseState();
+           
+            } catch (RemoteException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
             }
         /*try {
             pause=proxy.getPauseState();

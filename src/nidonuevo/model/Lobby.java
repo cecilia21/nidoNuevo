@@ -129,7 +129,7 @@ public class Lobby extends State{
         
         if(flagDialogo){
             flagDialogo = mostrarDialogoNombre();
-            System.out.println("gg");
+            //System.out.println("gg");
         }
             g.drawImage(background,0,0,800,700,null);
         try {

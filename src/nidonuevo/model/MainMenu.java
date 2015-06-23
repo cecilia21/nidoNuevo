@@ -149,6 +149,7 @@ public class MainMenu extends State {
             if(sel.getOpt() == 4){
                 //multiplayer gg
                 eng.getSM().pop();
+                eng.multiplayer=true;
                 Lobby lob = new Lobby(eng);
                 eng.getSM().add(lob);
             }
