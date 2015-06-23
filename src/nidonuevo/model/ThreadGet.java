@@ -32,13 +32,13 @@ public class ThreadGet extends Thread {
                 dat=proxy.receiveData();
                 for(int i=0;i<dat.size();i++){
                     if(dat.get(i).name.compareTo(jug.getName())!=0){
-                        System.out.print(dat.get(i).name);
-                        System.out.print("-");
+                        //System.out.print(dat.get(i).name);
+                        /*System.out.print("-");
                         System.out.print(dat.get(i).posX);
                         System.out.print("-");
                         System.out.print(dat.get(i).posY);
                         System.out.print("-");
-                        System.out.println(dat.get(i).map);
+                        System.out.println(dat.get(i).map);*/
                         //jug.setOtherPlayer(dat.get(i));
                     }
                     else indMine=i;

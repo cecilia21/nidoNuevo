@@ -22,12 +22,13 @@ import serverrmi.IServices;
  * @author alulab14
  */
 public class Lobby extends State{
-    
+    private int auxEnter=0;
     private BufferedImage background;
     private Engine eng;
     public static Registry reg = null;
     public static IServices proxy = null;
     private boolean flagDialogo = true;
+    private boolean [] listosList;
     	static {
 		try {
 			//reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
@@ -89,10 +90,43 @@ public class Lobby extends State{
 
     @Override
     public boolean ordenPop() {
-        return false;
+        if(eng.getKeyManager().enter){
+            if(auxEnter==0) auxEnter++;
+        }
+        if(eng.getKeyManager().enterR){
+            if(auxEnter==1) auxEnter++;
+        }        
+        if(auxEnter==2){
+            auxEnter=0;
+            eng.getKeyManager().enterR=false;
+            eng.getKeyManager().enter=false;
+            try {
+                //debe iniciar el juego u.u
+                //proxy.iniciarJuego();
+                System.out.println("enter");
+                proxy.agregarListo();
+                
+            } catch (RemoteException ex) {
+                Logger.getLogger(Lobby.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try{
+        if(proxy.todosListos()){
+                    //agregar local map
+                    LocalMap lmap = eng.LMS;
+                    eng.getSM().pop();
+                    eng.getSM().add(lmap);
+                    
+                }
+        } catch (RemoteException ex){
+            ex.printStackTrace();
+        }
+            
+                 return false;
     }
     
     public void render(Graphics g){
+        
         if(flagDialogo){
             flagDialogo = mostrarDialogoNombre();
             System.out.println("gg");
@@ -103,9 +137,8 @@ public class Lobby extends State{
             
             for(int i = 0; i< plist.size();i++){
                 g.setFont(new Font("Comic Sans MS",Font.BOLD,50));
-                System.out.println("entroooooooooooooooo===");
-                g.setColor(Color.red);
-                g.drawString(plist.get(i).name, 100, i*100);
+                g.setColor(Color.WHITE);
+                g.drawString(plist.get(i).name, 100, i*100+80);
                 
             }
         } catch (RemoteException ex) {
@@ -122,7 +155,8 @@ public class Lobby extends State{
             }
     }
     
-    public boolean getPauseState(boolean pause){
+    public boolean getPauseState(){
+        boolean pause=false;
         try {
             pause=proxy.getPauseState();
             return pause;
@@ -130,5 +164,11 @@ public class Lobby extends State{
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public void tick(){
+        if(eng.getKeyManager().enter){
+            System.out.println("presiono enter :D");
+        }
     }
 }

@@ -187,7 +187,7 @@ public class Engine implements Runnable{
         
         if(getSM().getState().peek() instanceof Lobby){
                 Lobby lob = (Lobby)getSM().getState().peek();
-                lob.getPauseState(pause);
+                pause=lob.getPauseState();
             }
         /*try {
             pause=proxy.getPauseState();
