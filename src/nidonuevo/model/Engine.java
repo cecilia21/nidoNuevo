@@ -71,7 +71,7 @@ public class Engine implements Runnable{
     //States
     private StateMachine SM;
     public LocalMap LMS;
-    public static Registry reg = null;
+    /*public static Registry reg = null;
     public static IServices proxy = null;    
     	static {
 		try {
@@ -82,7 +82,7 @@ public class Engine implements Runnable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
     public Engine(String title,int width,int height){
         
         
@@ -174,17 +174,26 @@ public class Engine implements Runnable{
                 pause=false;
             }
             else pause=true;
-            try {
+            if(getSM().getState().peek() instanceof Lobby){
+                Lobby lob = (Lobby)getSM().getState().peek();
+                lob.setPauseGame(pause);
+            }
+            /*try {
                 proxy.setpauseGame(pause);
             } catch (RemoteException ex) {
                 Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
         }
-        try {
+        
+        if(getSM().getState().peek() instanceof Lobby){
+                Lobby lob = (Lobby)getSM().getState().peek();
+                lob.getPauseState(pause);
+            }
+        /*try {
             pause=proxy.getPauseState();
         } catch (RemoteException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
         if(pause==false){
         if (getSM().getOrdenPop()) 

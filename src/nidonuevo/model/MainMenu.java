@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static nidonuevo.model.Engine.proxy;
+import static nidonuevo.model.Lobby.proxy;
 /**
  *
  * @author pucp
@@ -95,6 +95,7 @@ public class MainMenu extends State {
                     eng.getKeyManager().eme=false;
                     Player p=eng.LMS.getPlayer();
                     p.setCurrentMap(0);
+                    /*
                     serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
                     try {
@@ -105,7 +106,7 @@ public class MainMenu extends State {
                     ThreadSend hilo= new ThreadSend(eng);
                     hilo.start();
                     ThreadGet hilo2= new ThreadGet(eng);
-                    hilo2.start();                            
+                    hilo2.start(); */                           
                     return true;
                 }
             }
@@ -128,7 +129,7 @@ public class MainMenu extends State {
                 
             }
             
-            if (sel.getOpt()==3){
+            /*if (sel.getOpt()==3){
                 help dg = new help(new java.awt.Frame(),true);
                 dg.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -141,12 +142,17 @@ public class MainMenu extends State {
                     eng.getKeyManager().eme=false;
                     return false;
                 }
-            }
-            if (sel.getOpt()==4){
+            }*/
+            if (sel.getOpt()==3){
                 System.exit(0);
             }
-            
-            
+            if(sel.getOpt() == 4){
+                //multiplayer gg
+                eng.getSM().pop();
+                Lobby lob = new Lobby(eng);
+                eng.getSM().add(lob);
+            }
+                        
         }
         if (eng.getKeyManager().q){
             System.exit(1);

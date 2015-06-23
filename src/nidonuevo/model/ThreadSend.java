@@ -19,9 +19,9 @@ public class ThreadSend extends Thread {
     public IServices proxy = null; 
     public Engine eng=null;
     public serverrmi.IServices.Player jugP=null ;
-    public ThreadSend(Engine eng){
+    public ThreadSend(Engine eng, Lobby lob){
         super();
-        proxy=eng.proxy;
+        proxy=lob.proxy;
         jug=eng.LMS.getPlayer();
         jugP=new serverrmi.IServices.Player(jug.getName(),jug.getPositionX(),jug.getPositionY(),jug.getCurrentMap(),
                                         jug.getDir(),jug.getS());
