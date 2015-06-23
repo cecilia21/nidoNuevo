@@ -5,7 +5,10 @@
  */
 package nidonuevo.model;
 
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,11 +19,28 @@ public class Friend extends Person implements Serializable{
     private int homePositionX;
     private int homePositionY;
     private int unlockLevel;
-    
+    public int map;
+    private String pregunta;
+    private ArrayList<String> alternativas;
+    private int sol;
+    public Image img;
 
     /**
      * @return the province
      */
+    
+    public Friend(int positionX,int positionY,Image image, int map,
+                        String preg,ArrayList<String> alt,int sol){
+        super();
+        this.positionX=positionX;
+        this.positionY=positionY;
+        this.img=image;
+        this.map=map;
+        pregunta=preg;
+        alternativas=alt;
+        this.sol=sol;
+    }
+    
     public String getProvince() {
         return province;
     }

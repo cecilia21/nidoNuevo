@@ -2,12 +2,14 @@
 
 <GameData>
   <Player>
-    <name>aaa</name>
+    <name>asd</name>
     <happiness>0.0</happiness>
     <numberOfFriends>0</numberOfFriends>
     <level>0</level>
     <numerOfTrophies>0</numerOfTrophies>
-    <Friends/>
+    <Friends>
+      <Friend id="0"/>
+    </Friends>
     <Inventory>
       <Capacity>0</Capacity>
       <Quantity>0</Quantity>

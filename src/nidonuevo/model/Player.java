@@ -43,7 +43,7 @@ public class Player extends Person implements Serializable{
     private ArrayList<serverrmi.IServices.Player> amigos=new ArrayList<serverrmi.IServices.Player>() ;
     private Inventory inventory=new Inventory();
     private ArrayList <Friend> friends=new ArrayList <Friend>();
-    
+   
     public Player(){
         positionX=0;    
         positionY=0;
@@ -57,6 +57,17 @@ public class Player extends Person implements Serializable{
 				sprite[px+4*py]=sheet.crop(px*width, py*height,width, height);
 			}
 		}
+        
+    }
+    
+    public void setFriends(){
+        Image img = new ImageIcon("src/img/player.png").getImage();
+        ArrayList<String> alts= new ArrayList<String> ();
+        alts.add("Cecilia");
+        alts.add("Raul");
+        alts.add("Diego");
+        Friend f= new Friend(600,600,img,0,"como me llamo?",alts,0);
+        friends.add(f);
     }
     
     public void tick(){
@@ -166,7 +177,7 @@ public class Player extends Person implements Serializable{
 				sprite[px+4*py]=sheet.crop(px*width, py*height,width, height);
 			}
 		}
-        
+        setFriends();
     }
     
     
@@ -185,6 +196,12 @@ public class Player extends Person implements Serializable{
             }
             
         }
+        for(int i=0;i<friends.size();i++){
+            if(friends.get(i).map==currentMap){
+                g.drawImage(friends.get(i).img,friends.get(i).positionX ,friends.get(i).getPositionY(),getWidth(),getHeight(), null);
+            }
+        }
+        System.out.println("cantidad de friends: "+friends.size());
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
         //System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
         //System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
