@@ -1,0 +1,116 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package nidonuevo.model;
+
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import serverrmi.IServices;
+
+/**
+ *
+ * @author alulab14
+ */
+public class Lobby extends State{
+    
+    private BufferedImage background;
+    private Engine eng;
+    public static Registry reg = null;
+    public static IServices proxy = null;
+    private boolean flagDialogo = true;
+    	static {
+		try {
+			//reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
+			reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
+			proxy = (IServices)reg.lookup("MyRMIServer");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+    
+    public Lobby(Engine eng){
+        this.eng = eng;
+        background=ImageLoader.loadImage("/img/pizarraMul.png");
+        /*serverrmi.IServices.Player pp= new serverrmi.IServices.Player( eng.LMS.getPlayer().getName(),p.getPositionX(), p.getPositionY(),
+                                                    p.getCurrentMap(),p.getDir(),p.getS());
+                    try {
+                        proxy.conexionPlayer(pp);
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ThreadSend hilo= new ThreadSend(eng);
+                    hilo.start();
+                    ThreadGet hilo2= new ThreadGet(eng);
+                    hilo2.start(); */
+    }
+    
+    public boolean mostrarDialogoNombre(){
+        getName dialog = new getName(new java.awt.Frame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0); //quitar elboton de cerrar
+                    }
+                });
+               
+                    dialog.setVisible(true);
+                if (dialog.isClick_ok()){
+                    eng.setPlayerName(dialog.name);
+                    eng.getKeyManager().eme=false;
+                    Player p=eng.LMS.getPlayer();
+                    p.setCurrentMap(0);
+                    
+                    serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
+                                                    p.getCurrentMap(),p.getDir(),p.getS());
+                    try {
+                        proxy.conexionPlayer(pp);
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    ThreadSend hilo= new ThreadSend(eng, this);
+                    hilo.start();
+                    ThreadGet hilo2= new ThreadGet(eng, this);
+                    hilo2.start();                            
+                    return false;
+                }
+                return true;
+    }
+
+    @Override
+    public boolean ordenPop() {
+        return false;
+    }
+    
+    public void render(Graphics g){
+        if(flagDialogo){
+            flagDialogo = mostrarDialogoNombre();
+            System.out.println("gg");
+        }
+            g.drawImage(background,0,0,800,700,null);
+    }
+    
+    public void setPauseGame(boolean pause){
+        try {
+                proxy.setpauseGame(pause);
+            } catch (RemoteException ex) {
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public boolean getPauseState(boolean pause){
+        try {
+            pause=proxy.getPauseState();
+            return pause;
+        } catch (RemoteException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+}

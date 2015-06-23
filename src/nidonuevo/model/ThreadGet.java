@@ -20,9 +20,9 @@ public class ThreadGet extends Thread {
     public ArrayList<serverrmi.IServices.Player> dat= new ArrayList<serverrmi.IServices.Player>() ;
     public IServices proxy = null;  
     public int indMine=0;
-    public ThreadGet(Engine eng){
+    public ThreadGet(Engine eng, Lobby lob){
         super();
-        proxy=eng.proxy;
+        proxy=lob.proxy;
         jug=eng.LMS.getPlayer();
     }
     public void run(){
