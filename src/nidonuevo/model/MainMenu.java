@@ -95,6 +95,8 @@ public class MainMenu extends State {
                     eng.getKeyManager().eme=false;
                     Player p=eng.LMS.getPlayer();
                     p.setCurrentMap(0);
+
+                    eng.hiloTime.start();
                     /*
                     serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
@@ -150,6 +152,7 @@ public class MainMenu extends State {
                 //multiplayer gg
                 //eng.getSM().pop();
                 eng.multiplayer=true;
+                
                 Lobby lob = new Lobby(eng);
                 eng.getSM().add(lob);
             }

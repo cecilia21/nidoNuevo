@@ -37,6 +37,7 @@ public class ThreadSend extends Thread {
             jugP.dir=jug.getDir();
             jugP.s=jug.getS();
             jugP.numberofFriends=jug.getNumberOfFriends();
+            jugP.fin=eng.fin;
             try {
                 proxy.giveData(jugP);
             } catch (RemoteException ex) {

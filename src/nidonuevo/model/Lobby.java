@@ -124,6 +124,7 @@ public class Lobby extends State{
                     LocalMap lmap = eng.LMS;
                     eng.getSM().pop();
                     eng.getSM().add(lmap);
+                    eng.hiloTime.start();
                     
         }
         } catch (RemoteException ex){

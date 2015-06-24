@@ -222,9 +222,14 @@ public class Player extends Person implements Serializable{
                 g.drawString(amigos.get(i).name,(int)amigos.get(i).posX, (int)amigos.get(i).posY);
                 g.drawString(amigos.get(i).name+": "+amigos.get(i).numberofFriends, 60, 80+15*i);  
             }
+            if(amigos.get(i).fin) eng.gameover=true;
             
         }
-        
+        if(numberOfFriends==5 && currentMap==0){
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,25));
+            g.setColor(Color.white);            
+            g.drawString("Muy bien, ahora debes encontrar la casa de Johan", 60, 100);
+        }
         for(int i=0;i<friends.size();i++){
             System.out.println("AMIGOOOOOOOOOO ES :           " + friends.get(i).isDibujable());
             if(friends.get(i).map==currentMap && friends.get(i).isDibujable()){
@@ -233,16 +238,22 @@ public class Player extends Person implements Serializable{
         }
         g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
         g.setColor(Color.white);
-        if(eng.multiplayer==false) g.drawString("Number of friends: "+numberOfFriends, 60, 60); 
-        else g.drawString(name+": "+numberOfFriends, 60, 60);
+        if(eng.multiplayer==false) {
+            g.drawString("Number of friends: "+numberOfFriends, 60, 60);
+            g.drawString("Tiempo restante: "+eng.hiloTime.getTime(), 500, 60);
+        } 
+        else {
+            g.drawString("Tiempo restante: "+eng.hiloTime.getTime(), 500, 60);
+            g.drawString(name+": "+numberOfFriends, 60, 60);
+        }
 //        System.out.println("cantidad de friends: "+friends.size());
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
         System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
         System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
         //System.out.println("Aux: "+auxR);
-        if((getT(getPositionX())==8) && (getT(getPositionY())==14)&&(eng.getCurrentMap()==0)){
-                    Image img2 = new ImageIcon("src/img/cloud.png").getImage();
-                     g.drawImage(img2, 335, 435,null);
+        if((getT(getPositionX())==3) && (getT(getPositionY())==14)&&(eng.getCurrentMap()==6)){
+                    //Image img2 = new ImageIcon("src/img/cloud.png").getImage();
+                     //g.drawImage(img2, 335, 435,null);
                      g.setFont(new Font("Comic Sans MS",Font.BOLD,10));
                     if(eng.getKeyManager().enter){
                         if(auxEnter==0) auxEnter++;
@@ -257,7 +268,8 @@ public class Player extends Person implements Serializable{
                         MiniGameMemory memory= new MiniGameMemory(eng);
                         eng.getSM().add(memory);
                     }
-                    g.drawString("Hola soy cecilia", 345, 470);                      
+                    g.setColor(Color.white);
+                    g.drawString("Casa de Johan", 86, 470);                      
         }
 //        if((getT(getPositionX())==8) && (getT(getPositionY())==7)&&(eng.getCurrentMap()==0)){
 //            eng.getSM().add(miniGames.get(1));

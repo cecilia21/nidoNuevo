@@ -52,7 +52,7 @@ public class Engine implements Runnable{
     private String title;
     private int width, height;
     private Display display;
-    private Boolean running=false;
+    public Boolean running=false;
     private Thread thread;
     private BufferStrategy bs;
     private Graphics g;
@@ -62,6 +62,9 @@ public class Engine implements Runnable{
     private int aux=0;
     private int auxP=0;
     public boolean pause=false;
+    public boolean fin=false;
+    public boolean gameover=false;
+    ThreadTime hiloTime;
     //layer de collision
  //   private Layer lc;
     //Actual map
@@ -93,7 +96,7 @@ public class Engine implements Runnable{
         loading=new Loading(display,bs,g);
         loading.setPriority(loading.MAX_PRIORITY);
         loading.start();
-        
+        hiloTime= new ThreadTime(this);
         keyManager = new KeyManager();
         display.getFrame().addKeyListener(keyManager);
         setSM(new StateMachine());       
@@ -207,11 +210,17 @@ public class Engine implements Runnable{
         } catch (RemoteException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }*/
-        
-        if(pause==false){
-        if (getSM().getOrdenPop()) 
-            getSM().pop();
-        if (!SM.getState().empty()){
+        if(hiloTime.getTime()==0) gameover=true;
+        if(pause==false || fin ){
+        if (getSM().getOrdenPop()) {
+           if(getSM().getState().peek() instanceof MiniGameMemory)
+               fin=true;
+               hiloTime.setCorre(false);
+           getSM().pop();
+
+        }
+            
+        if (!SM.getState().empty() && fin==false && gameover==false){
             getSM().tick();
         }
         }
@@ -252,6 +261,17 @@ public class Engine implements Runnable{
              g.setFont(new Font("Comic Sans MS",Font.BOLD,40));
              g.setColor(Color.red);
             g.drawString("Juego pausado", 320, 300);
+        }
+        if(fin){
+                   g.setFont(new Font("Comic Sans MS",Font.BOLD,60));
+           g.setColor(Color.red);
+           g.drawString("Ganaste campeon ", 300,300);
+        } 
+        if(gameover){
+            hiloTime.setCorre(false);
+           g.setFont(new Font("Comic Sans MS",Font.BOLD,60));
+           g.setColor(Color.red);
+           g.drawString("Perdiste campeon ", 300,300);            
         }
         //End Drawing!
         if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());
@@ -296,8 +316,8 @@ public class Engine implements Runnable{
 			timer += now - lastTime;
 			lastTime = now;
 			if(delta >= 1){
-				if (LMS.isChange()==false) tick();
-				render();
+				if (getSM().getState().size()!=0 && LMS.isChange()==false) tick();
+				if(getSM().getState().size()!=0) render();
 				ticks++;
 				delta--;
 			}

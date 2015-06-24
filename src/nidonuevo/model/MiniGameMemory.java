@@ -5,10 +5,16 @@
  */
 package nidonuevo.model;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import static java.lang.Thread.sleep;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,6 +54,11 @@ public class MiniGameMemory extends State {
             if(flags[i]==1) g.drawImage(listImages.get(i%6), fila[i%4], col[getCol(i)], null);
         sel.render(g);
         //g.drawImage(manocursor, fila[0]+44, col[0]+47, null);
+        if(matches==6){
+           g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
+           g.setColor(Color.red);
+           g.drawString("ganasTe", 300,300);
+        }   
     }
     public void inicializa(){
         Image img1 = new ImageIcon("src/img/d1.png").getImage();
