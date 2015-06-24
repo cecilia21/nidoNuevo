@@ -63,21 +63,26 @@ public class Player extends Person implements Serializable{
     }
     
     public void setFriends(){
-        Image img = new ImageIcon("src/img/player.png").getImage();
+        Image img1 = new ImageIcon("src/img/personajes/1.png").getImage();
+        Image img2 = new ImageIcon("src/img/personajes/2.png").getImage();
+        Image img3 = new ImageIcon("src/img/personajes/3.png").getImage();
+        Image img4 = new ImageIcon("src/img/personajes/4.png").getImage();
+        Image img5 = new ImageIcon("src/img/personajes/5.png").getImage();
+        
         ArrayList<String> alts= new ArrayList<String> ();
         alts.add("Cecilia");
         alts.add("Raul");
         alts.add("Diego");
 
-        Friend f= new Friend(600,600,img,0,"como me llamo?",alts,0);
+        Friend f= new Friend(600,600,img1,0,"como me llamo?",alts,0);
         friends.add(f);
-        Friend f2= new Friend(300,53,img,0,"como me llamo?",alts,0);
+        Friend f2= new Friend(300,53,img2,0,"como me llamo?",alts,0);
         friends.add(f2);
-        Friend f3= new Friend(678,353,img,0,"como me llamo?",alts,0);
+        Friend f3= new Friend(678,353,img3,0,"como me llamo?",alts,0);
         friends.add(f3);     
-        Friend f4= new Friend(156,611,img,0,"como me llamo?",alts,0);
+        Friend f4= new Friend(156,611,img4,0,"como me llamo?",alts,0);
         friends.add(f4); 
-        Friend f5= new Friend(402,587,img,0,"como me llamo?",alts,0);
+        Friend f5= new Friend(402,587,img5,0,"como me llamo?",alts,0);
         friends.add(f5);           
     }
     
