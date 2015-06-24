@@ -294,7 +294,7 @@ public class Engine implements Runnable{
             } catch (RemoteException ex) {
                 Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
             }
-           if(tiempo<=0) g.drawString("Tiempo restante: "+tiempo, 150,300); 
+           if(tiempo>=0) g.drawString("Tiempo restante: "+tiempo, 150,300); 
            if(tiempo==0){
                finGame=false;
                gameover=true;
