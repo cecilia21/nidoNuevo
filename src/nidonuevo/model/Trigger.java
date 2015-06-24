@@ -23,7 +23,7 @@ class  Trigger {
         return y;
     }
 
-    void execTrigger(LocalMap aThis){
+    void execTrigger(LocalMap aThis,int i){
         
     }
 

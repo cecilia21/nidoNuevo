@@ -37,7 +37,7 @@ public class TriggerMap extends Trigger {
     }
     
     @Override
-    public void execTrigger(LocalMap aThis) {
+    public void execTrigger(LocalMap aThis,int i) {
         //if(aThis.getPlayer().positionX )
         if (this.active){
             if(((x==1 && aThis.getPlayer().positionX <=2) || (x==19 && aThis.getPlayer().positionX >=746) ||

@@ -43,7 +43,8 @@ public class Player extends Person implements Serializable{
     private ArrayList<serverrmi.IServices.Player> amigos=new ArrayList<serverrmi.IServices.Player>() ;
     private Inventory inventory=new Inventory();
     private ArrayList <Friend> friends=new ArrayList <Friend>();
-   
+    private ArrayList <Boolean>  correctos= new ArrayList <Boolean> ();
+    
     public Player(){
         positionX=0;    
         positionY=0;
@@ -66,8 +67,12 @@ public class Player extends Person implements Serializable{
         alts.add("Cecilia");
         alts.add("Raul");
         alts.add("Diego");
-        Friend f= new Friend(600,600,img,0,"como me llamo?",alts,0);
+        Friend f= new Friend(300,300,img,0,"como me llamo?",alts,0);
         friends.add(f);
+        Friend f2= new Friend(600,600,img,0,"como me llamo?",alts,0);
+        friends.add(f2);
+        Friend f3= new Friend(650,650,img,0,"como me llamo?",alts,0);
+        friends.add(f3);
     }
     
     public void tick(){
@@ -142,9 +147,16 @@ public class Player extends Person implements Serializable{
                     InGameMenu inGameM=new InGameMenu(eng);
                     eng.getSM().add(inGameM);
                 }
-                if (eng.getKeyManager().s && correct){
-                    eng.getSM().add(miniGames.get(idMinigame));
-                    correct=false;
+                if (eng.getKeyManager().s){
+                    for(int i=0;i<eng.LMS.getMaps().get(currentMap).getTriggersMini().size();i++){
+                        if(correctos.get(i)){
+                            miniGames.get(i).indice=i;
+                            miniGames.get(i).setForce(false);
+                            eng.getSM().add(miniGames.get(i));
+                        }
+                    }
+                    
+//                    correct=false;
                 }
                 if(eng.getKeyManager().enter){
                     //System.out.println("Solo se presiona enter");
@@ -193,8 +205,10 @@ public class Player extends Person implements Serializable{
             }
             
         }
+        
         for(int i=0;i<friends.size();i++){
-            if(friends.get(i).map==currentMap){
+            System.out.println("AMIGOOOOOOOOOO ES :           " + friends.get(i).isDibujable());
+            if(friends.get(i).map==currentMap && friends.get(i).isDibujable()){
                 g.drawImage(friends.get(i).img,friends.get(i).positionX ,friends.get(i).getPositionY(),getWidth(),getHeight(), null);
             }
         }
@@ -222,9 +236,9 @@ public class Player extends Person implements Serializable{
                     }
                     g.drawString("Hola soy cecilia", 345, 470);                      
         }
-        if((getT(getPositionX())==8) && (getT(getPositionY())==7)&&(eng.getCurrentMap()==0)){
-            eng.getSM().add(miniGames.get(1));
-        }
+//        if((getT(getPositionX())==8) && (getT(getPositionY())==7)&&(eng.getCurrentMap()==0)){
+//            eng.getSM().add(miniGames.get(1));
+//        }
         
 	//System.out.println(name);
     }
@@ -487,6 +501,20 @@ public class Player extends Person implements Serializable{
      */
     public void setCurrentMap(int currentMap) {
         this.currentMap = currentMap;
+    }
+
+    /**
+     * @return the correctos
+     */
+    public ArrayList <Boolean> getCorrectos() {
+        return correctos;
+    }
+
+    /**
+     * @param correctos the correctos to set
+     */
+    public void setCorrectos(ArrayList <Boolean> correctos) {
+        this.correctos = correctos;
     }
         
 }

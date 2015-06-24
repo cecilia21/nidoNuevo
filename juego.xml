@@ -74,6 +74,12 @@
           <par>7</par>
           <par>1</par>
         </Trigger>
+        <Trigger>
+          <type>TriggerMini</type>
+          <par>12</par>
+          <par>12</par>
+          <par>1</par>
+        </Trigger>
       </Triggers>
       <Goals>
         <Goal>
@@ -468,6 +474,36 @@
       </Messages>
       <Answers>
         <answer>Cecilia-diego-raul</answer>
+        <answer>Lima-USA-Ecuador</answer>
+        <answer>Nieto-Alan Garcia-Humala</answer>
+        <answer>Colon-El profesor-Mi papa</answer>
+      </Answers>
+      <Correct1>
+        <correct>1</correct>
+        <correct>2</correct>
+        <correct>3</correct>
+        <correct>1</correct>
+      </Correct1>
+      <Points>
+        <point>1</point>
+        <point>5</point>
+        <point>1</point>
+        <point>5</point>
+      </Points>
+    </MiniGame>
+    <MiniGame>
+      <id>2</id>
+      <Persons>
+        <id>0</id>
+      </Persons>
+      <Messages>
+        <message>TERCER MINI?</message>
+        <message>Capital de Peru?</message>
+        <message>Presidente actual del Perú?</message>
+        <message>Descubridor del America?</message>
+      </Messages>
+      <Answers>
+        <answer>Vicuña-Liebra-Leon</answer>
         <answer>Lima-USA-Ecuador</answer>
         <answer>Nieto-Alan Garcia-Humala</answer>
         <answer>Colon-El profesor-Mi papa</answer>

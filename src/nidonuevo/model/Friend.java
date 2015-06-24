@@ -24,7 +24,7 @@ public class Friend extends Person implements Serializable{
     private ArrayList<String> alternativas;
     private int sol;
     public Image img;
-
+    private boolean dibujable=true;
     /**
      * @return the province
      */
@@ -106,6 +106,20 @@ public class Friend extends Person implements Serializable{
     }   
     public void consumeItem(){
         
+    }
+
+    /**
+     * @return the dibujable
+     */
+    public boolean isDibujable() {
+        return dibujable;
+    }
+
+    /**
+     * @param dibujable the dibujable to set
+     */
+    public void setDibujable(boolean dibujable) {
+        this.dibujable = dibujable;
     }
     
 }

@@ -27,7 +27,7 @@ public class TriggerChangeMap extends Trigger{
 
   
     @Override
-    public void execTrigger(LocalMap aThis) {
+    public void execTrigger(LocalMap aThis,int i) {
         
         if (this.active){
             aThis.setChange(true);

@@ -34,7 +34,7 @@ public class TriggerMonologue extends Trigger {
     
     
     @Override
-    public void execTrigger(LocalMap aThis) {
+    public void execTrigger(LocalMap aThis,int i) {
         if (this.active){
             //Esto se leera del XML, solo es para probar
             ArrayList<String> letras= new ArrayList<String> ();

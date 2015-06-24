@@ -27,12 +27,16 @@ public class TriggerMini extends Trigger{
 
   
     @Override
-    public void execTrigger(LocalMap aThis) {
+    public void execTrigger(LocalMap aThis,int i) {
         
         if (this.active){
+            int currmap=aThis.getPlayer().getCurrentMap();
             //aThis.setChange(true);
+            int tt=aThis.getMaps().get(currmap).getTriggers().size();
+            int tm=aThis.getMaps().get(currmap).getTriggersMini().size();
             System.out.println("Si");  
-            aThis.getPlayer().correct=true;
+            aThis.getPlayer().getCorrectos().set(i-tt+tm, true);
+//            aThis.getPlayer().correct=true;
             this.active=true;
             //aThis.getPlayer().positionX=800;
             //aThis.getPlayer().positionY=800;

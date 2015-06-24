@@ -536,6 +536,7 @@ public class Engine implements Runnable{
                         int par2=Integer.parseInt(parametro.getText()); parametro=(Element)u.next();
                         int par3=Integer.parseInt(parametro.getText());
                         map1.getTriggers().add(new TriggerMini(par1,par2,par3));
+                        map1.getTriggersMini().add(new TriggerMini(par1,par2,par3));
                     }
                     if(0==trigger.element("type").getText().compareTo("TriggerMonologue")){
                         Iterator u=trigger.elementIterator("par");
@@ -658,7 +659,7 @@ public class Engine implements Runnable{
                     }
                     MiniGame mini=new MiniGame(this,persons1,messages1,answers1,correct1,points1);
                     LMS.getPlayer().getMiniGames().add(mini);
-                    
+                    LMS.getPlayer().getCorrectos().add(false);
                 }
                //FIN
            

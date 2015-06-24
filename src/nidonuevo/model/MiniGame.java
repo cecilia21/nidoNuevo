@@ -44,7 +44,7 @@ public class MiniGame extends State {
     private int cont=0;
     private boolean force=false;
     private String resultado=null;
-    
+    public int indice=0;
     public MiniGame(Engine eng,ArrayList<Person> persons, ArrayList<String> messages,ArrayList<String[]> answers, ArrayList<Integer> correct,ArrayList<Integer> points){
         this.answers=answers;
         this.messages=messages;
@@ -64,12 +64,12 @@ public class MiniGame extends State {
         options.add("A");        
         options.add("B");
         options.add("C");        
-        options.add("SALIR");
+//        options.add("SALIR");
         sel=new Selector(getX()-getWidthB(), getY(), getWidthB(), getHeightB(), getSpaceY(), getSpaceX(),2,2,"/img/selector_1.png");
         buttons.add(new Button(getOptions().get(0), getX(), getY(), getWidthB(), getHeightB()));
         buttons.add(new Button(getOptions().get(1), getX(),getY()+getSpaceY(), getWidthB(), getHeightB()));
         buttons.add(new Button(getOptions().get(2),getX()+getSpaceX(), getY(), getWidthB(), getHeightB()));
-        buttons.add(new Button(getOptions().get(3),getX()+getSpaceX(),getY()+getSpaceY(), getWidthB(), getHeightB()));
+//        buttons.add(new Button(getOptions().get(3),getX()+getSpaceX(),getY()+getSpaceY(), getWidthB(), getHeightB()));
         
         this.eng=eng;
         background=ImageLoader.loadImage("/img/bg_battle.png");
@@ -80,23 +80,29 @@ public class MiniGame extends State {
         //arreglar
         
         
-        if (getEng().getKeyManager().enter){
-            
-//            if (sel.getOpt()==2 && sel.getOptX()==2 ){
+//        if (getEng().getKeyManager().enter){
+//            
+////            if (sel.getOpt()==2 && sel.getOptX()==2 ){
+////                System.out.println("2");
+////                return true; //eng.getSM().pop();
+////            }
+//            if (getSel().getOpt()==2 && getSel().getOptX()==2 ){
 //                System.out.println("2");
+//                
 //                return true; //eng.getSM().pop();
 //            }
-            if (getSel().getOpt()==2 && getSel().getOptX()==2 ){
-                System.out.println("2");
-                
-                return true; //eng.getSM().pop();
-            }
-            
-        }
+//            
+//        }
         if (getEng().getKeyManager().q){
             System.exit(1);
         }
-       
+       if(isForce()){
+            //System.out.println("Si");  
+            cont=0;
+            eng.LMS.getPlayer().getFriends().get(indice).setDibujable(false);
+            System.out.println("indice ptm: "+ indice);
+            eng.LMS.getPlayer().getCorrectos().set(indice, false);
+       }
         return (false || isForce());
     }
 
