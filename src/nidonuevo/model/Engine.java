@@ -176,9 +176,13 @@ public class Engine implements Runnable{
             auxP=0;
             
             if(pause) {
+                hiloTime.setCorre(false);
                 pause=false;
             }
-            else pause=true;
+            else {
+                pause=true;
+                hiloTime.setCorre(true);
+            }
             if(getSM().getState().peek() instanceof Lobby || multiplayer){
                 //Lobby lob = (Lobby)getSM().getState().peek();
                 //lob.setPauseGame(pause);

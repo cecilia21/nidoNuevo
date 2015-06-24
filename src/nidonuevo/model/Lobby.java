@@ -32,8 +32,8 @@ public class Lobby extends State{
     private boolean [] listosList;
     static {
             try {
-                    //reg = LocateRegistry.getRegistry("192.168.205.230", 1099);
-                    reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
+                    reg = LocateRegistry.getRegistry("192.168.207.206", 1099);
+                    //reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
                     proxy = (IServices)reg.lookup("MyRMIServer");
             } catch (Exception e) {
                     // TODO Auto-generated catch block
