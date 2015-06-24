@@ -33,7 +33,7 @@ public class TriggerMini extends Trigger{
             //aThis.setChange(true);
             System.out.println("Si");  
             aThis.getPlayer().correct=true;
-            this.active=false;
+            this.active=true;
             //aThis.getPlayer().positionX=800;
             //aThis.getPlayer().positionY=800;
           //  aThis.getEng().getSM().add(mini);
