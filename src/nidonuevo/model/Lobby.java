@@ -32,8 +32,8 @@ public class Lobby extends State{
     private boolean [] listosList;
     static {
             try {
-                    reg = LocateRegistry.getRegistry("192.168.207.206", 1099);
-                    //reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
+                    //reg = LocateRegistry.getRegistry("192.168.207.206", 1099);
+                    reg = LocateRegistry.getRegistry("127.0.0.1", 1099);
                     proxy = (IServices)reg.lookup("MyRMIServer");
             } catch (Exception e) {
                     // TODO Auto-generated catch block
@@ -43,6 +43,7 @@ public class Lobby extends State{
     
     public Lobby(Engine eng){
         this.eng = eng;
+        eng.setProxy(proxy);
         background=ImageLoader.loadImage("/img/pizarraMul.png");
         /*serverrmi.IServices.Player pp= new serverrmi.IServices.Player( eng.LMS.getPlayer().getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
@@ -147,7 +148,7 @@ public class Lobby extends State{
             for(int i = 0; i< plist.size();i++){
                 g.setFont(new Font("Comic Sans MS",Font.BOLD,50));
                 g.setColor(Color.WHITE);
-                g.drawString(plist.get(i).name, 100, i*100+80);
+                g.drawString(plist.get(i).name, 110, i*100+100);
                 
             }
         } catch (RemoteException ex) {

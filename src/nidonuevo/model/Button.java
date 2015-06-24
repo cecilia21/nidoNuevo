@@ -55,6 +55,7 @@ public class Button {
         g.setColor(Color.black);
         g.drawImage(sprite[0],x,y,w,h, null);
         int cen=(int)(sprite[0].getWidth()-title.length()*((int)(fontSize*0.65)))/(2);
+        if(title.compareTo("Multiplayer")==0) cen+=70;
         g.drawString(title,x+cen,y+fontSize); 
     }
 }

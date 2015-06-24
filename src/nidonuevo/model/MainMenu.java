@@ -49,11 +49,11 @@ public class MainMenu extends State {
         options.add("SALIR");
         options.add("Multiplayer");
         sel=new Selector(x-widthB,y,widthB,heightB,space,0,5,0,"/img/selector.png");
-        buttons.add(new Button(options.get(0),x,y,widthB,heightB));
-        buttons.add(new Button(options.get(1),x,y+space,widthB,heightB));
+        buttons.add(new Button(options.get(0),x,y,widthB+60,heightB));
+        buttons.add(new Button(options.get(1),x,y+space,widthB+60,heightB));
         //buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));
-        buttons.add(new Button(options.get(2),x,y+2*space,widthB,heightB));
-        buttons.add(new Button(options.get(3),x,y+3*space,widthB,heightB));
+        buttons.add(new Button(options.get(2),x,y+2*space,widthB+60,heightB));
+        buttons.add(new Button(options.get(3),x,y+3*space,widthB+60,heightB));
        this.eng=eng;
        background=ImageLoader.loadImage("/img/bgF.jpg");
         

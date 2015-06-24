@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,7 @@ public class Player extends Person implements Serializable{
     private transient ArrayList<MiniGame> miniGames=new ArrayList<MiniGame>();
     private int idMinigame;
     private int auxEnter=0;
+    private int auxQ=0;
     private int currentMap;
     private ArrayList<serverrmi.IServices.Player> amigos=new ArrayList<serverrmi.IServices.Player>() ;
     private Inventory inventory=new Inventory();
@@ -171,6 +173,23 @@ public class Player extends Person implements Serializable{
                     
 //                    correct=false;
                 }
+                if (eng.getKeyManager().q){
+                    if (auxQ==0) auxQ++;
+                }
+                if (eng.getKeyManager().qR){
+                    if (auxQ==1) auxQ++;
+                }
+                if(auxQ==2){
+                    eng.getKeyManager().qR=false;
+                    eng.getKeyManager().q=false;
+                    auxQ=0;
+                    try {
+                        eng.proxy.setFinGame(!eng.finGame);
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(Player.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                }                
                 if(eng.getKeyManager().enter){
                     //System.out.println("Solo se presiona enter");
                     //Cuando tu mismo vuelves a presionar enter se para la secuencia
@@ -215,13 +234,14 @@ public class Player extends Person implements Serializable{
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
         for(int i=0;i<amigos.size();i++){ // los multiplayer
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
+            g.setColor(Color.white);
             if(amigos.get(i).map==currentMap){
                 g.drawImage(getSprite()[amigos.get(i).dir*4+amigos.get(i).s], (int)amigos.get(i).posX, (int)amigos.get(i).posY, getWidth(), getHeight(), null);
-                g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
-                g.setColor(Color.white);
                 g.drawString(amigos.get(i).name,(int)amigos.get(i).posX, (int)amigos.get(i).posY);
-                g.drawString(amigos.get(i).name+": "+amigos.get(i).numberofFriends, 60, 80+15*i);  
             }
+            
+            g.drawString(amigos.get(i).name+": "+amigos.get(i).numberofFriends, 60, 80+15*i);              
             if(amigos.get(i).fin) eng.gameover=true;
             
         }
