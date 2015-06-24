@@ -37,7 +37,7 @@ public class TriggerMini extends Trigger{
             System.out.println("Si");  
             aThis.getPlayer().getCorrectos().set(i-tt+tm, true);
 //            aThis.getPlayer().correct=true;
-            this.active=true;
+            this.active=false;
             //aThis.getPlayer().positionX=800;
             //aThis.getPlayer().positionY=800;
           //  aThis.getEng().getSM().add(mini);

@@ -45,6 +45,7 @@ public class MiniGame extends State {
     private boolean force=false;
     private String resultado=null;
     public int indice=0;
+    private boolean ganaAmigo=false;
     public MiniGame(Engine eng,ArrayList<Person> persons, ArrayList<String> messages,ArrayList<String[]> answers, ArrayList<Integer> correct,ArrayList<Integer> points){
         this.answers=answers;
         this.messages=messages;
@@ -97,7 +98,10 @@ public class MiniGame extends State {
             System.exit(1);
         }
        if(isForce()){
-            //System.out.println("Si");  
+            //System.out.println("Si"); 
+           int cantAmigos=eng.LMS.getPlayer().getNumberOfFriends();
+           if(ganaAmigo) eng.LMS.getPlayer().setNumberOfFriends(cantAmigos+1);
+           ganaAmigo=false;
             cont=0;
             eng.LMS.getPlayer().getFriends().get(indice).setDibujable(false);
             System.out.println("indice ptm: "+ indice);
@@ -175,7 +179,7 @@ public class MiniGame extends State {
                     int tot=getTotal().get(getTurno());
                     tot+=getPoints().get(getCont());
                     getTotal().set(getTurno(), tot);
-                    
+                    ganaAmigo=true;
                     setResultado("Correcto:" + getTotal().get(getTurno()));
                  }else{
                     setResultado("Mal:" + getTotal().get(getTurno()));
@@ -186,7 +190,7 @@ public class MiniGame extends State {
                     int tot=getTotal().get(getTurno());
                     tot+=getPoints().get(getCont());
                     getTotal().set(getTurno(), tot);
-                    
+                    ganaAmigo=true;
                     setResultado("Correcto:" + getTotal().get(getTurno()));
                  }else{
                     setResultado("Mal:" + getTotal().get(getTurno()));
@@ -198,6 +202,7 @@ public class MiniGame extends State {
                     int tot=getTotal().get(getTurno());
                     tot+=getPoints().get(getCont());
                     getTotal().set(getTurno(), tot);
+                    ganaAmigo=true;
                     setResultado("Correcto:" + getTotal().get(getTurno()));
                  }else{
                     setResultado("Mal:" + getTotal().get(getTurno()));

@@ -5,6 +5,7 @@
  */
 package nidonuevo.model;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -25,7 +26,7 @@ public class Player extends Person implements Serializable{
     private int contDelay=5;
     private transient Engine eng;
     private double happiness;
-    private int numberOfFriends;
+    private int numberOfFriends=0;
     private int level;
     private int xMove;
     private int yMove;
@@ -67,12 +68,17 @@ public class Player extends Person implements Serializable{
         alts.add("Cecilia");
         alts.add("Raul");
         alts.add("Diego");
-        Friend f= new Friend(300,300,img,0,"como me llamo?",alts,0);
+
+        Friend f= new Friend(600,600,img,0,"como me llamo?",alts,0);
         friends.add(f);
-        Friend f2= new Friend(600,600,img,0,"como me llamo?",alts,0);
+        Friend f2= new Friend(300,53,img,0,"como me llamo?",alts,0);
         friends.add(f2);
-        Friend f3= new Friend(650,650,img,0,"como me llamo?",alts,0);
-        friends.add(f3);
+        Friend f3= new Friend(678,353,img,0,"como me llamo?",alts,0);
+        friends.add(f3);     
+        Friend f4= new Friend(156,611,img,0,"como me llamo?",alts,0);
+        friends.add(f4); 
+        Friend f5= new Friend(402,587,img,0,"como me llamo?",alts,0);
+        friends.add(f5);           
     }
     
     public void tick(){
@@ -153,6 +159,8 @@ public class Player extends Person implements Serializable{
                             miniGames.get(i).indice=i;
                             miniGames.get(i).setForce(false);
                             eng.getSM().add(miniGames.get(i));
+//                            correctos.set(i, false);
+//                            break;
                         }
                     }
                     
@@ -175,8 +183,10 @@ public class Player extends Person implements Serializable{
        // LC=eng.getLc();
         this.eng=eng;
         //name="GGwp"; //por cambiar, tiene que ser ingresao desde el meenu inicial
-        positionX=x;
-        positionY=y;
+        //positionX=x;
+        //positionY=y;
+        positionX=600;
+        positionY=600;
         path="/img/playerS2.png";
         Sprite sheet = new Sprite(ImageLoader.loadImage(getPath()));
 		
@@ -199,9 +209,13 @@ public class Player extends Person implements Serializable{
     }
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
-        for(int i=0;i<amigos.size();i++){
+        for(int i=0;i<amigos.size();i++){ // los multiplayer
             if(amigos.get(i).map==currentMap){
                 g.drawImage(getSprite()[amigos.get(i).dir*4+amigos.get(i).s], (int)amigos.get(i).posX, (int)amigos.get(i).posY, getWidth(), getHeight(), null);
+                g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
+                g.setColor(Color.white);
+                g.drawString(amigos.get(i).name,(int)amigos.get(i).posX, (int)amigos.get(i).posY);
+                g.drawString(amigos.get(i).name+": "+amigos.get(i).numberofFriends, 60, 80+15*i);  
             }
             
         }
@@ -212,6 +226,10 @@ public class Player extends Person implements Serializable{
                 g.drawImage(friends.get(i).img,friends.get(i).positionX ,friends.get(i).getPositionY(),getWidth(),getHeight(), null);
             }
         }
+        g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
+        g.setColor(Color.white);
+        if(eng.multiplayer==false) g.drawString("Number of friends: "+numberOfFriends, 60, 60); 
+        else g.drawString(name+": "+numberOfFriends, 60, 60);
 //        System.out.println("cantidad de friends: "+friends.size());
 	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
         System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        

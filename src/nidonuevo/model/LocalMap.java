@@ -97,6 +97,8 @@ public class LocalMap extends State{
             Trigger auxT=maps.get(getMapAct()).getTriggers().get(i);
             if(auxT instanceof TriggerMini){
                 maps.get(getMapAct()).getTriggers().get(i).execTrigger(this,i);
+                                Layer aux=maps.get(getMapAct()).getLC();
+                getPlayer().setLC(aux);
             }else{
                 maps.get(getMapAct()).getTriggers().get(i).execTrigger(this,i);
                 Layer aux=maps.get(getMapAct()).getLC();

@@ -155,24 +155,24 @@ public class Lobby extends State{
             
     }
     
-    public void setPauseGame(boolean pause){
-        try {
-                proxy.setpauseGame(pause);
-            } catch (RemoteException ex) {
-                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-            }
-    }
-    
-    public boolean getPauseState(){
-        boolean pause=false;
-        try {
-            pause=proxy.getPauseState();
-            return pause;
-        } catch (RemoteException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return false;
-    }
+//    public void setPauseGame(boolean pause){
+//        try {
+//                proxy.setpauseGame(pause);
+//            } catch (RemoteException ex) {
+//                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//    }
+//    
+//    public boolean getPauseState(){
+//        boolean pause=false;
+//        try {
+//            pause=proxy.getPauseState();
+//            return pause;
+//        } catch (RemoteException ex) {
+//            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return false;
+//    }
     
     public void tick(){
         if(eng.getKeyManager().enter){

@@ -2,12 +2,14 @@
 
 <GameData>
   <Player>
-    <name>Escribe tu nombre!</name>
+    <name>asd</name>
     <happiness>0.0</happiness>
     <numberOfFriends>0</numberOfFriends>
     <level>0</level>
     <numerOfTrophies>0</numerOfTrophies>
     <Friends>
+      <Friend id="0"/>
+      <Friend id="0"/>
       <Friend id="0"/>
       <Friend id="0"/>
       <Friend id="0"/>

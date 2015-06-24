@@ -251,7 +251,7 @@ public class Engine implements Runnable{
         if(pause) {
              g.setFont(new Font("Comic Sans MS",Font.BOLD,40));
              g.setColor(Color.red);
-            g.drawString("Juego pausado GG", 320, 300);
+            g.drawString("Juego pausado", 320, 300);
         }
         //End Drawing!
         if (LMS.isChange()) Utils.imgB(g, 0, 0, this.getWidth(), this.getHeight(), LMS.getBright());

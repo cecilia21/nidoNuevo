@@ -64,20 +64,32 @@
         </Trigger>
         <Trigger>
           <type>TriggerMini</type>
-          <par>5</par>
-          <par>5</par>
+          <par>15</par>
+          <par>15</par>
           <par>1</par>
         </Trigger>
         <Trigger>
           <type>TriggerMini</type>
-          <par>7</par>
-          <par>7</par>
+          <par>8</par>
+          <par>2</par>
           <par>1</par>
         </Trigger>
         <Trigger>
           <type>TriggerMini</type>
-          <par>12</par>
-          <par>12</par>
+          <par>17</par>
+          <par>9</par>
+          <par>1</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMini</type>
+          <par>4</par>
+          <par>16</par>
+          <par>1</par>
+        </Trigger>
+        <Trigger>
+          <type>TriggerMini</type>
+          <par>11</par>
+          <par>15</par>
           <par>1</par>
         </Trigger>
       </Triggers>
@@ -378,8 +390,8 @@
     </Map>
   </Maps>
   <Player>
-    <positionX>372</positionX>
-    <positionY>252</positionY>
+    <positionX>390</positionX>
+    <positionY>275</positionY>
     <dir>2</dir>
     <path>/img/playerS2.png</path>
     <contDelay>5</contDelay>
@@ -437,28 +449,16 @@
         <id>0</id>
       </Persons>
       <Messages>
-        <message>Animal típico de la, sierra?</message>
-        <message>Capital de Peru?</message>
-        <message>Presidente actual del Perú?</message>
-        <message>Descubridor del America?</message>
+        <message>Animal típico de la sierra?</message>
       </Messages>
       <Answers>
         <answer>Vicuña-Liebra-Leon</answer>
-        <answer>Lima-USA-Ecuador</answer>
-        <answer>Nieto-Alan Garcia-Humala</answer>
-        <answer>Colon-El profesor-Mi papa</answer>
       </Answers>
       <Correct1>
-        <correct>1</correct>
-        <correct>2</correct>
-        <correct>3</correct>
         <correct>1</correct>
       </Correct1>
       <Points>
         <point>1</point>
-        <point>5</point>
-        <point>1</point>
-        <point>5</point>
       </Points>
     </MiniGame>
     <MiniGame>
@@ -467,28 +467,16 @@
         <id>0</id>
       </Persons>
       <Messages>
-        <message>Como me llamo?</message>
-        <message>Capital de Peru?</message>
-        <message>Presidente actual del Perú?</message>
-        <message>Descubridor del America?</message>
+        <message>Capital del peru?</message>
       </Messages>
       <Answers>
-        <answer>Cecilia-diego-raul</answer>
-        <answer>Lima-USA-Ecuador</answer>
-        <answer>Nieto-Alan Garcia-Humala</answer>
-        <answer>Colon-El profesor-Mi papa</answer>
+        <answer>Ica-Lima-Callao</answer>
       </Answers>
       <Correct1>
-        <correct>1</correct>
         <correct>2</correct>
-        <correct>3</correct>
-        <correct>1</correct>
       </Correct1>
       <Points>
         <point>1</point>
-        <point>5</point>
-        <point>1</point>
-        <point>5</point>
       </Points>
     </MiniGame>
     <MiniGame>
@@ -497,28 +485,52 @@
         <id>0</id>
       </Persons>
       <Messages>
-        <message>TERCER MINI?</message>
-        <message>Capital de Peru?</message>
-        <message>Presidente actual del Perú?</message>
-        <message>Descubridor del America?</message>
+        <message>Plato tipico de la selva?</message>
       </Messages>
       <Answers>
-        <answer>Vicuña-Liebra-Leon</answer>
-        <answer>Lima-USA-Ecuador</answer>
-        <answer>Nieto-Alan Garcia-Humala</answer>
-        <answer>Colon-El profesor-Mi papa</answer>
+        <answer>ceviche-juane-causa</answer>
       </Answers>
       <Correct1>
-        <correct>1</correct>
         <correct>2</correct>
+      </Correct1>
+      <Points>
+        <point>1</point>
+      </Points>
+    </MiniGame>
+    <MiniGame>
+      <id>3</id>
+      <Persons>
+        <id>0</id>
+      </Persons>
+      <Messages>
+        <message>Ciudad conocida como la ciudad blanca?</message>
+      </Messages>
+      <Answers>
+        <answer>Ancash-Loreto-Arequipa</answer>
+      </Answers>
+      <Correct1>
         <correct>3</correct>
+      </Correct1>
+      <Points>
+        <point>1</point>
+      </Points>
+    </MiniGame>
+    <MiniGame>
+      <id>4</id>
+      <Persons>
+        <id>0</id>
+      </Persons>
+      <Messages>
+        <message>Fruta tipica de la selva?</message>
+      </Messages>
+      <Answers>
+        <answer>cocona-pera-manzana</answer>
+      </Answers>
+      <Correct1>
         <correct>1</correct>
       </Correct1>
       <Points>
         <point>1</point>
-        <point>5</point>
-        <point>1</point>
-        <point>5</point>
       </Points>
     </MiniGame>
   </MiniGames>
