@@ -9,7 +9,7 @@ package nidonuevo.model;
  *
  * @author alulab14
  */
-public class PanelEsp extends javax.swing.JPanel {
+public class PanelEsp extends javax.swing.JFrame {
 
     /**
      * Creates new form PanelEsp

@@ -93,6 +93,11 @@ public class Player extends Person implements Serializable{
             getInput();
             move();
         }
+        else{
+            if(eng.jugEsp>0){
+                this.copyPlayerServer(getAmigos().get(eng.jugEsp-1));
+            }
+        }
 
     }
     public int getT(int x){
@@ -229,22 +234,29 @@ public class Player extends Person implements Serializable{
     public void increaseHappiness(){
         
     }
-    
+    public void copyPlayerServer(serverrmi.IServices.Player p){
+        this.positionX=p.posX;
+        this.positionY=p.posY;
+        if(p.map!=currentMap) eng.LMS.setMapAct(p.map);
+        this.currentMap=p.map;
+        this.dir=p.dir;
+        this.s=p.s;
+    }
     public void increaseNumberOfFriends(Friend friend){
         
     }
     public void render(Graphics g){
         //der=2 izq=1 arr=3 aba=0
-        for(int i=0;i<amigos.size();i++){ // los multiplayer
+        for(int i=0;i<getAmigos().size();i++){ // los multiplayer
             g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
             g.setColor(Color.white);
-            if(amigos.get(i).map==currentMap){
-                g.drawImage(getSprite()[amigos.get(i).dir*4+amigos.get(i).s], (int)amigos.get(i).posX, (int)amigos.get(i).posY, getWidth(), getHeight(), null);
-                g.drawString(amigos.get(i).name,(int)amigos.get(i).posX, (int)amigos.get(i).posY);
+            if(getAmigos().get(i).map==currentMap){
+                g.drawImage(getSprite()[getAmigos().get(i).dir*4+getAmigos().get(i).s], (int)getAmigos().get(i).posX, (int)getAmigos().get(i).posY, getWidth(), getHeight(), null);
+                g.drawString(getAmigos().get(i).name,(int)getAmigos().get(i).posX, (int)getAmigos().get(i).posY);
             }
             
-            g.drawString(amigos.get(i).name+": "+amigos.get(i).numberofFriends, 60, 80+15*i);              
-            if(amigos.get(i).fin) eng.gameover=true;
+            g.drawString(getAmigos().get(i).name+": "+getAmigos().get(i).numberofFriends, 60, 80+15*i);              
+            if(getAmigos().get(i).fin) eng.gameover=true;
             
         }
         if(numberOfFriends==5 && currentMap==0){
@@ -304,9 +316,9 @@ public class Player extends Person implements Serializable{
         boolean choca=false;
         int newX=getPositionX()+xMove;
         int newY=getPositionY()+yMove;
-        for(int i=0;i<amigos.size();i++){
-            int x=getT(amigos.get(i).posX);
-            int y=getT(amigos.get(i).posY);
+        for(int i=0;i<getAmigos().size();i++){
+            int x=getT(getAmigos().get(i).posX);
+            int y=getT(getAmigos().get(i).posY);
             if(getT(newX)==x && getT(newY)==y) choca=true;      
             if(getT(getPositionX())==x && getT(getPositionY())==y) choca=false;
             if(choca) break;
@@ -319,7 +331,7 @@ public class Player extends Person implements Serializable{
 
     }
     public void setOtherPlayer(ArrayList<serverrmi.IServices.Player> friends){
-        amigos=friends;
+        setAmigos(friends);
 //       if(amigo==null) amigo=new serverrmi.IServices.Player(p.name,p.posX,p.posY,p.map,p.dir,p.s);
 //       else{ //actualizo player
 //           amigo.dir=p.dir;
@@ -583,6 +595,20 @@ public class Player extends Person implements Serializable{
      */
     public void setCorrectos(ArrayList <Boolean> correctos) {
         this.correctos = correctos;
+    }
+
+    /**
+     * @return the amigos
+     */
+    public ArrayList<serverrmi.IServices.Player> getAmigos() {
+        return amigos;
+    }
+
+    /**
+     * @param amigos the amigos to set
+     */
+    public void setAmigos(ArrayList<serverrmi.IServices.Player> amigos) {
+        this.amigos = amigos;
     }
         
 }

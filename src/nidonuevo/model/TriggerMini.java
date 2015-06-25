@@ -7,6 +7,9 @@ package nidonuevo.model;
 
 import java.awt.Graphics;
 import java.awt.image.RescaleOp;
+import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,8 +18,10 @@ import java.awt.image.RescaleOp;
 public class TriggerMini extends Trigger{
     private MainMenu menu;
     private int changeTo;
+    private Engine eng;
     
-    public TriggerMini(int x,int y,int changeTo){
+    public TriggerMini(Engine eng,int x,int y,int changeTo){
+        this.eng=eng;
         this.x=x;
         this.y=y;
         this.changeTo=changeTo;
@@ -30,12 +35,22 @@ public class TriggerMini extends Trigger{
     public void execTrigger(LocalMap aThis,int i) {
         
         if (this.active){
+ 
             int currmap=aThis.getPlayer().getCurrentMap();
+//            if(eng.modoEspectador){ 
+//                try {
+//                sleep(2000);
+//                currmap=aThis.getPlayer().getAmigos().get(eng.jugEsp-1).map;
+//                } catch (InterruptedException ex) {
+//                    Logger.getLogger(TriggerMini.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//            }               
             //aThis.setChange(true);
             int tt=aThis.getMaps().get(currmap).getTriggers().size();
             int tm=aThis.getMaps().get(currmap).getTriggersMini().size();
             System.out.println("Si");  
             aThis.getPlayer().getCorrectos().set(i-tt+tm, true);
+
 //            aThis.getPlayer().correct=true;
             this.active=false;
             //aThis.getPlayer().positionX=800;

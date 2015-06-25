@@ -127,10 +127,10 @@ public class Lobby extends State{
 
                     eng.getSM().pop();
                     eng.getSM().add(lmap);
-                                        if(eng.modoEspectador) {
-                        PanelEsp pe=new PanelEsp();
+                    if(eng.modoEspectador) {
+                        FrameEsp pe=new FrameEsp(eng);
                         pe.setVisible(true);
-                        eng.getDisplay().getFrame().getContentPane().add(pe,new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 700-110, 800, 110));
+                       
                     }
                     eng.hiloTime.start();
                     
