@@ -82,6 +82,9 @@ public class Lobby extends State{
                             eng.getSM().pop();
                         }
                         else{
+                            ArrayList<serverrmi.IServices.Player> dat= proxy.receiveData();
+                            eng.LMS.getPlayer().setPositionX(dat.get(dat.size()-1).posX);
+                            eng.LMS.getPlayer().setPositionY(dat.get(dat.size()-1).posY);
                             ThreadSend hilo= new ThreadSend(eng, this);
                             hilo.start();
                             ThreadGet hilo2= new ThreadGet(eng, this);

@@ -33,7 +33,7 @@ public class ThreadSend extends Thread {
             jugP.posX=jug.positionX;
             jugP.posY=jug.positionY;
             jugP.map=jug.getCurrentMap();
-            jugP.name=jug.getName();
+            //jugP.name=jug.getName();
             jugP.dir=jug.getDir();
             jugP.s=jug.getS();
             jugP.numberofFriends=jug.getNumberOfFriends();

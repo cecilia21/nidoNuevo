@@ -298,11 +298,21 @@ public class Player extends Person implements Serializable{
 	//System.out.println(name);
     }
     public void move(){
+        boolean choca=false;
         int newX=getPositionX()+xMove;
         int newY=getPositionY()+yMove;
+        for(int i=0;i<amigos.size();i++){
+            int x=getT(amigos.get(i).posX);
+            int y=getT(amigos.get(i).posY);
+            if(getT(newX)==x && getT(newY)==y) choca=true;      
+            if(getT(getPositionX())==x && getT(getPositionY())==y) choca=false;
+            if(choca) break;
+        }
+        if(!choca){
+           this.setPositionX(newX);
+           this.setPositionY(newY);
+        }
 
-        this.setPositionX(newX);
-        this.setPositionY(newY);
 
     }
     public void setOtherPlayer(ArrayList<serverrmi.IServices.Player> friends){
