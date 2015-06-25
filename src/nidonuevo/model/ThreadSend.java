@@ -39,7 +39,7 @@ public class ThreadSend extends Thread {
             jugP.numberofFriends=jug.getNumberOfFriends();
             jugP.fin=eng.fin;
             try {
-                proxy.giveData(jugP);
+                if(!eng.modoEspectador)proxy.giveData(jugP);
             } catch (RemoteException ex) {
                 Logger.getLogger(ThreadSend.class.getName()).log(Level.SEVERE, null, ex);
             }

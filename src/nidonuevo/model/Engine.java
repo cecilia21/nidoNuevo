@@ -65,6 +65,7 @@ public class Engine implements Runnable{
     public boolean fin=false;
     public boolean gameover=false;
     public boolean finGame=false;
+    public boolean modoEspectador=false;
     ThreadTime hiloTime;
     //layer de collision
  //   private Layer lc;

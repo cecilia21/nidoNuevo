@@ -89,9 +89,11 @@ public class Player extends Person implements Serializable{
     }
     
     public void tick(){
-        
-        getInput();
-        move();
+        if(!eng.modoEspectador){
+            getInput();
+            move();
+        }
+
     }
     public int getT(int x){
         int cW=(int)(getLC().getTotalX()*1.0/getLC().getWidth());
@@ -264,10 +266,11 @@ public class Player extends Person implements Serializable{
         } 
         else {
             g.drawString("Tiempo restante: "+eng.hiloTime.getTime(), 500, 60);
-            g.drawString(name+": "+numberOfFriends, 60, 60);
+            if(!eng.modoEspectador)g.drawString(name+": "+numberOfFriends, 60, 60);
+            else g.drawString("Modo espectador", 300, 20);
         }
 //        System.out.println("cantidad de friends: "+friends.size());
-	g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
+	if(!eng.modoEspectador)g.drawImage(getSprite()[this.getDir()*4+getS()], (int)(getPositionX()), (int)(getPositionY()), getWidth(), getHeight(), null);
         System.out.println("Pixel X: "+getPositionX()+", Pixel Y:"+getPositionY());        
         System.out.println("Title X: "+getT(getPositionX())+", Title Y: "+getT(getPositionY()));
         //System.out.println("Aux: "+auxR);

@@ -77,20 +77,18 @@ public class Lobby extends State{
                     serverrmi.IServices.Player pp= new serverrmi.IServices.Player( p.getName(),p.getPositionX(), p.getPositionY(),
                                                     p.getCurrentMap(),p.getDir(),p.getS());
                     try {
-                        if(!proxy.conexionPlayer(pp)){
-                            JOptionPane.showMessageDialog(null, "juego ya iniciado");
-                            eng.getSM().pop();
-                        }
-                        else{
-                            ArrayList<serverrmi.IServices.Player> dat= proxy.receiveData();
-                            eng.LMS.getPlayer().setPositionX(dat.get(dat.size()-1).posX);
-                            eng.LMS.getPlayer().setPositionY(dat.get(dat.size()-1).posY);
-                            ThreadSend hilo= new ThreadSend(eng, this);
-                            hilo.start();
-                            ThreadGet hilo2= new ThreadGet(eng, this);
-                            hilo2.start(); 
-                            return false;
-                        }
+                        if(!proxy.conexionPlayer(pp)) eng.modoEspectador=true;
+                        //JOptionPane.showMessageDialog(null, "juego ya iniciado");
+                        //eng.getSM().pop();
+                        ArrayList<serverrmi.IServices.Player> dat= proxy.receiveData();
+                        eng.LMS.getPlayer().setPositionX(dat.get(dat.size()-1).posX);
+                        eng.LMS.getPlayer().setPositionY(dat.get(dat.size()-1).posY);
+                        eng.LMS.getPlayer().setName(dat.get(dat.size()-1).name);
+                        ThreadSend hilo= new ThreadSend(eng, this);
+                        hilo.start();
+                        ThreadGet hilo2= new ThreadGet(eng, this);
+                        hilo2.start(); 
+                        return false;
                     } catch (RemoteException ex) {
                         Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -123,11 +121,17 @@ public class Lobby extends State{
             }
         }
         try{
-        if(proxy.todosListos()){
+        if(proxy.todosListos() || eng.modoEspectador){
                     //agregar local map
                     LocalMap lmap = eng.LMS;
+
                     eng.getSM().pop();
                     eng.getSM().add(lmap);
+                                        if(eng.modoEspectador) {
+                        PanelEsp pe=new PanelEsp();
+                        pe.setVisible(true);
+                        eng.getDisplay().getFrame().getContentPane().add(pe,new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 700-110, 800, 110));
+                    }
                     eng.hiloTime.start();
                     
         }
@@ -147,11 +151,15 @@ public class Lobby extends State{
             g.drawImage(background,0,0,800,700,null);
         try {
             ArrayList<serverrmi.IServices.Player> plist = proxy.receiveData();
-            
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,50));
+            g.setColor(Color.red);
+            g.drawString("Sala Multiplayer",200,100);
+            g.setFont(new Font("Comic Sans MS",Font.BOLD,15));
+            g.drawString("Presiona enter cuando estes listo",460,600);
             for(int i = 0; i< plist.size();i++){
-                g.setFont(new Font("Comic Sans MS",Font.BOLD,50));
+                g.setFont(new Font("Comic Sans MS",Font.BOLD,30));
                 g.setColor(Color.WHITE);
-                g.drawString(plist.get(i).name, 110, i*100+100);
+                g.drawString("Jugador "+(i+1)+": "+plist.get(i).name, 110, i*70+150);
                 
             }
         } catch (RemoteException ex) {

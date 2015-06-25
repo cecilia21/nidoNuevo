@@ -20,8 +20,10 @@ public class ThreadGet extends Thread {
     public ArrayList<serverrmi.IServices.Player> dat= new ArrayList<serverrmi.IServices.Player>() ;
     public IServices proxy = null;  
     public int indMine=0;
+    private Engine eng;
     public ThreadGet(Engine eng, Lobby lob){
         super();
+        this.eng=eng;
         proxy=lob.proxy;
         jug=eng.LMS.getPlayer();
     }
@@ -30,20 +32,22 @@ public class ThreadGet extends Thread {
 
             try {
                 dat=proxy.receiveData();
-                for(int i=0;i<dat.size();i++){
-                    if(dat.get(i).name.compareTo(jug.getName())!=0){
-                        //System.out.print(dat.get(i).name);
-                        /*System.out.print("-");
-                        System.out.print(dat.get(i).posX);
-                        System.out.print("-");
-                        System.out.print(dat.get(i).posY);
-                        System.out.print("-");
-                        System.out.println(dat.get(i).map);*/
-                        //jug.setOtherPlayer(dat.get(i));
+                if(!eng.modoEspectador){
+                    for(int i=0;i<dat.size();i++){
+                        if(dat.get(i).name.compareTo(jug.getName())!=0){
+                            //System.out.print(dat.get(i).name);
+                            /*System.out.print("-");
+                            System.out.print(dat.get(i).posX);
+                            System.out.print("-");
+                            System.out.print(dat.get(i).posY);
+                            System.out.print("-");
+                            System.out.println(dat.get(i).map);*/
+                            //jug.setOtherPlayer(dat.get(i));
+                        }
+                        else indMine=i;
                     }
-                    else indMine=i;
-                }
-                dat.remove(indMine);
+                    dat.remove(indMine);
+                }    
                 jug.setOtherPlayer(dat);
             } catch (RemoteException ex) {
                 Logger.getLogger(ThreadSend.class.getName()).log(Level.SEVERE, null, ex);
